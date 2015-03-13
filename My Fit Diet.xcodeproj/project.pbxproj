@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
+		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
+		DC624EE71AA95302001AF36C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE61AA95302001AF36C /* ViewController.m */; };
+		DC624EEA1AA95302001AF36C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC624EE81AA95302001AF36C /* Main.storyboard */; };
+		DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC624EEB1AA95302001AF36C /* Images.xcassets */; };
+		DC624EEF1AA95302001AF36C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC624EED1AA95302001AF36C /* LaunchScreen.xib */; };
+		DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC624EF51AA95302001AF36C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC624ED31AA95302001AF36C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC624EDA1AA95302001AF36C;
+			remoteInfo = "My Fit Diet";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC624EDB1AA95302001AF36C /* My Fit Diet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Fit Diet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC624EDF1AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC624EE01AA95302001AF36C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DC624EE21AA95302001AF36C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DC624EE31AA95302001AF36C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DC624EE51AA95302001AF36C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DC624EE61AA95302001AF36C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DC624EE91AA95302001AF36C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DC624EEB1AA95302001AF36C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DC624EEE1AA95302001AF36C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DC624EF41AA95302001AF36C /* My Fit DietTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My Fit DietTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC624EF91AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My_Fit_DietTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC624ED81AA95302001AF36C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC624EF11AA95302001AF36C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC624ED21AA95302001AF36C = {
+			isa = PBXGroup;
+			children = (
+				DC624EDD1AA95302001AF36C /* My Fit Diet */,
+				DC624EF71AA95302001AF36C /* My Fit DietTests */,
+				DC624EDC1AA95302001AF36C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC624EDC1AA95302001AF36C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC624EDB1AA95302001AF36C /* My Fit Diet.app */,
+				DC624EF41AA95302001AF36C /* My Fit DietTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC624EDD1AA95302001AF36C /* My Fit Diet */ = {
+			isa = PBXGroup;
+			children = (
+				DC624EE21AA95302001AF36C /* AppDelegate.h */,
+				DC624EE31AA95302001AF36C /* AppDelegate.m */,
+				DC624EE51AA95302001AF36C /* ViewController.h */,
+				DC624EE61AA95302001AF36C /* ViewController.m */,
+				DC624EE81AA95302001AF36C /* Main.storyboard */,
+				DC624EEB1AA95302001AF36C /* Images.xcassets */,
+				DC624EED1AA95302001AF36C /* LaunchScreen.xib */,
+				DC624EDE1AA95302001AF36C /* Supporting Files */,
+			);
+			path = "My Fit Diet";
+			sourceTree = "<group>";
+		};
+		DC624EDE1AA95302001AF36C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC624EDF1AA95302001AF36C /* Info.plist */,
+				DC624EE01AA95302001AF36C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC624EF71AA95302001AF36C /* My Fit DietTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */,
+				DC624EF81AA95302001AF36C /* Supporting Files */,
+			);
+			path = "My Fit DietTests";
+			sourceTree = "<group>";
+		};
+		DC624EF81AA95302001AF36C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC624EF91AA95302001AF36C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC624EDA1AA95302001AF36C /* My Fit Diet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC624EFE1AA95302001AF36C /* Build configuration list for PBXNativeTarget "My Fit Diet" */;
+			buildPhases = (
+				DC624ED71AA95302001AF36C /* Sources */,
+				DC624ED81AA95302001AF36C /* Frameworks */,
+				DC624ED91AA95302001AF36C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "My Fit Diet";
+			productName = "My Fit Diet";
+			productReference = DC624EDB1AA95302001AF36C /* My Fit Diet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC624EF31AA95302001AF36C /* My Fit DietTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC624F011AA95302001AF36C /* Build configuration list for PBXNativeTarget "My Fit DietTests" */;
+			buildPhases = (
+				DC624EF01AA95302001AF36C /* Sources */,
+				DC624EF11AA95302001AF36C /* Frameworks */,
+				DC624EF21AA95302001AF36C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC624EF61AA95302001AF36C /* PBXTargetDependency */,
+			);
+			name = "My Fit DietTests";
+			productName = "My Fit DietTests";
+			productReference = DC624EF41AA95302001AF36C /* My Fit DietTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC624ED31AA95302001AF36C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Stephen Sowole";
+				TargetAttributes = {
+					DC624EDA1AA95302001AF36C = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					DC624EF31AA95302001AF36C = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = DC624EDA1AA95302001AF36C;
+					};
+				};
+			};
+			buildConfigurationList = DC624ED61AA95302001AF36C /* Build configuration list for PBXProject "My Fit Diet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC624ED21AA95302001AF36C;
+			productRefGroup = DC624EDC1AA95302001AF36C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC624EDA1AA95302001AF36C /* My Fit Diet */,
+				DC624EF31AA95302001AF36C /* My Fit DietTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC624ED91AA95302001AF36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC624EEA1AA95302001AF36C /* Main.storyboard in Resources */,
+				DC624EEF1AA95302001AF36C /* LaunchScreen.xib in Resources */,
+				DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC624EF21AA95302001AF36C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC624ED71AA95302001AF36C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC624EE71AA95302001AF36C /* ViewController.m in Sources */,
+				DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */,
+				DC624EE11AA95302001AF36C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC624EF01AA95302001AF36C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC624EF61AA95302001AF36C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC624EDA1AA95302001AF36C /* My Fit Diet */;
+			targetProxy = DC624EF51AA95302001AF36C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DC624EE81AA95302001AF36C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC624EE91AA95302001AF36C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DC624EED1AA95302001AF36C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC624EEE1AA95302001AF36C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DC624EFC1AA95302001AF36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DC624EFD1AA95302001AF36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC624EFF1AA95302001AF36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "My Fit Diet/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DC624F001AA95302001AF36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "My Fit Diet/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DC624F021AA95302001AF36C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "My Fit DietTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Fit Diet.app/My Fit Diet";
+			};
+			name = Debug;
+		};
+		DC624F031AA95302001AF36C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "My Fit DietTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Fit Diet.app/My Fit Diet";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC624ED61AA95302001AF36C /* Build configuration list for PBXProject "My Fit Diet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC624EFC1AA95302001AF36C /* Debug */,
+				DC624EFD1AA95302001AF36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC624EFE1AA95302001AF36C /* Build configuration list for PBXNativeTarget "My Fit Diet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC624EFF1AA95302001AF36C /* Debug */,
+				DC624F001AA95302001AF36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DC624F011AA95302001AF36C /* Build configuration list for PBXNativeTarget "My Fit DietTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC624F021AA95302001AF36C /* Debug */,
+				DC624F031AA95302001AF36C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC624ED31AA95302001AF36C /* Project object */;
+}
