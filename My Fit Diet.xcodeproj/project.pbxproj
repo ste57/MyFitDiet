@@ -12,10 +12,6 @@
 		DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC624EEB1AA95302001AF36C /* Images.xcassets */; };
 		DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */; };
 		DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC07D1AC8E97F00735106 /* LoginViewController.m */; };
-		DC6AC08F1AC900E900735106 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6AC08C1AC900E900735106 /* FBSDKCoreKit.framework */; };
-		DC6AC0901AC900E900735106 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6AC08D1AC900E900735106 /* FBSDKLoginKit.framework */; };
-		DC6AC0911AC900E900735106 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6AC08E1AC900E900735106 /* FBSDKShareKit.framework */; };
-		DC6AC0941AC9056400735106 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC0931AC9056400735106 /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +37,6 @@
 		DC6AC07B1AC8E7E100735106 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC6AC07C1AC8E97F00735106 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DC6AC07D1AC8E97F00735106 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		DC6AC08C1AC900E900735106 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		DC6AC08D1AC900E900735106 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		DC6AC08E1AC900E900735106 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
-		DC6AC0921AC9056400735106 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		DC6AC0931AC9056400735106 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +44,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6AC0901AC900E900735106 /* FBSDKLoginKit.framework in Frameworks */,
-				DC6AC08F1AC900E900735106 /* FBSDKCoreKit.framework in Frameworks */,
-				DC6AC0911AC900E900735106 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +63,6 @@
 				DC624EDD1AA95302001AF36C /* My Fit Diet */,
 				DC624EF71AA95302001AF36C /* My Fit DietTests */,
 				DC624EDC1AA95302001AF36C /* Products */,
-				DC6AC0851AC8FDA200735106 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +84,6 @@
 				DC624EE31AA95302001AF36C /* AppDelegate.m */,
 				DC6AC07C1AC8E97F00735106 /* LoginViewController.h */,
 				DC6AC07D1AC8E97F00735106 /* LoginViewController.m */,
-				DC6AC0921AC9056400735106 /* MenuViewController.h */,
-				DC6AC0931AC9056400735106 /* MenuViewController.m */,
 				DC624EEB1AA95302001AF36C /* Images.xcassets */,
 				DC624EDE1AA95302001AF36C /* Supporting Files */,
 			);
@@ -144,17 +129,6 @@
 			children = (
 			);
 			name = Libraries;
-			sourceTree = "<group>";
-		};
-		DC6AC0851AC8FDA200735106 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DC6AC08C1AC900E900735106 /* FBSDKCoreKit.framework */,
-				DC6AC08D1AC900E900735106 /* FBSDKLoginKit.framework */,
-				DC6AC08E1AC900E900735106 /* FBSDKShareKit.framework */,
-			);
-			name = Frameworks;
-			path = "My Fit Diet";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +233,6 @@
 				DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */,
 				DC624EE11AA95302001AF36C /* main.m in Sources */,
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
-				DC6AC0941AC9056400735106 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,13 +337,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Stephen/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/My",
-					Fit,
-					Diet,
-				);
 				INFOPLIST_FILE = "My Fit Diet/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -384,13 +350,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Stephen/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/My",
-					Fit,
-					Diet,
-				);
 				INFOPLIST_FILE = "My Fit Diet/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
