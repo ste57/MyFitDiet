@@ -8,30 +8,51 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
-
-@end
-
-@implementation LoginViewController
+@implementation LoginViewController {
+    
+    CGSize win;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    win = self.view.frame.size;
+    
+    [self createTitleLabel];
+    
+    [self addFacebookLoginButton];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    
+}
+
+- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    
+}
+
+- (void) addFacebookLoginButton {
+    
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] initWithFrame:CGRectMake(0, 0, 240.0, 50.0)];
+    loginButton.center = CGPointMake(win.width/2, win.height/1.3);
+    loginButton.delegate = self;
+    [self.view addSubview:loginButton];
+}
+
+- (void) createTitleLabel {
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, win.width, 100.0)];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.center = CGPointMake(win.width/2, win.height/5);
+    titleLabel.text = @"My Fit Diet";
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:28.0];
+    [self.view addSubview:titleLabel];
+}
+
+- (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
