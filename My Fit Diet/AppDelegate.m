@@ -10,7 +10,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "LoginViewController.h"
-#import "MenuViewController.h"
+#import "MenuStatsCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,16 +24,26 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //if ([FBSDKAccessToken currentAccessToken]) {
+    if ([FBSDKAccessToken currentAccessToken]) {
         
         self.window.rootViewController = [LoginViewController alloc];
         
-    //} else {
+    } else {
     
-      //  self.window.rootViewController = [MenuViewController alloc];
-   // }
+        UINavigationController *navigationController = [[UINavigationController alloc] init];
+        
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
+        
+        navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
+        
+        self.window.rootViewController = navigationController;
+    }
     
-    self.window.backgroundColor = [UIColor lightGrayColor];
+    self.window.backgroundColor = [UIColor whiteColor];
     
     [self.window makeKeyAndVisible];
     

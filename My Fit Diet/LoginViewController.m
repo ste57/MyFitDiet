@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "MenuStatsCollectionViewController.h"
 
 @implementation LoginViewController {
     
@@ -25,6 +26,20 @@
 
 - (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
     
+    if ([FBSDKAccessToken currentAccessToken]) {
+    
+        UINavigationController *navigationController = [[UINavigationController alloc] init];
+        
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
+        
+        navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
+        
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
 }
 
 - (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
