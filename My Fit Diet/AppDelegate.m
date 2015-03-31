@@ -11,6 +11,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "LoginViewController.h"
 #import "MenuStatsCollectionViewController.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +22,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
+                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -31,6 +35,11 @@
     } else {
     
         UINavigationController *navigationController = [[UINavigationController alloc] init];
+        
+        navigationController.navigationBar.barTintColor = MAIN_BACKGROUND_COLOUR;
+        navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        navigationController.navigationBar.translucent = NO;
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 

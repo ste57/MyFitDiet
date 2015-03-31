@@ -12,6 +12,9 @@
 		DC5FE7B51AC98433002270FB /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5FE7B21AC98433002270FB /* FBSDKShareKit.framework */; };
 		DC5FE7C61ACAE68D002270FB /* MenuStatsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */; };
 		DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7C81ACAE6AE002270FB /* MenuStatsCollectionViewCell.m */; };
+		DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7CD1ACB3157002270FB /* KAProgressLabel.m */; };
+		DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7CF1ACB3157002270FB /* TPPropertyAnimation.m */; };
+		DC5FE7D41ACB61CC002270FB /* primer print.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC5FE7D31ACB61CC002270FB /* primer print.ttf */; };
 		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
 		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
 		DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC624EEB1AA95302001AF36C /* Images.xcassets */; };
@@ -37,6 +40,11 @@
 		DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuStatsCollectionViewController.m; sourceTree = "<group>"; };
 		DC5FE7C71ACAE6AE002270FB /* MenuStatsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuStatsCollectionViewCell.h; sourceTree = "<group>"; };
 		DC5FE7C81ACAE6AE002270FB /* MenuStatsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuStatsCollectionViewCell.m; sourceTree = "<group>"; };
+		DC5FE7CC1ACB3157002270FB /* KAProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAProgressLabel.h; sourceTree = "<group>"; };
+		DC5FE7CD1ACB3157002270FB /* KAProgressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAProgressLabel.m; sourceTree = "<group>"; };
+		DC5FE7CE1ACB3157002270FB /* TPPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPropertyAnimation.h; sourceTree = "<group>"; };
+		DC5FE7CF1ACB3157002270FB /* TPPropertyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPropertyAnimation.m; sourceTree = "<group>"; };
+		DC5FE7D31ACB61CC002270FB /* primer print.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "primer print.ttf"; sourceTree = "<group>"; };
 		DC624EDB1AA95302001AF36C /* My Fit Diet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Fit Diet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC624EDF1AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC624EE01AA95302001AF36C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -100,6 +108,25 @@
 			name = "Menu Stats";
 			sourceTree = "<group>";
 		};
+		DC5FE7CB1ACB3157002270FB /* KAProgressLabel */ = {
+			isa = PBXGroup;
+			children = (
+				DC5FE7CC1ACB3157002270FB /* KAProgressLabel.h */,
+				DC5FE7CD1ACB3157002270FB /* KAProgressLabel.m */,
+				DC5FE7CE1ACB3157002270FB /* TPPropertyAnimation.h */,
+				DC5FE7CF1ACB3157002270FB /* TPPropertyAnimation.m */,
+			);
+			path = KAProgressLabel;
+			sourceTree = "<group>";
+		};
+		DC5FE7D21ACB61A5002270FB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DC5FE7D31ACB61CC002270FB /* primer print.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		DC624ED21AA95302001AF36C = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +155,7 @@
 				DC624EE31AA95302001AF36C /* AppDelegate.m */,
 				DC5FE7C21ACAD977002270FB /* Login */,
 				DC5FE7C31ACAD985002270FB /* Main Menu */,
+				DC5FE7D21ACB61A5002270FB /* Fonts */,
 				DC624EEB1AA95302001AF36C /* Images.xcassets */,
 				DC624EDE1AA95302001AF36C /* Supporting Files */,
 			);
@@ -171,6 +199,7 @@
 		DC6AC07A1AC8E7D000735106 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DC5FE7CB1ACB3157002270FB /* KAProgressLabel */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -267,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5FE7D41ACB61CC002270FB /* primer print.ttf in Resources */,
 				DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +320,8 @@
 				DC624EE11AA95302001AF36C /* main.m in Sources */,
 				DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */,
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
+				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
+				DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,11 +20,13 @@
 }
 
 static NSString * const reuseIdentifier = @"MenuStatsCell";
-static int const numberOfPages = 1;
+static int const numberOfPages = 4;
 
 - (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.title = @"TODAY";
     
     self.collectionView.pagingEnabled = YES;
     
@@ -35,16 +37,17 @@ static int const numberOfPages = 1;
 
 - (void) createOptionsView {
     
-    UIView *optionsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
+    UIView *optionsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 1.1, self.view.frame.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
 
     optionsView.backgroundColor = MAIN_BACKGROUND_COLOUR;
     
-    optionsView.layer.anchorPoint = CGPointMake(0.5, 1);
+    optionsView.layer.anchorPoint = CGPointMake(0.5, 1.0);
     
-    optionsView.layer.borderWidth = 2.0f;
+    optionsView.layer.borderWidth = 1.0f;
+    
     optionsView.layer.borderColor = [[UIColor colorWithRed:70.0f/255.0f green:74.0f/255.0f blue:80.0f/255.0f alpha:1.0] CGColor];
     
-    optionsView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height);
+    optionsView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
     
     [self.view addSubview:optionsView];
     
@@ -71,7 +74,7 @@ static int const numberOfPages = 1;
      [view addSubview:postButton];*/
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+/*- (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
@@ -83,29 +86,29 @@ static int const numberOfPages = 1;
         // scroll to the first page, note that this call will trigger scrollViewDidScroll: once and only once
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     });
-}
+}*/
 
 #pragma mark - <UICollectionViewDelegateFlowLayout>
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height * 0.8);
+    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 0.8);
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
     return 0.0f;
 }
 
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-         insetForSectionAtIndex:(NSInteger)section {
+    insetForSectionAtIndex:(NSInteger)section {
     
     return UIEdgeInsetsZero;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     return 0.0f;
 }
@@ -137,11 +140,14 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     MenuStatsCollectionViewCell *cell = (MenuStatsCollectionViewCell*) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.layer.anchorPoint = CGPointMake(0.5, 0);
+    if (cell) {
     
-    cell.center = CGPointMake(cell.center.x, 0);
+        cell.layer.anchorPoint = CGPointMake(0.5, 0);
     
-    [cell createLayout];
+        cell.center = CGPointMake(cell.center.x, 0);
+        
+        [cell createLayout];
+    }
     
     return cell;
 }
@@ -155,6 +161,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     // We can ignore the first time scroll,
     // because it is caused by the call scrollToItemAtIndexPath: in ViewWillAppear
     if (FLT_MIN == lastContentOffsetX) {
+        
         lastContentOffsetX = scrollView.contentOffset.x;
         return;
     }
@@ -162,12 +169,15 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     CGFloat currentOffsetX = scrollView.contentOffset.x;
     CGFloat currentOffsetY = scrollView.contentOffset.y;
     
-    CGFloat offset = scrollView.frame.size.width;
+    CGFloat pageWidth = scrollView.frame.size.width;
+    CGFloat offset = pageWidth * numberOfPages;
     
     // the first page(showing the last item) is visible and user is still scrolling to the left
-    if (currentOffsetX < offset && lastContentOffsetX > currentOffsetX) {
+    if (currentOffsetX < pageWidth && lastContentOffsetX > currentOffsetX) {
+        
         lastContentOffsetX = currentOffsetX + offset;
         scrollView.contentOffset = (CGPoint){lastContentOffsetX, currentOffsetY};
+        
     }
     
     // the last page (showing the first item) is visible and the user is still scrolling to the right
