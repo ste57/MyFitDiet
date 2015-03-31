@@ -7,14 +7,17 @@
 //
 
 #import "MenuStatsCollectionViewCell.h"
+#import "Constants.h"
 
 @implementation MenuStatsCollectionViewCell
 
 - (void) createLayout {
     
+    self.backgroundColor = MAIN_BACKGROUND_COLOUR;
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200.0, 200.0)];
     view.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-    view.backgroundColor = [UIColor blueColor];
+    view.backgroundColor = [UIColor whiteColor];
     [self addSubview:view];
 }
 

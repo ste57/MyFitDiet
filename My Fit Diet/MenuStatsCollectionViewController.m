@@ -8,6 +8,7 @@
 
 #import "MenuStatsCollectionViewController.h"
 #import "MenuStatsCollectionViewCell.h"
+#import "Constants.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -34,13 +35,26 @@ static int const numberOfPages = 1;
 
 - (void) createOptionsView {
     
+    UIView *optionsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
+
+    optionsView.backgroundColor = MAIN_BACKGROUND_COLOUR;
+    
+    optionsView.layer.anchorPoint = CGPointMake(0.5, 1);
+    
+    optionsView.layer.borderWidth = 2.0f;
+    optionsView.layer.borderColor = [[UIColor colorWithRed:70.0f/255.0f green:74.0f/255.0f blue:80.0f/255.0f alpha:1.0] CGColor];
+    
+    optionsView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height);
+    
+    [self.view addSubview:optionsView];
+    
     /*UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200.0, 200.0)];
     view.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
     view.backgroundColor = [UIColor blueColor];
     [self.view addSubview:view];
     
     
-    /*UIButton *postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
      
      postButton.frame = CGRectMake(0, 0, 50.0, 30.0);
      
@@ -126,8 +140,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     cell.layer.anchorPoint = CGPointMake(0.5, 0);
     
     cell.center = CGPointMake(cell.center.x, 0);
-    
-    cell.backgroundColor = [UIColor whiteColor];
     
     [cell createLayout];
     
