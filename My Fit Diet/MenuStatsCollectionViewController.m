@@ -17,16 +17,22 @@
 @implementation MenuStatsCollectionViewController {
     
     NSIndexPath *indexPathForDeviceOrientation;
+    NSDate *currentSetDate;
+    int previousPage;
 }
 
 static NSString * const reuseIdentifier = @"MenuStatsCell";
-static int const numberOfPages = 4;
+static int const numberOfPages = 3;
 
 - (void) viewDidLoad {
     
     [super viewDidLoad];
     
-    self.title = @"TODAY";
+    currentSetDate = [NSDate date];
+    
+    previousPage = numberOfPages;
+    
+    [self setNavigationBarDateTitle];
     
     self.collectionView.pagingEnabled = YES;
     
@@ -35,10 +41,38 @@ static int const numberOfPages = 4;
     [self createOptionsView];
 }
 
+- (void) setNavigationBarDateTitle {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    [dateFormat setDateFormat:@"EEE | dd MMMM yyyy"];
+    
+    int dayDiff = ceil([currentSetDate timeIntervalSinceNow] / (60*60*24));
+    
+    NSLog(@"diff = %i", dayDiff);
+
+    if (dayDiff == 0) {
+        
+        self.title = @"TODAY";
+        
+    } else if (dayDiff == -1) {
+        
+        self.title = @"YESTERDAY";
+        
+    } else if (dayDiff == 1) {
+        
+        self.title = @"TOMORROW";
+        
+    } else {
+        
+        self.title = [[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:currentSetDate]] uppercaseString];
+    }
+}
+
 - (void) createOptionsView {
     
     UIView *optionsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 1.1, self.view.frame.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
-
+    
     optionsView.backgroundColor = MAIN_BACKGROUND_COLOUR;
     
     optionsView.layer.anchorPoint = CGPointMake(0.5, 1.0);
@@ -50,43 +84,7 @@ static int const numberOfPages = 4;
     optionsView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
     
     [self.view addSubview:optionsView];
-    
-    /*UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200.0, 200.0)];
-    view.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
-    view.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:view];
-    
-    
-    UIButton *postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     
-     postButton.frame = CGRectMake(0, 0, 50.0, 30.0);
-     
-     //postButton.center = CGPointMake(0,0);
-     
-     postButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:19.0];
-     
-     [postButton setTitle:@"Post" forState:UIControlStateNormal];
-     
-     [postButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-     
-     //[postButton addTarget:self action:@selector(postMumble) forControlEvents:UIControlEventTouchUpInside];
-     
-     [view addSubview:postButton];*/
 }
-
-/*- (void) viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    // scroll to the 2nd page, which is showing the first item.
-    
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        // scroll to the first page, note that this call will trigger scrollViewDidScroll: once and only once
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-    });
-}*/
 
 #pragma mark - <UICollectionViewDelegateFlowLayout>
 
@@ -96,19 +94,19 @@ static int const numberOfPages = 4;
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-    minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     
     return 0.0f;
 }
 
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-    insetForSectionAtIndex:(NSInteger)section {
+         insetForSectionAtIndex:(NSInteger)section {
     
     return UIEdgeInsetsZero;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-    minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     return 0.0f;
 }
@@ -141,9 +139,9 @@ static int const numberOfPages = 4;
     MenuStatsCollectionViewCell *cell = (MenuStatsCollectionViewCell*) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     if (cell) {
-    
+        
         cell.layer.anchorPoint = CGPointMake(0.5, 0);
-    
+        
         cell.center = CGPointMake(cell.center.x, 0);
         
         [cell createLayout];
@@ -160,11 +158,6 @@ static int const numberOfPages = 4;
     
     // We can ignore the first time scroll,
     // because it is caused by the call scrollToItemAtIndexPath: in ViewWillAppear
-    if (FLT_MIN == lastContentOffsetX) {
-        
-        lastContentOffsetX = scrollView.contentOffset.x;
-        return;
-    }
     
     CGFloat currentOffsetX = scrollView.contentOffset.x;
     CGFloat currentOffsetY = scrollView.contentOffset.y;
@@ -177,7 +170,6 @@ static int const numberOfPages = 4;
         
         lastContentOffsetX = currentOffsetX + offset;
         scrollView.contentOffset = (CGPoint){lastContentOffsetX, currentOffsetY};
-        
     }
     
     // the last page (showing the first item) is visible and the user is still scrolling to the right
@@ -190,6 +182,57 @@ static int const numberOfPages = 4;
         
         lastContentOffsetX = currentOffsetX;
     }
+}
+
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    CGFloat pageWidth = scrollView.frame.size.width;
+    
+    int currentPage = (int)((self.collectionView.contentOffset.x + pageWidth / 2) / pageWidth);
+
+    if (currentPage != previousPage) {
+
+        if (currentPage == 1 && previousPage == 3) {
+         
+            [self moveDateForward];
+            
+        } else if (currentPage == 2 && previousPage == 1) {
+            
+            [self moveDateForward];
+            
+        } else if (currentPage == 3 && previousPage == 2) {
+            
+            [self moveDateForward];
+        }
+        
+        
+        else if (currentPage == 3 && previousPage == 1) {
+            
+            [self moveDateBack];
+            
+        } else if (currentPage == 2 && previousPage == 3) {
+            
+            [self moveDateBack];
+            
+        } else if (currentPage == 1 && previousPage == 2) {
+            
+            [self moveDateBack];
+        }
+
+        previousPage = currentPage;
+    }
+}
+
+- (void) moveDateBack {
+    
+    currentSetDate = [currentSetDate dateByAddingTimeInterval:60*60*24*-1];
+    [self setNavigationBarDateTitle];
+}
+
+- (void) moveDateForward {
+    
+    currentSetDate = [currentSetDate dateByAddingTimeInterval:60*60*24*1];
+    [self setNavigationBarDateTitle];
 }
 
 - (void) didReceiveMemoryWarning {
