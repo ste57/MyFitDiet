@@ -9,6 +9,7 @@
 #import "DiaryViewController.h"
 #import "Constants.h"
 #import "DiaryTableViewCell.h"
+#import "SearchFoodTableViewController.h"
 
 @interface DiaryViewController ()
 
@@ -32,17 +33,30 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     self.title = @"DIARY";
     
+    [self removeBackButtonText];
+    
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(returnToMenu)];
     
     self.navigationItem.leftBarButtonItem = doneButton;
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(returnToMenu)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toggleFoodSearch)];
     
     self.navigationItem.rightBarButtonItem = addButton;
     
     [self addDateView];
     
     [self createTableView];
+}
+
+- (void) removeBackButtonText {
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+}
+
+- (void) toggleFoodSearch {
+    
+    [self.navigationController pushViewController:[SearchFoodTableViewController alloc] animated:YES];
 }
 
 - (void) createTableView {
