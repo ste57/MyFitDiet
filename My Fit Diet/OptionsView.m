@@ -37,6 +37,57 @@
 
 - (void) createButtons {
     
+    [self createProfileButton];
+    
+    [self createPlanMealButton];
+    
+    [self createDiaryButton];
+}
+
+- (void) baseButton:(float)xPosition :(NSString*)buttonImg :(SEL)selector {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    button.frame = CGRectMake(0, 0, OPTIONS_BUTTON_WIDTH*2, OPTIONS_BUTTON_WIDTH*2);
+    
+    button.center = CGPointMake(xPosition, OPTIONS_BUTTON_HEIGHT);
+    
+    [button setImage:[UIImage imageNamed:buttonImg] forState:UIControlStateNormal];
+    
+    [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:button];
+}
+
+- (void) createProfileButton {
+    
+    [self baseButton:(self.frame.size.width/OPTIONS_BUTTONS_SEPERATION_VALUE) :@"ProfileImg" :@selector(accessProfile)];
+}
+
+
+- (void) createPlanMealButton {
+    
+    [self baseButton:(self.frame.size.width/2) :@"ProfileImg" :@selector(planMeal)];
+}
+
+- (void) createDiaryButton {
+    
+    [self baseButton:((self.frame.size.width/OPTIONS_BUTTONS_SEPERATION_VALUE)*(OPTIONS_BUTTONS_SEPERATION_VALUE-1))
+                    :@"ProfileImg" :@selector(createDiaryButton)];
+}
+
+- (void) accessDiary {
+    
+    
+}
+
+- (void) planMeal {
+    
+    
+}
+
+- (void) accessProfile {
+    
     
 }
 

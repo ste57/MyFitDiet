@@ -21,7 +21,7 @@
 
 #define FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS 50.0f
 #define FOOD_NUTRIENTS_TRACK_WIDTH 3.0f
-#define FOOD_NUTRIENTS_HEIGHT_DIVIDE 1.5
+#define FOOD_NUTRIENTS_HEIGHT_DIVIDE 1.5f
 
 #define CARBS_COLOUR [UIColor colorWithRed:0.75 green:0.53 blue:0.84 alpha:1.0]
 #define S_FATS_COLOUR [UIColor colorWithRed:0.49 green:0.73 blue:0.95 alpha:1.0]
@@ -30,7 +30,10 @@
 
 // MenuStatsCollectionView
 
-#define OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR 2.8
+#define OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR 2.8f
+#define OPTIONS_BUTTON_WIDTH 50.0f
+#define OPTIONS_BUTTON_HEIGHT 55.0f
+#define OPTIONS_BUTTONS_SEPERATION_VALUE 4.2f
 
 // NSUserDefaults
 
