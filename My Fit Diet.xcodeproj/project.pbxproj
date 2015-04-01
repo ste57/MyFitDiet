@@ -22,6 +22,9 @@
 		DC5FE7E91ACC5CAF002270FB /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7E71ACC5CAF002270FB /* ResultsTableViewController.m */; };
 		DC5FE7EC1ACC5CC5002270FB /* SearchFoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */; };
 		DC5FE7EF1ACC5CDA002270FB /* FoodResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */; };
+		DC5FE7F41ACC9126002270FB /* FoodObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7F31ACC9126002270FB /* FoodObject.m */; };
+		DC5FE7F91ACC9169002270FB /* FXForms.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7F81ACC9169002270FB /* FXForms.m */; };
+		DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7FB1ACC9532002270FB /* CreateFoodViewController.m */; };
 		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
 		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
 		DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC624EEB1AA95302001AF36C /* Images.xcassets */; };
@@ -66,6 +69,12 @@
 		DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFoodTableViewController.m; sourceTree = "<group>"; };
 		DC5FE7ED1ACC5CDA002270FB /* FoodResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodResultsTableViewController.h; sourceTree = "<group>"; };
 		DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodResultsTableViewController.m; sourceTree = "<group>"; };
+		DC5FE7F21ACC9126002270FB /* FoodObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodObject.h; sourceTree = "<group>"; };
+		DC5FE7F31ACC9126002270FB /* FoodObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodObject.m; sourceTree = "<group>"; };
+		DC5FE7F71ACC9169002270FB /* FXForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXForms.h; sourceTree = "<group>"; };
+		DC5FE7F81ACC9169002270FB /* FXForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXForms.m; sourceTree = "<group>"; };
+		DC5FE7FA1ACC9532002270FB /* CreateFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateFoodViewController.h; sourceTree = "<group>"; };
+		DC5FE7FB1ACC9532002270FB /* CreateFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateFoodViewController.m; sourceTree = "<group>"; };
 		DC624EDB1AA95302001AF36C /* My Fit Diet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Fit Diet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC624EDF1AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC624EE01AA95302001AF36C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -170,6 +179,7 @@
 				DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */,
 				DC5FE7ED1ACC5CDA002270FB /* FoodResultsTableViewController.h */,
 				DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */,
+				DC5FE7F11ACC9100002270FB /* Food Creation */,
 				DC5FE7F01ACC5D06002270FB /* USe */,
 			);
 			name = "Add Food";
@@ -184,6 +194,26 @@
 				DC5FE7E71ACC5CAF002270FB /* ResultsTableViewController.m */,
 			);
 			name = USe;
+			sourceTree = "<group>";
+		};
+		DC5FE7F11ACC9100002270FB /* Food Creation */ = {
+			isa = PBXGroup;
+			children = (
+				DC5FE7F21ACC9126002270FB /* FoodObject.h */,
+				DC5FE7F31ACC9126002270FB /* FoodObject.m */,
+				DC5FE7FA1ACC9532002270FB /* CreateFoodViewController.h */,
+				DC5FE7FB1ACC9532002270FB /* CreateFoodViewController.m */,
+			);
+			name = "Food Creation";
+			sourceTree = "<group>";
+		};
+		DC5FE7F61ACC9169002270FB /* FXForms */ = {
+			isa = PBXGroup;
+			children = (
+				DC5FE7F71ACC9169002270FB /* FXForms.h */,
+				DC5FE7F81ACC9169002270FB /* FXForms.m */,
+			);
+			path = FXForms;
 			sourceTree = "<group>";
 		};
 		DC624ED21AA95302001AF36C = {
@@ -258,6 +288,7 @@
 		DC6AC07A1AC8E7D000735106 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DC5FE7F61ACC9169002270FB /* FXForms */,
 				DC5FE7CB1ACB3157002270FB /* KAProgressLabel */,
 			);
 			name = Libraries;
@@ -380,11 +411,14 @@
 				DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */,
 				DC5FE7EF1ACC5CDA002270FB /* FoodResultsTableViewController.m in Sources */,
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
+				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
 				DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
 				DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */,
+				DC5FE7F91ACC9169002270FB /* FXForms.m in Sources */,
 				DC5FE7EC1ACC5CC5002270FB /* SearchFoodTableViewController.m in Sources */,
 				DC5FE7E91ACC5CAF002270FB /* ResultsTableViewController.m in Sources */,
+				DC5FE7F41ACC9126002270FB /* FoodObject.m in Sources */,
 				DC5FE7D71ACBA7F4002270FB /* OptionsView.m in Sources */,
 				DC5FE7E21ACC53DA002270FB /* DiaryTableViewCell.m in Sources */,
 				DC5FE7E81ACC5CAF002270FB /* SearchTableViewController.m in Sources */,

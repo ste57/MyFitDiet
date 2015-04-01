@@ -157,7 +157,10 @@
     
     label.progress = 0;
     
-    [label setProgress:0.8 timing:TPPropertyAnimationTimingEaseOut duration:0.8 delay:0.5];
+    float num = (arc4random() % 100) / 100.0;
+
+    //0.8
+    [label setProgress:num timing:TPPropertyAnimationTimingEaseOut duration:0.8 delay:0.5];
 }
 
 @end

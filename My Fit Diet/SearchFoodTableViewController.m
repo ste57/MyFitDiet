@@ -8,6 +8,9 @@
 
 #import "SearchFoodTableViewController.h"
 #import "FoodResultsTableViewController.h"
+#import "FoodObject.h"
+#import "CreateFoodViewController.h"
+
 
 @interface SearchFoodTableViewController ()
 
@@ -73,7 +76,15 @@
 
 - (void) createNewFood {
     
+    //FXFormViewController *createFoodVC = [[FXFormViewController alloc] init];
     
+    //createFoodVC.formController.form = [[FoodObject alloc] init];
+    
+    CreateFoodViewController *createFoodVC = [[CreateFoodViewController alloc] init];
+    
+    createFoodVC.formController.form = [[FoodObject alloc] init];
+    
+    [self.navigationController pushViewController:createFoodVC animated:YES];
 }
 
 #pragma mark - Table view data source
