@@ -15,10 +15,16 @@
 @implementation CreateFoodViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
+    [self removeBackButtonText];
+}
+
+- (void) removeBackButtonText {
     
-    NSLog(@"hey there!");
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
 
 - (void)didReceiveMemoryWarning {

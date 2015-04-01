@@ -19,7 +19,7 @@
 @property int totalFats;
 @property int saturatedFats;
 @property int sodium;
-@property int totalCarbohydates;
+@property int totalCarbohydrates;
 @property int protein;
 
 @end

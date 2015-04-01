@@ -12,14 +12,28 @@
 
 - (NSArray *) fields {
     
-    
     return @[
-             @{FXFormFieldKey: @"text", FXFormFieldTitle: @"Name"},
-             @{FXFormFieldKey: @"longtext", FXFormFieldTitle: @"Food Description"},
-             @{FXFormFieldKey: @"number", FXFormFieldTitle: @"Serving Size (g)"},
+             // Food Description
+             @{FXFormFieldKey: @"name", FXFormFieldTitle: @"Name", FXFormFieldType: @"text", FXFormFieldHeader: @"FOOD DESCRIPTION"},
+             
+             @{FXFormFieldKey: @"foodDescription", FXFormFieldType: @"longtext", FXFormFieldPlaceholder: @"Optional", FXFormFieldTitle: @"Description"},
+             
+             @{FXFormFieldKey: @"servingSize", FXFormFieldTitle: @"Serving Size (g)", FXFormFieldType: @"float", FXFormFieldDefaultValue: @"0"},
+             
+             
+             // Nutrition Information
+             @{FXFormFieldKey: @"calories", FXFormFieldTitle: @"Calories (kcal)", FXFormFieldType: @"integer", FXFormFieldDefaultValue: @"0",FXFormFieldHeader: @"NUTRITION INFORMATION"},
+             
+             @{FXFormFieldKey: @"totalFats", FXFormFieldTitle: @"Total Fats (g)", FXFormFieldType: @"float", FXFormFieldDefaultValue: @"0"},
+             
+             @{FXFormFieldKey: @"saturatedFats", FXFormFieldTitle: @"Saturated Fats (g)", FXFormFieldType: @"float", FXFormFieldDefaultValue: @"0"},
+             
+             @{FXFormFieldKey: @"sodium", FXFormFieldTitle: @"Sodium (g)", FXFormFieldType: @"float", FXFormFieldDefaultValue: @"0"},
+             
+             @{FXFormFieldKey: @"totalCarbohydrates", FXFormFieldTitle: @"Total Carbohydrates (g)", FXFormFieldType: @"float", FXFormFieldDefaultValue: @"0"},
+             
+             @{FXFormFieldKey: @"protein", FXFormFieldTitle: @"Protein (g)", FXFormFieldType: @"float", FXFormFieldDefaultValue: @"0"},
              ];
-    
-    //return @[@"Name", @"FoodDescription", @"ServingSize (g)", @"Calories (kcal)", @"TotalFats (g)", @"SaturatedFats (g)", @"Sodium (g)", @"TotalCarbohydrates (g)", @"Protein (g)"];
 }
 
 @end
