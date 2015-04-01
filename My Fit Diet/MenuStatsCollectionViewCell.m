@@ -10,8 +10,6 @@
 #import "Constants.h"
 #import "KAProgressLabel.h"
 
-
-
 @implementation MenuStatsCollectionViewCell {
     
     float xVal, separationValue;
@@ -64,6 +62,19 @@
     [self addSubview:progressLabel];
     
     [self animateBar:progressLabel];
+    
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    label.textColor = [UIColor lightGrayColor];
+    
+    //label.text = @"500";
+    
+    label.font = [UIFont fontWithName:@"Primer" size:50.0];
+    
+    [progressLabel addSubview:label];
 }
 
 - (void) createCarbsProgressLabel {

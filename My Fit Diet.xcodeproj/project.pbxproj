@@ -15,6 +15,7 @@
 		DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7CD1ACB3157002270FB /* KAProgressLabel.m */; };
 		DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7CF1ACB3157002270FB /* TPPropertyAnimation.m */; };
 		DC5FE7D41ACB61CC002270FB /* primer print.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC5FE7D31ACB61CC002270FB /* primer print.ttf */; };
+		DC5FE7D71ACBA7F4002270FB /* OptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7D61ACBA7F4002270FB /* OptionsView.m */; };
 		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
 		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
 		DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC624EEB1AA95302001AF36C /* Images.xcassets */; };
@@ -45,6 +46,8 @@
 		DC5FE7CE1ACB3157002270FB /* TPPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPropertyAnimation.h; sourceTree = "<group>"; };
 		DC5FE7CF1ACB3157002270FB /* TPPropertyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPropertyAnimation.m; sourceTree = "<group>"; };
 		DC5FE7D31ACB61CC002270FB /* primer print.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "primer print.ttf"; sourceTree = "<group>"; };
+		DC5FE7D51ACBA7F4002270FB /* OptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsView.h; sourceTree = "<group>"; };
+		DC5FE7D61ACBA7F4002270FB /* OptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsView.m; sourceTree = "<group>"; };
 		DC624EDB1AA95302001AF36C /* My Fit Diet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Fit Diet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC624EDF1AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC624EE01AA95302001AF36C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 			children = (
 				DC5FE7C71ACAE6AE002270FB /* MenuStatsCollectionViewCell.h */,
 				DC5FE7C81ACAE6AE002270FB /* MenuStatsCollectionViewCell.m */,
+				DC5FE7D51ACBA7F4002270FB /* OptionsView.h */,
+				DC5FE7D61ACBA7F4002270FB /* OptionsView.m */,
 			);
 			name = "Menu Stats";
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
 				DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */,
+				DC5FE7D71ACBA7F4002270FB /* OptionsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

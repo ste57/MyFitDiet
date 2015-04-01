@@ -9,6 +9,7 @@
 #import "MenuStatsCollectionViewController.h"
 #import "MenuStatsCollectionViewCell.h"
 #import "Constants.h"
+#import "OptionsView.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -48,8 +49,6 @@ static int const numberOfPages = 3;
     [dateFormat setDateFormat:@"EEE | dd MMMM yyyy"];
     
     int dayDiff = ceil([currentSetDate timeIntervalSinceNow] / (60*60*24));
-    
-    NSLog(@"diff = %i", dayDiff);
 
     if (dayDiff == 0) {
         
@@ -71,18 +70,10 @@ static int const numberOfPages = 3;
 
 - (void) createOptionsView {
     
-    UIView *optionsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 1.1, self.view.frame.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
-    
-    optionsView.backgroundColor = MAIN_BACKGROUND_COLOUR;
-    
-    optionsView.layer.anchorPoint = CGPointMake(0.5, 1.0);
-    
-    optionsView.layer.borderWidth = 1.0f;
-    
-    optionsView.layer.borderColor = [[UIColor colorWithRed:70.0f/255.0f green:74.0f/255.0f blue:80.0f/255.0f alpha:1.0] CGColor];
+    OptionsView *optionsView = [[OptionsView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 1.1, self.view.frame.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
     
     optionsView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
-    
+
     [self.view addSubview:optionsView];
 }
 
@@ -143,7 +134,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
         cell.layer.anchorPoint = CGPointMake(0.5, 0);
         
         cell.center = CGPointMake(cell.center.x, 0);
-        
+
         [cell createLayout];
     }
     
