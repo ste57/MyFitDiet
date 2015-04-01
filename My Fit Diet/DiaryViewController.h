@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiaryViewController : UIViewController
+@interface DiaryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSString *diaryDate;
 

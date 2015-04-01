@@ -35,6 +35,10 @@
 #define OPTIONS_BUTTON_HEIGHT 55.0f
 #define OPTIONS_BUTTONS_SEPERATION_VALUE 4.2f
 
+// Diary
+
+#define CELL_PADDING 15.0
+
 // NSUserDefaults
 
 // NSNotifications
