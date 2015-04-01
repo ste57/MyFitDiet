@@ -10,6 +10,7 @@
 #import "MenuStatsCollectionViewCell.h"
 #import "Constants.h"
 #import "OptionsView.h"
+#import "DiaryViewController.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -40,6 +41,12 @@ static int const numberOfPages = 3;
     [self.collectionView registerClass:[MenuStatsCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self createOptionsView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessDiary) name:DIARY_BUTTON_NOTIFICATION object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessProfile) name:PROFILE_BUTTON_NOTIFICATION object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
 }
 
 - (void) setNavigationBarDateTitle {
@@ -212,6 +219,23 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
         previousPage = currentPage;
     }
+}
+
+#pragma mark - OptionsView Buttons
+
+- (void) accessDiary {
+    
+    [self.navigationController pushViewController:[DiaryViewController alloc] animated:NO];
+}
+
+- (void) planMeal {
+    
+    
+}
+
+- (void) accessProfile {
+    
+    
 }
 
 - (void) moveDateBack {

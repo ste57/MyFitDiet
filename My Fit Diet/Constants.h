@@ -38,3 +38,7 @@
 // NSUserDefaults
 
 // NSNotifications
+
+#define DIARY_BUTTON_NOTIFICATION @"DiaryNS"
+#define PROFILE_BUTTON_NOTIFICATION @"ProfileNS"
+#define PLAN_MEAL_BUTTON_NOTIFICATION @"PlanMealNS"

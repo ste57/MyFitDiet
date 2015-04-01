@@ -72,23 +72,23 @@
 
 - (void) createDiaryButton {
     
-    [self baseButton:((self.frame.size.width/OPTIONS_BUTTONS_SEPERATION_VALUE)*(OPTIONS_BUTTONS_SEPERATION_VALUE-1))
-                    :@"ProfileImg" :@selector(createDiaryButton)];
+    [self baseButton:((self.frame.size.width/OPTIONS_BUTTONS_SEPERATION_VALUE)*
+                      (OPTIONS_BUTTONS_SEPERATION_VALUE-1)) :@"ProfileImg" :@selector(accessDiary)];
 }
 
 - (void) accessDiary {
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:DIARY_BUTTON_NOTIFICATION object:nil];
 }
 
 - (void) planMeal {
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
 }
 
 - (void) accessProfile {
     
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PROFILE_BUTTON_NOTIFICATION object:nil];
 }
 
 @end
