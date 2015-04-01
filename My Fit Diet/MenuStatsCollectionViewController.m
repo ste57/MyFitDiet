@@ -225,7 +225,15 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (void) accessDiary {
     
-    [self.navigationController pushViewController:[DiaryViewController alloc] animated:NO];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    [dateFormat setDateFormat:@"EEEE dd MMMM yyyy"];
+    
+    DiaryViewController *diary = [[DiaryViewController alloc] init];
+    
+    diary.diaryDate = [dateFormat stringFromDate:currentSetDate];
+    
+    [self.navigationController pushViewController:diary animated:NO];
 }
 
 - (void) planMeal {

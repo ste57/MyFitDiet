@@ -10,4 +10,6 @@
 
 @interface DiaryViewController : UIViewController
 
+@property (strong, nonatomic) NSString *diaryDate;
+
 @end

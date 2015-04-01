@@ -8,6 +8,7 @@
 
 #import "DiaryViewController.h"
 #import "Constants.h"
+#import "DiaryTableViewController.h"
 
 @interface DiaryViewController ()
 
@@ -15,7 +16,9 @@
 
 @implementation DiaryViewController
 
-- (void)viewDidLoad {
+@synthesize diaryDate;
+
+- (void) viewDidLoad {
     
     [super viewDidLoad];
     
@@ -30,12 +33,41 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(returnToMenu)];
     
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self addDateView];
+    
+    [self createTableView];
+}
+
+- (void) createTableView {
+    
+    DiaryTableViewController *tableView = [[DiaryTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    [self addChildViewController:tableView];
+}
+
+- (void) addDateView {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0f)];
+    
+    view.backgroundColor = TRACK_COLOUR;
+    
+    [self.view addSubview:view];
+    
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    label.text = self.diaryDate;
+    
+    label.textColor = [UIColor lightGrayColor];
+    
+    [view addSubview:label];
 }
 
 - (void) returnToMenu {
-    
-    NSLog(@"hello");
-  
+
     [self.navigationController popViewControllerAnimated:NO];
 }
 
