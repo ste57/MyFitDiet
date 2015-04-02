@@ -16,10 +16,10 @@
 @property float servingSize;
 
 @property int calories;
-@property int totalFats;
-@property int saturatedFats;
-@property int sodium;
-@property int totalCarbohydrates;
-@property int protein;
+@property float totalFats;
+@property float saturatedFats;
+@property float sodium;
+@property float totalCarbohydrates;
+@property float protein;
 
 @end

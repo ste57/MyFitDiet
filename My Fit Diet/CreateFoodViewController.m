@@ -8,6 +8,7 @@
 
 #import "CreateFoodViewController.h"
 #import <Parse/Parse.h>
+#import "FoodObject.h"
 
 @interface CreateFoodViewController ()
 
@@ -30,9 +31,48 @@
 
 - (void) createFood {
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    FoodObject *foodObject = self.formController.form;
+    
+    if ([[foodObject.name stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] || !foodObject.name) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Add Food"
+                                                        message:@"Food does not have a name. Please enter a name for your created food"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+    } else {
+    
+    //self.formController.form;
+    
+    /*@property (nonatomic, copy) NSString *name;
+    @property (nonatomic, copy) NSString *foodDescription;
+    @property float servingSize;
+    
+    @property int calories;
+    @property int totalFats;
+    @property int saturatedFats;
+    @property int sodium;
+    @property int totalCarbohydrates;
+    @property int protein;*/
+    
+    FoodObject *obj = (FoodObject*) self.formController.form;
+    
+    NSLog(@"name = %@", obj.name);
+    NSLog(@"name = %@", obj.foodDescription);
+    NSLog(@"name = %f", obj.servingSize);
+    NSLog(@"name = %d", obj.calories);
+    NSLog(@"name = %f", obj.totalFats);
+    NSLog(@"name = %f", obj.saturatedFats);
+    NSLog(@"name = %f", obj.sodium);
+    NSLog(@"name = %f", obj.totalCarbohydrates);
+    NSLog(@"name = %f\n\n\n", obj.protein);
+    
+    /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
     testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
+    [testObject saveInBackground];*/
+    }
 }
 
 - (void) removeBackButtonText {
