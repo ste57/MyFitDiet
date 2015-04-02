@@ -7,6 +7,7 @@
 //
 
 #import "CreateFoodViewController.h"
+#import <Parse/Parse.h>
 
 @interface CreateFoodViewController ()
 
@@ -19,6 +20,19 @@
     [super viewDidLoad];
     
     [self removeBackButtonText];
+    
+    self.title = @"CREATE FOOD";
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createFood)];
+    
+    self.navigationItem.rightBarButtonItem = addButton;
+}
+
+- (void) createFood {
+    
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    [testObject saveInBackground];
 }
 
 - (void) removeBackButtonText {

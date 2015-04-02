@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "MenuStatsCollectionViewController.h"
 #import "Constants.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -22,6 +23,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"vViwhlAhKfXwa4gMEAVkmaw1XKidX9DMKXUbCiIn"
+                  clientKey:@"DjLSMcZ4AnYPr92buTfSiOH1yEwt2AIqhG0o3IWD"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     
     [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
                                                             NSForegroundColorAttributeName:[UIColor whiteColor]}];
