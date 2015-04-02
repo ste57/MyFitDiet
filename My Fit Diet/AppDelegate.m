@@ -22,7 +22,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     [Parse enableLocalDatastore];
     
@@ -32,18 +31,17 @@
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    
-    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
-                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    if ([FBSDKAccessToken currentAccessToken]) {
+    if (![FBSDKAccessToken currentAccessToken]) {
         
         self.window.rootViewController = [LoginViewController alloc];
         
     } else {
+        
+        [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
+                                                                NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
         UINavigationController *navigationController = [[UINavigationController alloc] init];
         

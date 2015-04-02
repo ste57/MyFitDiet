@@ -24,7 +24,6 @@
 		DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7FB1ACC9532002270FB /* CreateFoodViewController.m */; };
 		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
 		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
-		DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC624EEB1AA95302001AF36C /* Images.xcassets */; };
 		DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */; };
 		DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC07D1AC8E97F00735106 /* LoginViewController.m */; };
 		DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AB51ACCBE9000948AD0 /* AudioToolbox.framework */; };
@@ -42,6 +41,7 @@
 		DCC334341ACCE281000748A5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC334311ACCE281000748A5 /* FBSDKCoreKit.framework */; };
 		DCC334351ACCE281000748A5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC334321ACCE281000748A5 /* FBSDKLoginKit.framework */; };
 		DCC334361ACCE281000748A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC334331ACCE281000748A5 /* FBSDKShareKit.framework */; };
+		DCC334381ACCF91B000748A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC334371ACCF91B000748A5 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +89,6 @@
 		DC624EE01AA95302001AF36C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC624EE21AA95302001AF36C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC624EE31AA95302001AF36C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DC624EEB1AA95302001AF36C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC624EF41AA95302001AF36C /* My Fit DietTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My Fit DietTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC624EF91AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My_Fit_DietTests.m; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		DCC334311ACCE281000748A5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		DCC334321ACCE281000748A5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		DCC334331ACCE281000748A5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		DCC334371ACCF91B000748A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +281,7 @@
 				DC5FE7C21ACAD977002270FB /* Login */,
 				DC5FE7C31ACAD985002270FB /* Main Menu */,
 				DC5FE7D21ACB61A5002270FB /* Fonts */,
-				DC624EEB1AA95302001AF36C /* Images.xcassets */,
+				DCC334371ACCF91B000748A5 /* Images.xcassets */,
 				DC624EDE1AA95302001AF36C /* Supporting Files */,
 			);
 			path = "My Fit Diet";
@@ -440,7 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC5FE7D41ACB61CC002270FB /* primer print.ttf in Resources */,
-				DC624EEC1AA95302001AF36C /* Images.xcassets in Resources */,
+				DCC334381ACCF91B000748A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

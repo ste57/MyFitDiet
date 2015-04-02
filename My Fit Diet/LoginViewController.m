@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "MenuStatsCollectionViewController.h"
+#import "Constants.h"
 
 @implementation LoginViewController {
     
@@ -15,13 +16,21 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     win = self.view.frame.size;
     
+    self.view.backgroundColor = MAIN_BACKGROUND_COLOUR;
+    
     [self createTitleLabel];
     
     [self addFacebookLoginButton];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    
+    return UIStatusBarStyleLightContent;
 }
 
 - (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
@@ -59,9 +68,9 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, win.width, 100.0)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.center = CGPointMake(win.width/2, win.height/5);
-    titleLabel.text = @"My Fit Diet";
-    titleLabel.textColor = [UIColor blackColor];
-    titleLabel.font = [UIFont fontWithName:@"Helvetica" size:28.0];
+    titleLabel.text = @"MY FIT DIET";
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont fontWithName:@"Primer" size:28.0];
     [self.view addSubview:titleLabel];
 }
 

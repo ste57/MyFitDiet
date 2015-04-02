@@ -43,35 +43,22 @@
         [alert show];
         
     } else {
-    
-    //self.formController.form;
-    
-    /*@property (nonatomic, copy) NSString *name;
-    @property (nonatomic, copy) NSString *foodDescription;
-    @property float servingSize;
-    
-    @property int calories;
-    @property int totalFats;
-    @property int saturatedFats;
-    @property int sodium;
-    @property int totalCarbohydrates;
-    @property int protein;*/
-    
-    FoodObject *obj = (FoodObject*) self.formController.form;
-    
-    NSLog(@"name = %@", obj.name);
-    NSLog(@"name = %@", obj.foodDescription);
-    NSLog(@"name = %f", obj.servingSize);
-    NSLog(@"name = %d", obj.calories);
-    NSLog(@"name = %f", obj.totalFats);
-    NSLog(@"name = %f", obj.saturatedFats);
-    NSLog(@"name = %f", obj.sodium);
-    NSLog(@"name = %f", obj.totalCarbohydrates);
-    NSLog(@"name = %f\n\n\n", obj.protein);
-    
-    /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];*/
+        
+        FoodObject *obj = (FoodObject*) self.formController.form;
+        
+        NSLog(@"name = %@", obj.name);
+        NSLog(@"name = %@", obj.foodDescription);
+        NSLog(@"name = %f", obj.servingSize);
+        NSLog(@"name = %d", obj.calories);
+        NSLog(@"name = %f", obj.totalFats);
+        NSLog(@"name = %f", obj.saturatedFats);
+        NSLog(@"name = %f", obj.sodium);
+        NSLog(@"name = %f", obj.totalCarbohydrates);
+        NSLog(@"name = %f\n\n\n", obj.protein);
+        
+        /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+         testObject[@"foo"] = @"bar";
+         [testObject saveInBackground];*/
     }
 }
 
@@ -87,13 +74,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
