@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UserObject.h"
+#import "CreateProfileViewController.h"
 
 @implementation LoginViewController {
     
@@ -56,42 +57,46 @@
                  if (!error) {
                      
                      user._id = [result objectForKey:@"id"];
-                     user.first_name = [result objectForKey:@"first_name"];
+                     user.name = [result objectForKey:@"first_name"];
                      user.gender = [result objectForKey:@"gender"];
                      user.email = [result objectForKey:@"email"];
                      
                      [user updateObject];
                  }
                  
-                 [self accessMainMenu];
+                 [self userLoggedIn];
              }];
             
         } else {
             
-            [self accessMainMenu];
+            [self userLoggedIn];
         }
     }
 }
 
-- (void) accessMainMenu {
+- (void) userLoggedIn {
     
     if ([FBSDKAccessToken currentAccessToken]) {
         
+        [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
+                                                                NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] init];
+        
+        navigationController.navigationBar.barTintColor = MAIN_BACKGROUND_COLOUR;
+        navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        navigationController.navigationBar.translucent = NO;
+        
         if (!user.currentWeight) {
             
-            [self displayCreateUserProfile];
+            CreateProfileViewController *createProfileVC = [[CreateProfileViewController alloc] init];
+            
+            createProfileVC.formController.form = [[UserObject alloc] init];
+            
+            navigationController.viewControllers = [NSArray arrayWithObject:createProfileVC];
             
         } else {
-            
-            [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
-                                                                    NSForegroundColorAttributeName:[UIColor whiteColor]}];
-            
-            UINavigationController *navigationController = [[UINavigationController alloc] init];
-            
-            navigationController.navigationBar.barTintColor = MAIN_BACKGROUND_COLOUR;
-            navigationController.navigationBar.tintColor = [UIColor whiteColor];
-            navigationController.navigationBar.barStyle = UIBarStyleBlack;
-            navigationController.navigationBar.translucent = NO;
             
             UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
             
@@ -100,15 +105,10 @@
             MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
             
             navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
-            
-            [self presentViewController:navigationController animated:YES completion:nil];
         }
+        
+        [self presentViewController:navigationController animated:YES completion:nil];
     }
-}
-
-- (void) displayCreateUserProfile {
-    
-    
 }
 
 - (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {

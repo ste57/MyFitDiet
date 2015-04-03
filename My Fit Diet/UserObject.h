@@ -7,20 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FXForms.h"
 
-@interface UserObject : NSObject
+@interface UserObject : NSObject <FXForm>
 
 // Data Collected From Facebook
 @property (strong, nonatomic) NSString *_id;
-@property (strong, nonatomic) NSString *first_name;
+@property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *gender;
 @property (strong, nonatomic) NSString *email;
 
 // Data Collected From My Fit Diet
+@property (strong, nonatomic) NSDate *dateOfBirth;
+
+@property float height;
 @property float currentWeight;
 @property float goalWeight;
-@property int age;
-@property float height;
+
+@property bool losingWeight;
+@property float goalRate;
+
 
 - (void) updateObject;
 

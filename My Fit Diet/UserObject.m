@@ -11,7 +11,7 @@
 
 @implementation UserObject
 
-@synthesize _id, email, gender, first_name, currentWeight, goalWeight, age, height;
+@synthesize _id, email, gender, name, currentWeight, goalWeight, dateOfBirth, height, losingWeight, goalRate;
 
 - (id) init {
     
@@ -25,13 +25,16 @@
             
             _id = userObject._id;
             email = userObject.email;
-            first_name = userObject.first_name;
+            name = userObject.name;
             gender = userObject.gender;
             
             currentWeight = userObject.currentWeight;
             goalWeight = userObject.goalWeight;
-            age = userObject.age;
+            dateOfBirth = userObject.dateOfBirth;
             height = userObject.height;
+            
+            losingWeight = userObject.losingWeight;
+            goalRate = userObject.goalRate;
         }
     }
     
@@ -42,13 +45,16 @@
     
     [encoder encodeObject:_id forKey:@"_id"];
     [encoder encodeObject:email forKey:@"email"];
-    [encoder encodeObject:first_name forKey:@"first_name"];
+    [encoder encodeObject:name forKey:@"first_name"];
     [encoder encodeObject:gender forKey:@"gender"];
     
     [encoder encodeFloat:currentWeight forKey:@"currentWeight"];
     [encoder encodeFloat:goalWeight forKey:@"goalWeight"];
-    [encoder encodeInt:age forKey:@"age"];
+    [encoder encodeObject:dateOfBirth forKey:@"dateOfBirth"];
     [encoder encodeFloat:height forKey:@"height"];
+    
+    [encoder encodeBool:losingWeight forKey:@"losingWeight"];
+    [encoder encodeFloat:goalRate forKey:@"goalRate"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
@@ -59,13 +65,16 @@
         
         _id = [decoder decodeObjectForKey:@"_id"];
         email = [decoder decodeObjectForKey:@"email"];
-        first_name = [decoder decodeObjectForKey:@"subcategory"];
+        name = [decoder decodeObjectForKey:@"first_name"];
         gender = [decoder decodeObjectForKey:@"gender"];
         
         currentWeight = [decoder decodeFloatForKey:@"currentWeight"];
         goalWeight = [decoder decodeFloatForKey:@"goalWeight"];
-        age = [decoder decodeIntForKey:@"age"];
+        dateOfBirth = [decoder decodeObjectForKey:@"dateOfBirth"];
         height = [decoder decodeFloatForKey:@"height"];
+        
+        losingWeight = [decoder decodeBoolForKey:@"losingWeight"];
+        goalRate = [decoder decodeFloatForKey:@"goalRate"];
     }
     
     return self;
