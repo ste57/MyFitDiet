@@ -36,7 +36,7 @@
     if ([[foodObject.name stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] || !foodObject.name) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Add Food"
-                                                        message:@"Food does not have a name. Please enter a name for your created food"
+                                                        message:@"\nFood does not have a name. Please enter a name for your created food."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];

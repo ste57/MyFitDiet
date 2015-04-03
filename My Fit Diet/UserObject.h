@@ -28,6 +28,6 @@
 @property float weeklyGoalRate;
 
 
-- (void) updateObject;
+- (void) syncUserObject;
 
 @end

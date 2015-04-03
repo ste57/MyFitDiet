@@ -84,6 +84,7 @@ static int const numberOfPages = 3;
                         
                         if (!error) {
                             
+                            [userObject syncUserObject];
                              NSLog(@"user signed up and logged in");
                             
                         } else {
@@ -106,6 +107,7 @@ static int const numberOfPages = 3;
                         
                         if (!error) {
                             
+                            [userObject syncUserObject];
                             NSLog(@"user logged in");
                             
                         } else {

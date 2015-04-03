@@ -284,9 +284,8 @@
 				DC6AC0791AC8E7CA00735106 /* Constants */,
 				DC624EE21AA95302001AF36C /* AppDelegate.h */,
 				DC624EE31AA95302001AF36C /* AppDelegate.m */,
-				DCC334431ACDE45A000748A5 /* User Class */,
-				DC5FE7C21ACAD977002270FB /* Login */,
 				DCC334471ACE1B84000748A5 /* User Profile */,
+				DC5FE7C21ACAD977002270FB /* Login */,
 				DC5FE7C31ACAD985002270FB /* Main Menu */,
 				DC5FE7D21ACB61A5002270FB /* Fonts */,
 				DCC3343B1ACD9C13000748A5 /* Images.xcassets */,
@@ -375,6 +374,7 @@
 			children = (
 				DCC334481ACE20AA000748A5 /* UserProfileViewController.h */,
 				DCC334491ACE20AA000748A5 /* UserProfileViewController.m */,
+				DCC334431ACDE45A000748A5 /* User Class */,
 			);
 			name = "User Profile";
 			sourceTree = "<group>";

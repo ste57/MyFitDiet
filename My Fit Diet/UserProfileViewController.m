@@ -7,6 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
+#import "UserObject.h"
 
 @interface UserProfileViewController ()
 
@@ -22,9 +23,10 @@
     
     [self removeBackButtonText];
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createProfile)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(createProfile)];
     
     self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void) removeBackButtonText {
@@ -35,6 +37,58 @@
 
 - (void) createProfile {
     
+    if ([self validatedFields]) {
+        
+        UserObject *userObject = self.formController.form;
+        
+        [userObject syncUserObject];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (BOOL) validatedFields {
+    
+    UserObject *userObject = self.formController.form;
+    
+    NSString *field = @"";
+    
+    if (!userObject.height) {
+        
+        field = @"height";
+        
+    } else if (!userObject.currentWeight) {
+        
+        field = @"current weight";
+        
+    } else if (!userObject.goalWeight) {
+        
+        field = @"goal weight";
+        
+    } else if (!userObject.weeklyGoalRate) {
+        
+        field = @"weekly goal rate";
+    }
+    
+    
+    if ([field isEqualToString:@""]) {
+        
+        return YES;
+    }
+    
+    [self callAlertView:@"Incomplete Profile" :[NSString stringWithFormat:@"\nPlease ensure the %@ field is not empty.", field]];
+    
+    return NO;
+}
+
+- (void) callAlertView:(NSString*)title :(NSString*)message {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning {

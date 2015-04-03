@@ -61,7 +61,7 @@
                      user.gender = [[result objectForKey:@"gender"] capitalizedString];
                      user.email = [result objectForKey:@"email"];
                      
-                     [user updateObject];
+                     [user syncUserObject];
                  }
                  
                  [self userLoggedIn];
@@ -88,24 +88,32 @@
         navigationController.navigationBar.barStyle = UIBarStyleBlack;
         navigationController.navigationBar.translucent = NO;
         
-        if (!user.currentWeight) {
-            
-            UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
-            
-            userProfileVC.formController.form = [[UserObject alloc] init];
-            
-            navigationController.viewControllers = [NSArray arrayWithObject:userProfileVC];
-            
-        } else {
+        
+        
+
             
             UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
             
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             
             MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
+        
+        
+        
+        if (!user.currentWeight) {
+            
+            UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
+            
+            userProfileVC.formController.form = [[UserObject alloc] init];
+            
+            navigationController.viewControllers = [NSArray arrayWithObjects:menuStatsCollectionViewController, userProfileVC, nil];
+            
+        } else {
             
             navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
         }
+        
+        
         
         [self presentViewController:navigationController animated:YES completion:nil];
     }

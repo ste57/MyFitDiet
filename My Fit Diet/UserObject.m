@@ -8,9 +8,10 @@
 
 #import "UserObject.h"
 #import "Constants.h"
+#import <Parse/Parse.h>
 
-typedef NS_ENUM(BOOL, weightGoal)
-{
+typedef NS_ENUM(BOOL, weightGoal) {
+    
     gainWeight = true,
     loseWeight = false,
 };
@@ -47,7 +48,30 @@ typedef NS_ENUM(BOOL, weightGoal)
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)encoder {
+- (void) syncUserObject {
+    
+    [self updateObject];
+    
+    PFUser *user = [PFUser currentUser];
+    
+    if (user) {
+        
+        user.username = _id;
+        user.password = _id;
+        user.email = email;
+        
+        user[@"DateOfBirth"] = dateOfBirth;
+        user[@"Height"] = [NSNumber numberWithFloat:height];
+        user[@"CurrentWeight"] = [NSNumber numberWithFloat:currentWeight];
+        user[@"GoalWeight"] = [NSNumber numberWithFloat:goalWeight];
+        user[@"isUserLosingWeight"] = [NSNumber numberWithBool:!userSetGainWeight];
+        user[@"WeeklyGoalRate"] = [NSNumber numberWithFloat:weeklyGoalRate];
+        
+        [user saveEventually];
+    }
+}
+
+- (void) encodeWithCoder:(NSCoder *)encoder {
     
     [encoder encodeObject:_id forKey:@"_id"];
     [encoder encodeObject:email forKey:@"email"];
@@ -92,40 +116,40 @@ typedef NS_ENUM(BOOL, weightGoal)
     
     for (int i = 60; i <= 250; i++)
         [heightArray addObject:[NSNumber numberWithInt:i]];
-        
+    
     NSMutableArray *weightArray = [[NSMutableArray alloc] init];
-        
+    
     for (int i = 30; i <= 1000; i++)
         [weightArray addObject:[NSNumber numberWithInt:i]];
     
     return @[
              // User Details
-             @{FXFormFieldKey: @"name", FXFormFieldTitle: @"Name", FXFormFieldType: @"text", FXFormFieldHeader: @"USER DETAILS"},
+             @{FXFormFieldKey: @"name", FXFormFieldTitle: @"Name", FXFormFieldType: @"text", FXFormFieldDefaultValue: @"User", FXFormFieldHeader: @"USER DETAILS"},
              
              @{FXFormFieldKey: @"gender", FXFormFieldType: @"text", FXFormFieldTitle: @"Gender", FXFormFieldOptions: @[@"Male", @"Female"]},
              
              @{FXFormFieldKey: @"email", FXFormFieldTitle: @"Email", FXFormFieldType: @"text"},
              
-             @{FXFormFieldKey: @"dateOfBirth", FXFormFieldTitle: @"Date Of Birth", FXFormFieldType: @"date"},
+             @{FXFormFieldKey: @"dateOfBirth", FXFormFieldDefaultValue: [NSDate date],FXFormFieldTitle: @"Date Of Birth", FXFormFieldType: @"date"},
              
              
              // Weight Details
              
              @{FXFormFieldKey: @"height", FXFormFieldTitle: @"Height (cm)", FXFormFieldOptions: heightArray,
-               FXFormFieldHeader: @"WEIGHT DETAILS"},
+               FXFormFieldHeader: @"WEIGHT DETAILS", FXFormFieldType: @"float"},
              
-             @{FXFormFieldKey: @"currentWeight", FXFormFieldTitle: @"Current Weight (lbs)", FXFormFieldOptions: weightArray},
+             @{FXFormFieldKey: @"currentWeight", FXFormFieldTitle: @"Current Weight (lbs)", FXFormFieldOptions: weightArray, FXFormFieldType: @"float"},
              
-             @{FXFormFieldKey: @"goalWeight", FXFormFieldTitle: @"Goal Weight (lbs)", FXFormFieldOptions: weightArray},
+             @{FXFormFieldKey: @"goalWeight", FXFormFieldTitle: @"Goal Weight (lbs)", FXFormFieldOptions: weightArray, FXFormFieldType: @"float"},
              
-             @{FXFormFieldKey: @"userSetGainWeight", FXFormFieldTitle: @"Weight Goal", FXFormFieldOptions: @[@(loseWeight), @(gainWeight)],
+             @{FXFormFieldKey: @"userSetGainWeight", FXFormFieldTitle: @"Weight Goal", FXFormFieldType: @"boolean", FXFormFieldOptions: @[@(loseWeight), @(gainWeight)],
                
                FXFormFieldValueTransformer: ^(id input) {
-    
+                   
                    return @{@(loseWeight): @"Lose Weight",
                             @(gainWeight): @"Gain Weight"}[input];}},
              
-             @{FXFormFieldKey: @"weeklyGoalRate", FXFormFieldTitle: @"Weekly Goal Rate (lbs)", FXFormFieldOptions: @[@0.5, @1.0, @1.5, @2.0]},
+             @{FXFormFieldKey: @"weeklyGoalRate", FXFormFieldTitle: @"Weekly Goal Rate (lbs)", FXFormFieldOptions: @[@0.5, @1.0, @1.5, @2.0], FXFormFieldType: @"float"},
              ];
 }
 
