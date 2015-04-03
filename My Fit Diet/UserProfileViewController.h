@@ -1,5 +1,5 @@
 //
-//  CreateProfileViewController.h
+//  UserProfileViewController.h
 //  My Fit Diet
 //
 //  Created by Stephen Sowole on 03/04/2015.
@@ -8,6 +8,6 @@
 
 #import "FXForms.h"
 
-@interface CreateProfileViewController : FXFormViewController
+@interface UserProfileViewController : FXFormViewController
 
 @end

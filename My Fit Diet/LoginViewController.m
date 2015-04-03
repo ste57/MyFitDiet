@@ -11,7 +11,7 @@
 #import "Constants.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UserObject.h"
-#import "CreateProfileViewController.h"
+#import "UserProfileViewController.h"
 
 @implementation LoginViewController {
     
@@ -57,8 +57,8 @@
                  if (!error) {
                      
                      user._id = [result objectForKey:@"id"];
-                     user.name = [result objectForKey:@"first_name"];
-                     user.gender = [result objectForKey:@"gender"];
+                     user.name = [[result objectForKey:@"first_name"] capitalizedString];
+                     user.gender = [[result objectForKey:@"gender"] capitalizedString];
                      user.email = [result objectForKey:@"email"];
                      
                      [user updateObject];
@@ -90,11 +90,11 @@
         
         if (!user.currentWeight) {
             
-            CreateProfileViewController *createProfileVC = [[CreateProfileViewController alloc] init];
+            UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
             
-            createProfileVC.formController.form = [[UserObject alloc] init];
+            userProfileVC.formController.form = [[UserObject alloc] init];
             
-            navigationController.viewControllers = [NSArray arrayWithObject:createProfileVC];
+            navigationController.viewControllers = [NSArray arrayWithObject:userProfileVC];
             
         } else {
             

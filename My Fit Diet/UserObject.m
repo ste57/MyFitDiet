@@ -9,9 +9,15 @@
 #import "UserObject.h"
 #import "Constants.h"
 
+typedef NS_ENUM(BOOL, weightGoal)
+{
+    gainWeight = true,
+    loseWeight = false,
+};
+
 @implementation UserObject
 
-@synthesize _id, email, gender, name, currentWeight, goalWeight, dateOfBirth, height, losingWeight, goalRate;
+@synthesize _id, email, gender, name, currentWeight, goalWeight, dateOfBirth, height, userSetGainWeight, weeklyGoalRate;
 
 - (id) init {
     
@@ -33,8 +39,8 @@
             dateOfBirth = userObject.dateOfBirth;
             height = userObject.height;
             
-            losingWeight = userObject.losingWeight;
-            goalRate = userObject.goalRate;
+            userSetGainWeight = userObject.userSetGainWeight;
+            weeklyGoalRate = userObject.weeklyGoalRate;
         }
     }
     
@@ -53,8 +59,8 @@
     [encoder encodeObject:dateOfBirth forKey:@"dateOfBirth"];
     [encoder encodeFloat:height forKey:@"height"];
     
-    [encoder encodeBool:losingWeight forKey:@"losingWeight"];
-    [encoder encodeFloat:goalRate forKey:@"goalRate"];
+    [encoder encodeBool:userSetGainWeight forKey:@"userSetGainWeight"];
+    [encoder encodeFloat:weeklyGoalRate forKey:@"weeklyGoalRate"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
@@ -73,11 +79,54 @@
         dateOfBirth = [decoder decodeObjectForKey:@"dateOfBirth"];
         height = [decoder decodeFloatForKey:@"height"];
         
-        losingWeight = [decoder decodeBoolForKey:@"losingWeight"];
-        goalRate = [decoder decodeFloatForKey:@"goalRate"];
+        userSetGainWeight = [decoder decodeBoolForKey:@"userSetGainWeight"];
+        weeklyGoalRate = [decoder decodeFloatForKey:@"weeklyGoalRate"];
     }
     
     return self;
+}
+
+- (NSArray *) fields {
+    
+    NSMutableArray *heightArray = [[NSMutableArray alloc] init];
+    
+    for (int i = 60; i <= 250; i++)
+        [heightArray addObject:[NSNumber numberWithInt:i]];
+        
+    NSMutableArray *weightArray = [[NSMutableArray alloc] init];
+        
+    for (int i = 30; i <= 1000; i++)
+        [weightArray addObject:[NSNumber numberWithInt:i]];
+    
+    return @[
+             // User Details
+             @{FXFormFieldKey: @"name", FXFormFieldTitle: @"Name", FXFormFieldType: @"text", FXFormFieldHeader: @"USER DETAILS"},
+             
+             @{FXFormFieldKey: @"gender", FXFormFieldType: @"text", FXFormFieldTitle: @"Gender", FXFormFieldOptions: @[@"Male", @"Female"]},
+             
+             @{FXFormFieldKey: @"email", FXFormFieldTitle: @"Email", FXFormFieldType: @"text"},
+             
+             @{FXFormFieldKey: @"dateOfBirth", FXFormFieldTitle: @"Date Of Birth", FXFormFieldType: @"date"},
+             
+             
+             // Weight Details
+             
+             @{FXFormFieldKey: @"height", FXFormFieldTitle: @"Height (cm)", FXFormFieldOptions: heightArray,
+               FXFormFieldHeader: @"WEIGHT DETAILS"},
+             
+             @{FXFormFieldKey: @"currentWeight", FXFormFieldTitle: @"Current Weight (lbs)", FXFormFieldOptions: weightArray},
+             
+             @{FXFormFieldKey: @"goalWeight", FXFormFieldTitle: @"Goal Weight (lbs)", FXFormFieldOptions: weightArray},
+             
+             @{FXFormFieldKey: @"userSetGainWeight", FXFormFieldTitle: @"Weight Goal", FXFormFieldOptions: @[@(loseWeight), @(gainWeight)],
+               
+               FXFormFieldValueTransformer: ^(id input) {
+    
+                   return @{@(loseWeight): @"Lose Weight",
+                            @(gainWeight): @"Gain Weight"}[input];}},
+             
+             @{FXFormFieldKey: @"weeklyGoalRate", FXFormFieldTitle: @"Weekly Goal Rate (lbs)", FXFormFieldOptions: @[@0.5, @1.0, @1.5, @2.0]},
+             ];
 }
 
 - (void) updateObject {

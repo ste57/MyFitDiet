@@ -24,8 +24,8 @@
 @property float currentWeight;
 @property float goalWeight;
 
-@property bool losingWeight;
-@property float goalRate;
+@property bool userSetGainWeight;
+@property float weeklyGoalRate;
 
 
 - (void) updateObject;
