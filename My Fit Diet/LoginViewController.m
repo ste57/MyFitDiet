@@ -12,6 +12,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UserObject.h"
 #import "UserProfileViewController.h"
+#import <Parse/Parse.h>
 
 @implementation LoginViewController {
     
@@ -62,19 +63,51 @@
                      user.email = [result objectForKey:@"email"];
                      
                      [user syncUserObject];
+                    
+                     [self retrieveUserData];
+                     
+                 } else {
+                    
+                     [self logUserInToMyFitDiet];
                  }
-                 
-                 [self userLoggedIn];
              }];
             
         } else {
             
-            [self userLoggedIn];
+            [self logUserInToMyFitDiet];
         }
     }
 }
 
-- (void) userLoggedIn {
+- (void) retrieveUserData {
+
+    PFQuery *query = [PFUser query];
+    
+    [query whereKey:@"username" equalTo:user._id];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
+        if (!error) {
+            
+            user.dateOfBirth = object[@"DateOfBirth"];
+            user.height = [object[@"Height"] floatValue];
+            user.currentWeight = [object[@"CurrentWeight"] floatValue];
+            user.goalWeight = [object[@"GoalWeight"] floatValue];
+            user.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
+            user.weeklyGoalRate = [object[@"WeeklyGoalRate"] floatValue];
+            
+            [user syncUserObject];
+            
+            [self logUserInToMyFitDiet];
+            
+        } else {
+            
+            [self logUserInToMyFitDiet];
+        }
+    }];
+}
+
+- (void) logUserInToMyFitDiet {
     
     if ([FBSDKAccessToken currentAccessToken]) {
         
@@ -88,17 +121,11 @@
         navigationController.navigationBar.barStyle = UIBarStyleBlack;
         navigationController.navigationBar.translucent = NO;
         
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-
-            
-            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-            
-            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            
-            MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
-        
-        
+        MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
         
         if (!user.currentWeight) {
             
@@ -108,14 +135,14 @@
             
             navigationController.viewControllers = [NSArray arrayWithObjects:menuStatsCollectionViewController, userProfileVC, nil];
             
+            [self presentViewController:navigationController animated:YES completion:nil];
+            
         } else {
             
             navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
+            
+            [self presentViewController:navigationController animated:NO completion:nil];
         }
-        
-        
-        
-        [self presentViewController:navigationController animated:YES completion:nil];
     }
 }
 

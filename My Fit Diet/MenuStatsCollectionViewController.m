@@ -12,6 +12,7 @@
 #import "OptionsView.h"
 #import "DiaryViewController.h"
 #import <Parse/Parse.h>
+#import "UserProfileViewController.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -26,6 +27,7 @@
 }
 
 static NSString * const reuseIdentifier = @"MenuStatsCell";
+// Do not change this value
 static int const numberOfPages = 3;
 
 - (void) viewDidLoad {
@@ -188,6 +190,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0.0f;
 }
 
+
 #pragma mark - UIInterfaceOrientation
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -200,6 +203,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self.collectionView scrollToItemAtIndexPath:indexPathForDeviceOrientation atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
 }
+
 
 #pragma mark - <UICollectionViewDataSource>
 
@@ -226,6 +230,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     return cell;
 }
+
 
 #pragma mark - <UIScrollViewDelegate>
 
@@ -300,6 +305,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     }
 }
 
+
 #pragma mark - OptionsView Buttons
 
 - (void) accessDiary {
@@ -312,7 +318,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     diary.diaryDate = [dateFormat stringFromDate:currentSetDate];
     
-    [self.navigationController pushViewController:diary animated:NO];
+    [self.navigationController pushViewController:diary animated:YES];
 }
 
 - (void) planMeal {
@@ -321,8 +327,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 }
 
 - (void) accessProfile {
+
+    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
     
+    userProfileVC.formController.form = [[UserObject alloc] init];
     
+    [self.navigationController pushViewController:userProfileVC animated:YES];
 }
 
 - (void) moveDateBack {

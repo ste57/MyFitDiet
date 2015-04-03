@@ -48,6 +48,12 @@ typedef NS_ENUM(BOOL, weightGoal) {
     return self;
 }
 
+- (void) removeUserObject {
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_OBJECT];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void) syncUserObject {
     
     [self updateObject];
@@ -151,6 +157,22 @@ typedef NS_ENUM(BOOL, weightGoal) {
              
              @{FXFormFieldKey: @"weeklyGoalRate", FXFormFieldTitle: @"Weekly Goal Rate (lbs)", FXFormFieldOptions: @[@0.5, @1.0, @1.5, @2.0], FXFormFieldType: @"float"},
              ];
+}
+
+- (NSArray *) extraFields {
+    
+    PFUser *user = [PFUser currentUser];
+    
+    if (user) {
+    
+    // Account Details
+    
+    return @[
+             @{FXFormFieldTitle: @"Log Out", FXFormFieldHeader: @"ACCOUNT DETAILS", FXFormFieldAction: @"logUserOut"},
+             ];
+    }
+    
+    return nil;
 }
 
 - (void) updateObject {

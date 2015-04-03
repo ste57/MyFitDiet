@@ -128,7 +128,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (void) returnToMenu {
 
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

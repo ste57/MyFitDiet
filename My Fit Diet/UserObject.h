@@ -30,4 +30,6 @@
 
 - (void) syncUserObject;
 
+- (void) removeUserObject;
+
 @end

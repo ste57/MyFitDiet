@@ -8,6 +8,9 @@
 
 #import "UserProfileViewController.h"
 #import "UserObject.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Parse/Parse.h>
+#import "LoginViewController.h"
 
 @interface UserProfileViewController ()
 
@@ -15,7 +18,7 @@
 
 @implementation UserProfileViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     
     [super viewDidLoad];
     
@@ -91,9 +94,22 @@
     [alert show];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
+}
+
+- (void) logUserOut {
+    
+    [[FBSDKLoginManager alloc] logOut];
+    
+    [PFUser logOut];
+    
+    [[UserObject alloc] removeUserObject];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    [self presentViewController:[LoginViewController alloc] animated:YES completion:nil];
 }
 
 @end
