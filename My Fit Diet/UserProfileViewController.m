@@ -109,7 +109,7 @@
     
     [self.navigationController popToRootViewControllerAnimated:NO];
     
-    [self presentViewController:[LoginViewController alloc] animated:YES completion:nil];
+    [self presentViewController:[LoginViewController alloc] animated:NO completion:nil];
 }
 
 @end

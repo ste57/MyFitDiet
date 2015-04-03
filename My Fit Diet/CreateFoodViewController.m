@@ -31,7 +31,7 @@
 
 - (void) createFood {
     
-    FoodObject *foodObject = self.formController.form;
+    FoodObject *foodObject = (FoodObject*) self.formController.form;
     
     if ([[foodObject.name stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""] || !foodObject.name) {
         
@@ -43,22 +43,10 @@
         [alert show];
         
     } else {
+
+        [foodObject createFoodObject];
         
-        FoodObject *obj = (FoodObject*) self.formController.form;
-        
-        NSLog(@"name = %@", obj.name);
-        NSLog(@"name = %@", obj.foodDescription);
-        NSLog(@"name = %f", obj.servingSize);
-        NSLog(@"name = %d", obj.calories);
-        NSLog(@"name = %f", obj.totalFats);
-        NSLog(@"name = %f", obj.saturatedFats);
-        NSLog(@"name = %f", obj.sodium);
-        NSLog(@"name = %f", obj.totalCarbohydrates);
-        NSLog(@"name = %f\n\n\n", obj.protein);
-        
-        /*PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-         testObject[@"foo"] = @"bar";
-         [testObject saveInBackground];*/
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -68,7 +56,7 @@
     [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
 }

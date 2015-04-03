@@ -22,4 +22,6 @@
 @property float totalCarbohydrates;
 @property float protein;
 
+- (void) createFoodObject;
+
 @end

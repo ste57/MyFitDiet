@@ -7,8 +7,49 @@
 //
 
 #import "FoodObject.h"
+#import <Parse/Parse.h>
 
 @implementation FoodObject
+
+@synthesize name, foodDescription, servingSize, calories, totalFats, saturatedFats, sodium, totalCarbohydrates, protein;
+
+/*PFQuery *query = [PFQuery queryWithClassName:@"Food"];
+ [query fromLocalDatastore];
+ 
+ [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+ 
+ if (!error) {
+ 
+ for (PFObject *object in objects) {
+ 
+ //NSArray *arr = object[MUMBLE_DATA_TAGS];
+ NSLog(@"%@\n", object[@"playerName"]);
+ }
+ }*/
+
+- (void) createFoodObject {
+    
+    if ([PFUser currentUser]) {
+        
+        PFObject *foodObject = [PFObject objectWithClassName:@"Food"];
+        
+        foodObject[@"Name"] = name;
+        foodObject[@"Description"] = foodDescription;
+        foodObject[@"ServingSize"] = [NSNumber numberWithFloat:servingSize];
+        foodObject[@"Calories"] = [NSNumber numberWithInt:calories];
+        foodObject[@"TotalFats"] = [NSNumber numberWithFloat:totalFats];
+        foodObject[@"SaturatedFats"] = [NSNumber numberWithFloat:saturatedFats];
+        foodObject[@"Sodium"] = [NSNumber numberWithFloat:sodium];
+        foodObject[@"TotalCarbohydrates"] = [NSNumber numberWithFloat:totalCarbohydrates];
+        foodObject[@"Protein"] = [NSNumber numberWithFloat:protein];
+        
+        [foodObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+            [foodObject saveEventually];
+            
+        }];
+    }
+}
 
 - (NSArray *) fields {
     
