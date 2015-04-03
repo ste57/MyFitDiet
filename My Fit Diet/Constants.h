@@ -41,6 +41,8 @@
 
 // NSUserDefaults
 
+#define USER_OBJECT @"UserObject"
+
 // NSNotifications
 
 #define DIARY_BUTTON_NOTIFICATION @"DiaryNS"

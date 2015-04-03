@@ -20,7 +20,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [Parse enableLocalDatastore];
@@ -33,33 +32,8 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    if (![FBSDKAccessToken currentAccessToken]) {
-        
-        self.window.rootViewController = [LoginViewController alloc];
-        
-    } else {
-        
-        [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName:[UIFont fontWithName:MAIN_FONT size:20.0f],
-                                                                NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
-        UINavigationController *navigationController = [[UINavigationController alloc] init];
-        
-        navigationController.navigationBar.barTintColor = MAIN_BACKGROUND_COLOUR;
-        navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        navigationController.navigationBar.barStyle = UIBarStyleBlack;
-        navigationController.navigationBar.translucent = NO;
-        
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        
-        MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
-        
-        navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
-        
-        self.window.rootViewController = navigationController;
-    }
+    self.window.rootViewController = [LoginViewController alloc];
     
     self.window.backgroundColor = [UIColor whiteColor];
     

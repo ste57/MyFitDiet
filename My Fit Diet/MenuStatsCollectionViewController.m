@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "OptionsView.h"
 #import "DiaryViewController.h"
+#import <Parse/Parse.h>
 
 @interface MenuStatsCollectionViewController ()
 
@@ -21,6 +22,7 @@
     NSIndexPath *indexPathForDeviceOrientation;
     NSDate *currentSetDate;
     int previousPage;
+    UserObject *userObject;
 }
 
 static NSString * const reuseIdentifier = @"MenuStatsCell";
@@ -29,6 +31,10 @@ static int const numberOfPages = 3;
 - (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    userObject = [[UserObject alloc] init];
+    
+    [self createPFUser];
     
     currentSetDate = [NSDate date];
     
@@ -49,6 +55,77 @@ static int const numberOfPages = 3;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
 }
 
+- (void) createPFUser {
+    
+    if ([PFUser currentUser]) {
+        
+        NSLog(@"user already logged in");
+        
+    } else {
+        
+        PFUser *pfUser = [PFUser user];
+        
+        pfUser.username = userObject._id;
+        pfUser.password = userObject._id;
+        pfUser.email = userObject.email;
+        
+        PFQuery *query = [PFUser query];
+        
+        [query whereKey:@"username" equalTo:pfUser.username];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            if (!error) {
+                
+                // if user does not exist
+                if (!objects.count) {
+                    
+                    [pfUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        
+                        if (!error) {
+                            
+                             NSLog(@"user signed up and logged in");
+                            
+                        } else {
+                            
+                            NSString *errorString = [error userInfo][@"error"];
+                            
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                            message:errorString
+                                                                           delegate:self
+                                                                  cancelButtonTitle:@"OK"
+                                                                  otherButtonTitles:nil];
+                            [alert show];
+                        }
+                    }];
+                    
+                // if user does exist
+                } else {
+                    
+                    [PFUser logInWithUsernameInBackground:pfUser.username password:pfUser.password block:^(PFUser *user, NSError *error) {
+                        
+                        if (!error) {
+                            
+                            NSLog(@"user logged in");
+                            
+                        } else {
+                            
+                            NSString *errorString = [error userInfo][@"error"];
+                            
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                            message:errorString
+                                                                           delegate:self
+                                                                  cancelButtonTitle:@"OK"
+                                                                  otherButtonTitles:nil];
+                            [alert show];
+                        }
+                    }];
+                }
+            }
+        }];
+    }
+}
+
 - (void) setNavigationBarDateTitle {
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -56,7 +133,7 @@ static int const numberOfPages = 3;
     [dateFormat setDateFormat:@"EEE | dd MMMM yyyy"];
     
     int dayDiff = ceil([currentSetDate timeIntervalSinceNow] / (60*60*24));
-
+    
     if (dayDiff == 0) {
         
         self.title = @"TODAY";
@@ -80,7 +157,7 @@ static int const numberOfPages = 3;
     OptionsView *optionsView = [[OptionsView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width * 1.1, self.view.frame.size.height/OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR)];
     
     optionsView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
-
+    
     [self.view addSubview:optionsView];
 }
 
@@ -141,7 +218,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
         cell.layer.anchorPoint = CGPointMake(0.5, 0);
         
         cell.center = CGPointMake(cell.center.x, 0);
-
+        
         [cell createLayout];
     }
     
@@ -187,11 +264,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     CGFloat pageWidth = scrollView.frame.size.width;
     
     int currentPage = (int)((self.collectionView.contentOffset.x + pageWidth / 2) / pageWidth);
-
+    
     if (currentPage != previousPage) {
-
+        
         if (currentPage == 1 && previousPage == 3) {
-         
+            
             [self moveDateForward];
             
         } else if (currentPage == 2 && previousPage == 1) {
@@ -216,7 +293,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
             
             [self moveDateBack];
         }
-
+        
         previousPage = currentPage;
     }
 }

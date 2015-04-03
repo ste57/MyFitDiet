@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserObject.h"
 
 @interface MenuStatsCollectionViewController : UICollectionViewController
 
