@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FXForms.h"
+#import <Parse/Parse.h>
 
 @interface CreateFoodViewController : FXFormViewController
+
+// Optional (for editing purposes)
+@property (strong, nonatomic) PFObject *foodPFObject;
 
 @end

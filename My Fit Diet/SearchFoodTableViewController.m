@@ -12,6 +12,7 @@
 #import "FoodObject.h"
 #import "AddFoodToDiaryViewController.h"
 #import "Constants.h"
+#import "AddToFoodForm.h"
 
 @interface SearchFoodTableViewController ()
 
@@ -164,14 +165,12 @@
 }
 
 - (void) displayFoodDetails:(PFObject*)object {
-   
-    FoodObject *foodObject = [[FoodObject alloc] init];
-    
-    [foodObject convertPFObjectToFoodObject:object];
     
     AddFoodToDiaryViewController *addToDiaryVC = [AddFoodToDiaryViewController alloc];
     
-    addToDiaryVC.foodObject = foodObject;
+    addToDiaryVC.foodPFObject = object;
+    
+    addToDiaryVC.formController.form = [AddToFoodForm alloc];
     
     [self.navigationController pushViewController:[addToDiaryVC init] animated:YES];
 }

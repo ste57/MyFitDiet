@@ -7,7 +7,6 @@
 //
 
 #import "CreateFoodViewController.h"
-#import <Parse/Parse.h>
 #import "FoodObject.h"
 
 @interface CreateFoodViewController ()
@@ -15,6 +14,8 @@
 @end
 
 @implementation CreateFoodViewController
+
+@synthesize foodPFObject;
 
 - (void) viewDidLoad {
     
@@ -24,7 +25,7 @@
     
     self.title = @"CREATE FOOD";
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createFood)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(createFood)];
     
     self.navigationItem.rightBarButtonItem = addButton;
 }
@@ -43,8 +44,15 @@
         [alert show];
         
     } else {
+        
+        if (foodPFObject) {
+            
+            [foodObject updateFoodObject:foodPFObject];
+            
+        } else {
 
-        [foodObject createFoodObject];
+            [foodObject createFoodObject];
+        }
         
         [self.navigationController popViewControllerAnimated:YES];
     }

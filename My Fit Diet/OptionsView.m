@@ -64,7 +64,6 @@
     [self baseButton:(self.frame.size.width/OPTIONS_BUTTONS_SEPERATION_VALUE) :@"ProfileImg" :@selector(accessProfile)];
 }
 
-
 - (void) createPlanMealButton {
     
     [self baseButton:(self.frame.size.width/2) :@"ProfileImg" :@selector(planMeal)];

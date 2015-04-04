@@ -25,6 +25,10 @@
 
 - (void) createFoodObject;
 
-- (void) convertPFObjectToFoodObject:(PFObject*)foodObject;
+- (void) convertPFObjectToFoodObject:(PFObject*)foodPFObject;
+
+- (void) updateFoodObject:(PFObject*)foodPFObject;
+
+- (void) deleteFoodObject:(PFObject*)foodPFObject;
 
 @end

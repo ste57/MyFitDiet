@@ -18,18 +18,7 @@
         
         PFObject *foodObject = [PFObject objectWithClassName:@"Food"];
         
-        foodObject[@"SearchName"] = [name uppercaseString];
-        foodObject[@"Name"] = name;
-        foodObject[@"Description"] = foodDescription;
-        foodObject[@"ServingSize"] = [NSNumber numberWithFloat:servingSize];
-        foodObject[@"Calories"] = [NSNumber numberWithInt:calories];
-        foodObject[@"TotalFats"] = [NSNumber numberWithFloat:totalFats];
-        foodObject[@"SaturatedFats"] = [NSNumber numberWithFloat:saturatedFats];
-        foodObject[@"Sodium"] = [NSNumber numberWithFloat:sodium];
-        foodObject[@"TotalCarbohydrates"] = [NSNumber numberWithFloat:totalCarbohydrates];
-        foodObject[@"Protein"] = [NSNumber numberWithFloat:protein];
-        
-        foodObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+        foodObject = [self setPFObjectValues:foodObject];
         
         [foodObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
@@ -38,17 +27,50 @@
     }
 }
 
-- (void) convertPFObjectToFoodObject:(PFObject *)foodObject {
+- (PFObject*) setPFObjectValues:(PFObject*)object {
     
-    name = foodObject[@"Name"];
-    foodDescription = foodObject[@"Description"];
-    servingSize = [foodObject[@"ServingSize"] floatValue];
-    calories = [foodObject[@"Calories"] intValue];
-    totalFats = [foodObject[@"TotalFats"] floatValue];
-    saturatedFats = [foodObject[@"SaturatedFats"] floatValue];
-    sodium = [foodObject[@"Sodium"] floatValue];
-    totalCarbohydrates = [foodObject[@"TotalCarbohydrates"] floatValue];
-    protein = [foodObject[@"Protein"] floatValue];
+    object[@"SearchName"] = [name uppercaseString];
+    object[@"Name"] = name;
+    object[@"Description"] = foodDescription;
+    object[@"ServingSize"] = [NSNumber numberWithFloat:servingSize];
+    object[@"Calories"] = [NSNumber numberWithInt:calories];
+    object[@"TotalFats"] = [NSNumber numberWithFloat:totalFats];
+    object[@"SaturatedFats"] = [NSNumber numberWithFloat:saturatedFats];
+    object[@"Sodium"] = [NSNumber numberWithFloat:sodium];
+    object[@"TotalCarbohydrates"] = [NSNumber numberWithFloat:totalCarbohydrates];
+    object[@"Protein"] = [NSNumber numberWithFloat:protein];
+    
+    object.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+    
+    return object;
+}
+
+- (void) updateFoodObject:(PFObject *)foodPFObject {
+    
+    foodPFObject = [self setPFObjectValues:foodPFObject];
+    
+    [foodPFObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        [foodPFObject saveEventually];
+    }];
+}
+
+- (void) convertPFObjectToFoodObject:(PFObject *)foodPFObject {
+    
+    name = foodPFObject[@"Name"];
+    foodDescription = foodPFObject[@"Description"];
+    servingSize = [foodPFObject[@"ServingSize"] floatValue];
+    calories = [foodPFObject[@"Calories"] intValue];
+    totalFats = [foodPFObject[@"TotalFats"] floatValue];
+    saturatedFats = [foodPFObject[@"SaturatedFats"] floatValue];
+    sodium = [foodPFObject[@"Sodium"] floatValue];
+    totalCarbohydrates = [foodPFObject[@"TotalCarbohydrates"] floatValue];
+    protein = [foodPFObject[@"Protein"] floatValue];
+}
+
+- (void) deleteFoodObject:(PFObject *)foodPFObject {
+    
+    [foodPFObject deleteEventually];
 }
 
 - (NSArray *) fields {

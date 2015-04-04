@@ -8,26 +8,94 @@
 
 #import "AddFoodToDiaryViewController.h"
 #import "Constants.h"
+#import "CreateFoodViewController.h"
 
 @interface AddFoodToDiaryViewController ()
 
 @end
 
-@implementation AddFoodToDiaryViewController
+@implementation AddFoodToDiaryViewController {
+    
+    UIScrollView *scrollView;
+    
+    FoodObject *foodObject;
+}
 
-@synthesize foodObject;
+@synthesize foodPFObject;
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     
     [super viewDidLoad];
+
+    foodObject = [[FoodObject alloc] init];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    [foodObject convertPFObjectToFoodObject:foodPFObject];
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(returnToMenu)];
     
     self.navigationItem.leftBarButtonItem = doneButton;
     
+    [self removeBackButtonText];
+    
     self.title = [foodObject.name uppercaseString];
+    
+    [self createFoodInfoView];
+}
+
+- (void) removeBackButtonText {
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backButtonItem];
+}
+
+- (void) createFoodInfoView {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150.0)];
+    
+    view.backgroundColor = [UIColor whiteColor];
+    
+    self.tableView.tableHeaderView = view;
+}
+
+- (void) addToBreakfast {
+    
+}
+
+- (void) addToLunch {
+    
+    
+}
+
+- (void) addToDinner {
+    
+    
+}
+
+- (void) addToSnacks {
+    
+    
+}
+
+- (void) editFoodObject {
+    
+    CreateFoodViewController *createFoodVC = [[CreateFoodViewController alloc] init];
+    
+    createFoodVC.formController.form = foodObject;
+    
+    createFoodVC.foodPFObject = foodPFObject;
+    
+    createFoodVC.title = @"Edit Food";
+    
+    [self.navigationController pushViewController:createFoodVC animated:YES];
+}
+
+- (void) deleteFoodObject {
+    
+    [foodObject deleteFoodObject:foodPFObject];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) returnToMenu {

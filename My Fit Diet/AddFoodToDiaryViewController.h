@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FoodObject.h"
 
-@interface AddFoodToDiaryViewController : UIViewController
+@interface AddFoodToDiaryViewController : FXFormViewController
 
-@property (strong, nonatomic) FoodObject *foodObject;
+@property (strong, nonatomic) PFObject *foodPFObject;
 
 @end
