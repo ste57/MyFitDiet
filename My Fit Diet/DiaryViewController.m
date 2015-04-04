@@ -86,7 +86,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-    return 20;
+    return 2;//0;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -15,8 +15,6 @@
 		DC5FE7D71ACBA7F4002270FB /* OptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7D61ACBA7F4002270FB /* OptionsView.m */; };
 		DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7DB1ACBB3C0002270FB /* DiaryViewController.m */; };
 		DC5FE7E21ACC53DA002270FB /* DiaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7E11ACC53DA002270FB /* DiaryTableViewCell.m */; };
-		DC5FE7E81ACC5CAF002270FB /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7E51ACC5CAF002270FB /* SearchTableViewController.m */; };
-		DC5FE7E91ACC5CAF002270FB /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7E71ACC5CAF002270FB /* ResultsTableViewController.m */; };
 		DC5FE7EC1ACC5CC5002270FB /* SearchFoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */; };
 		DC5FE7EF1ACC5CDA002270FB /* FoodResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */; };
 		DC5FE7F41ACC9126002270FB /* FoodObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7F31ACC9126002270FB /* FoodObject.m */; };
@@ -44,6 +42,7 @@
 		DCC334421ACDA180000748A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3343F1ACDA180000748A5 /* FBSDKShareKit.framework */; };
 		DCC334461ACDE4B7000748A5 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334451ACDE4B7000748A5 /* UserObject.m */; };
 		DCC3344A1ACE20AA000748A5 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334491ACE20AA000748A5 /* UserProfileViewController.m */; };
+		DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,10 +71,6 @@
 		DC5FE7DB1ACBB3C0002270FB /* DiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryViewController.m; sourceTree = "<group>"; };
 		DC5FE7E01ACC53DA002270FB /* DiaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryTableViewCell.h; sourceTree = "<group>"; };
 		DC5FE7E11ACC53DA002270FB /* DiaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryTableViewCell.m; sourceTree = "<group>"; };
-		DC5FE7E41ACC5CAF002270FB /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
-		DC5FE7E51ACC5CAF002270FB /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
-		DC5FE7E61ACC5CAF002270FB /* ResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableViewController.h; sourceTree = "<group>"; };
-		DC5FE7E71ACC5CAF002270FB /* ResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableViewController.m; sourceTree = "<group>"; };
 		DC5FE7EA1ACC5CC5002270FB /* SearchFoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFoodTableViewController.h; sourceTree = "<group>"; };
 		DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFoodTableViewController.m; sourceTree = "<group>"; };
 		DC5FE7ED1ACC5CDA002270FB /* FoodResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodResultsTableViewController.h; sourceTree = "<group>"; };
@@ -117,6 +112,8 @@
 		DCC334451ACDE4B7000748A5 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
 		DCC334481ACE20AA000748A5 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		DCC334491ACE20AA000748A5 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		DCC3344E1AD05667000748A5 /* AddFoodToDiaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFoodToDiaryViewController.h; sourceTree = "<group>"; };
+		DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFoodToDiaryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +163,7 @@
 			children = (
 				DC5FE7C41ACAE68D002270FB /* MenuStatsCollectionViewController.h */,
 				DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */,
+				DCC334471ACE1B84000748A5 /* User Profile */,
 				DC5FE7CA1ACAE6B9002270FB /* Menu Stats */,
 				DC5FE7D81ACBB38B002270FB /* Diary */,
 			);
@@ -217,25 +215,11 @@
 		DC5FE7E31ACC5C88002270FB /* Add Food */ = {
 			isa = PBXGroup;
 			children = (
-				DC5FE7EA1ACC5CC5002270FB /* SearchFoodTableViewController.h */,
-				DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */,
-				DC5FE7ED1ACC5CDA002270FB /* FoodResultsTableViewController.h */,
-				DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */,
-				DC5FE7F11ACC9100002270FB /* Food Creation */,
-				DC5FE7F01ACC5D06002270FB /* USe */,
+				DCC3344E1AD05667000748A5 /* AddFoodToDiaryViewController.h */,
+				DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */,
+				DCC334511AD0569B000748A5 /* Search Food */,
 			);
 			name = "Add Food";
-			sourceTree = "<group>";
-		};
-		DC5FE7F01ACC5D06002270FB /* USe */ = {
-			isa = PBXGroup;
-			children = (
-				DC5FE7E41ACC5CAF002270FB /* SearchTableViewController.h */,
-				DC5FE7E51ACC5CAF002270FB /* SearchTableViewController.m */,
-				DC5FE7E61ACC5CAF002270FB /* ResultsTableViewController.h */,
-				DC5FE7E71ACC5CAF002270FB /* ResultsTableViewController.m */,
-			);
-			name = USe;
 			sourceTree = "<group>";
 		};
 		DC5FE7F11ACC9100002270FB /* Food Creation */ = {
@@ -284,7 +268,7 @@
 				DC6AC0791AC8E7CA00735106 /* Constants */,
 				DC624EE21AA95302001AF36C /* AppDelegate.h */,
 				DC624EE31AA95302001AF36C /* AppDelegate.m */,
-				DCC334471ACE1B84000748A5 /* User Profile */,
+				DCC334431ACDE45A000748A5 /* User Object */,
 				DC5FE7C21ACAD977002270FB /* Login */,
 				DC5FE7C31ACAD985002270FB /* Main Menu */,
 				DC5FE7D21ACB61A5002270FB /* Fonts */,
@@ -360,13 +344,13 @@
 			path = "My Fit Diet";
 			sourceTree = "<group>";
 		};
-		DCC334431ACDE45A000748A5 /* User Class */ = {
+		DCC334431ACDE45A000748A5 /* User Object */ = {
 			isa = PBXGroup;
 			children = (
 				DCC334441ACDE4B7000748A5 /* UserObject.h */,
 				DCC334451ACDE4B7000748A5 /* UserObject.m */,
 			);
-			name = "User Class";
+			name = "User Object";
 			sourceTree = "<group>";
 		};
 		DCC334471ACE1B84000748A5 /* User Profile */ = {
@@ -374,9 +358,20 @@
 			children = (
 				DCC334481ACE20AA000748A5 /* UserProfileViewController.h */,
 				DCC334491ACE20AA000748A5 /* UserProfileViewController.m */,
-				DCC334431ACDE45A000748A5 /* User Class */,
 			);
 			name = "User Profile";
+			sourceTree = "<group>";
+		};
+		DCC334511AD0569B000748A5 /* Search Food */ = {
+			isa = PBXGroup;
+			children = (
+				DC5FE7EA1ACC5CC5002270FB /* SearchFoodTableViewController.h */,
+				DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */,
+				DC5FE7ED1ACC5CDA002270FB /* FoodResultsTableViewController.h */,
+				DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */,
+				DC5FE7F11ACC9100002270FB /* Food Creation */,
+			);
+			name = "Search Food";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,14 +490,13 @@
 				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
 				DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
+				DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */,
 				DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */,
 				DC5FE7F91ACC9169002270FB /* FXForms.m in Sources */,
 				DC5FE7EC1ACC5CC5002270FB /* SearchFoodTableViewController.m in Sources */,
-				DC5FE7E91ACC5CAF002270FB /* ResultsTableViewController.m in Sources */,
 				DC5FE7F41ACC9126002270FB /* FoodObject.m in Sources */,
 				DC5FE7D71ACBA7F4002270FB /* OptionsView.m in Sources */,
 				DC5FE7E21ACC53DA002270FB /* DiaryTableViewCell.m in Sources */,
-				DC5FE7E81ACC5CAF002270FB /* SearchTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

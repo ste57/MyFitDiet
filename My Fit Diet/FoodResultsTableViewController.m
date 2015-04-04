@@ -8,6 +8,9 @@
 
 #import "FoodResultsTableViewController.h"
 #import <Parse/Parse.h>
+#import "FoodObject.h"
+#import "AddFoodToDiaryViewController.h"
+#import "Constants.h"
 
 @interface FoodResultsTableViewController ()
 
@@ -43,6 +46,11 @@
     cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"Name"], object[@"Calories"]];
     
     return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:DISPLAY_FOOD_DETAILS object:[searchResults objectAtIndex:(indexPath.row)]];
 }
 
 @end

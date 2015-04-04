@@ -10,6 +10,8 @@
 #import "FoodResultsTableViewController.h"
 #import "CreateFoodViewController.h"
 #import "FoodObject.h"
+#import "AddFoodToDiaryViewController.h"
+#import "Constants.h"
 
 @interface SearchFoodTableViewController ()
 
@@ -34,6 +36,8 @@
     self.title = @"FOOD SEARCH";
     
     [self createSearchView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayFoodDetailsNS:) name:DISPLAY_FOOD_DETAILS object:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -90,13 +94,13 @@
 }
 
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+  
+   self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
 }
 
 - (void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     
-   self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+   self.tableView.contentInset = UIEdgeInsetsZero;
 }
 
 - (void) createNewFood {
@@ -126,14 +130,6 @@
     return cell;
 }
 
-- (void) searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
-    
-    if (searchController.searchBar.text.length) {
-        
-        //[self updateSearchHistory:searchController.searchBar.text];
-    }
-}
-
 - (void) updateSearchResultsForSearchController:(UISearchController *)searchResultsController {
 
     FoodResultsTableViewController *foodResultsTVC = (FoodResultsTableViewController*) searchResultsController.searchResultsController;
@@ -158,40 +154,26 @@
 }
 
 - (void) tableView:(UITableView *)table didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //  [[NSNotificationCenter defaultCenter] postNotificationName:NS_SEARCH_STRING object:[searchResults objectAtIndex:indexPath.row]];
-    
-    //[self updateSearchHistory:[searchResults objectAtIndex:indexPath.row]];
-    
-    /*PFObject *object = [foodArray objectAtIndex:indexPath.row];
-    
-    object[@"Name"] = object[@"Name"];
-    
-    [object pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
-        //[object saveEventually];
-        
-        [table reloadData];
-    }];*/
-    
-    /*PFObject *object = [foodArray objectAtIndex:indexPath.row];
-    
-    object[@"Name"] = object[@"Name"];*/
-    
 
-    
-   // [self returnToPreviousView];
+    [self displayFoodDetails:[foodArray objectAtIndex:(indexPath.row)]];
 }
 
-- (void) updateSearchHistory:(NSString*)string {
+- (void) displayFoodDetailsNS:(NSNotification*) notification {
     
-   // [searchResults removeObject:string];
+    [self displayFoodDetails:[notification object]];
+}
+
+- (void) displayFoodDetails:(PFObject*)object {
+   
+    FoodObject *foodObject = [[FoodObject alloc] init];
     
-   // [searchResults insertObject:string atIndex:0];
+    [foodObject convertPFObjectToFoodObject:object];
     
-    // [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:NS_SEARCH_HISTORY];
+    AddFoodToDiaryViewController *addToDiaryVC = [AddFoodToDiaryViewController alloc];
     
-    //[[NSUserDefaults standardUserDefaults] synchronize];
+    addToDiaryVC.foodObject = foodObject;
+    
+    [self.navigationController pushViewController:[addToDiaryVC init] animated:YES];
 }
 
 @end
