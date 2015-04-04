@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FXForms.h"
+#import <Parse/Parse.h>
 
 @interface FoodObject : NSObject <FXForm>
 
@@ -23,5 +24,7 @@
 @property float protein;
 
 - (void) createFoodObject;
+
+- (void) convertPFObjectToFoodObject:(PFObject*)foodObject;
 
 @end

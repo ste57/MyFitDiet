@@ -36,8 +36,6 @@ static int const numberOfPages = 3;
     
     userObject = [[UserObject alloc] init];
     
-    [self createPFUser];
-    
     currentSetDate = [NSDate date];
     
     previousPage = numberOfPages;
@@ -55,79 +53,6 @@ static int const numberOfPages = 3;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessProfile) name:PROFILE_BUTTON_NOTIFICATION object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
-}
-
-- (void) createPFUser {
-    
-    if ([PFUser currentUser]) {
-        
-        NSLog(@"user already logged in");
-        
-    } else {
-        
-        PFUser *pfUser = [PFUser user];
-        
-        pfUser.username = userObject._id;
-        pfUser.password = userObject._id;
-        pfUser.email = userObject.email;
-        
-        PFQuery *query = [PFUser query];
-        
-        [query whereKey:@"username" equalTo:pfUser.username];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            
-            if (!error) {
-                
-                // if user does not exist
-                if (!objects.count) {
-                    
-                    [pfUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        
-                        if (!error) {
-                            
-                            [userObject syncUserObject];
-                             NSLog(@"user signed up and logged in");
-                            
-                        } else {
-                            
-                            NSString *errorString = [error userInfo][@"error"];
-                            
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                            message:errorString
-                                                                           delegate:self
-                                                                  cancelButtonTitle:@"OK"
-                                                                  otherButtonTitles:nil];
-                            [alert show];
-                        }
-                    }];
-                    
-                // if user does exist
-                } else {
-                    
-                    [PFUser logInWithUsernameInBackground:pfUser.username password:pfUser.password block:^(PFUser *user, NSError *error) {
-                        
-                        if (!error) {
-                            
-                            [userObject syncUserObject];
-                            NSLog(@"user logged in");
-                            
-                        } else {
-                            
-                            NSString *errorString = [error userInfo][@"error"];
-                            
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                            message:errorString
-                                                                           delegate:self
-                                                                  cancelButtonTitle:@"OK"
-                                                                  otherButtonTitles:nil];
-                            [alert show];
-                        }
-                    }];
-                }
-            }
-        }];
-    }
 }
 
 - (void) setNavigationBarDateTitle {

@@ -73,6 +73,8 @@ typedef NS_ENUM(BOOL, weightGoal) {
         user[@"isUserLosingWeight"] = [NSNumber numberWithBool:!userSetGainWeight];
         user[@"WeeklyGoalRate"] = [NSNumber numberWithFloat:weeklyGoalRate];
         
+        user.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+        
         [user saveEventually];
     }
 }
@@ -161,15 +163,13 @@ typedef NS_ENUM(BOOL, weightGoal) {
 
 - (NSArray *) extraFields {
     
-    PFUser *user = [PFUser currentUser];
-    
-    if (user) {
-    
-    // Account Details
-    
-    return @[
-             @{FXFormFieldTitle: @"Log Out", FXFormFieldHeader: @"ACCOUNT DETAILS", FXFormFieldAction: @"logUserOut"},
-             ];
+    if (currentWeight) {
+        
+        // Account Details
+        
+        return @[
+                 @{FXFormFieldTitle: @"Log Out", FXFormFieldHeader: @"ACCOUNT DETAILS", FXFormFieldAction: @"logUserOut"},
+                 ];
     }
     
     return nil;
@@ -186,9 +186,14 @@ typedef NS_ENUM(BOOL, weightGoal) {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *encodedObject = [defaults objectForKey:key];
-    UserObject *object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
     
-    return object;
+    if (encodedObject) {
+        
+        UserObject *object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+        return object;
+    }
+    
+    return nil;
 }
 
 @end

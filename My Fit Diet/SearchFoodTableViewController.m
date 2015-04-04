@@ -8,9 +8,8 @@
 
 #import "SearchFoodTableViewController.h"
 #import "FoodResultsTableViewController.h"
-#import "FoodObject.h"
 #import "CreateFoodViewController.h"
-
+#import "FoodObject.h"
 
 @interface SearchFoodTableViewController ()
 
@@ -19,11 +18,16 @@
 @implementation SearchFoodTableViewController {
     
     UISearchController *searchController;
+    NSArray *foodArray;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    foodArray = [[NSArray alloc] init];
+    
+    [self retrieveFoodObjects];
     
     [self removeBackButtonText];
     
@@ -32,24 +36,34 @@
     [self createSearchView];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    
+    [self retrieveFoodObjects];
+}
+
+- (void) retrieveFoodObjects {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Food"];
+    
+    [[query fromLocalDatastore] ignoreACLs];
+    
+    [query orderByDescending:@"updatedAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            foodArray = objects;
+            
+            [self.tableView reloadData];
+        }
+    }];
+}
+
 - (void) removeBackButtonText {
     
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:backButtonItem];
-}
-
-- (void) searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
-    
-    if (searchController.searchBar.text.length) {
-        
-        //[self updateSearchHistory:searchController.searchBar.text];
-        
-        //  [[NSNotificationCenter defaultCenter] postNotificationName:NS_SEARCH_STRING object:searchController.searchBar.text];
-        
-        //[self dismissViewControllerAnimated:YES completion:nil];
-        
-        //[self returnToPreviousView];
-    }
 }
 
 - (void) didReceiveMemoryWarning {
@@ -69,16 +83,23 @@
     searchController.searchBar.delegate = self;
     
     self.tableView.tableHeaderView = searchController.searchBar;
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewFood)];
     
     self.definesPresentationContext = YES;
 }
 
+- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+}
+
+- (void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    
+   self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
 - (void) createNewFood {
-    
-    //FXFormViewController *createFoodVC = [[FXFormViewController alloc] init];
-    
-    //createFoodVC.formController.form = [[FoodObject alloc] init];
     
     CreateFoodViewController *createFoodVC = [[CreateFoodViewController alloc] init];
     
@@ -90,34 +111,74 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    
-    return 10;//searchResults.count;
+
+    return foodArray.count;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
     
+    PFObject *object = [foodArray objectAtIndex:(indexPath.row)];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"Name"], object[@"Calories"]];
+  
     return cell;
 }
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchResultsController {
+- (void) searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
     
-    //FoodResultsTableViewController *foodResultsTVC = (FoodResultsTableViewController*) searchResultsController.searchResultsController;
+    if (searchController.searchBar.text.length) {
+        
+        //[self updateSearchHistory:searchController.searchBar.text];
+    }
+}
+
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchResultsController {
+
+    FoodResultsTableViewController *foodResultsTVC = (FoodResultsTableViewController*) searchResultsController.searchResultsController;
+
+    PFQuery *query = [PFQuery queryWithClassName:@"Food"];
     
-    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF beginswith %@", searchResultsController.searchBar.text];
+    [[query fromLocalDatastore] ignoreACLs];
     
-    //resultsTableViewController.searchResults = [searchResults filteredArrayUsingPredicate:predicate];
+    [query setLimit:100];
     
-    //[resultsTableViewController.tableView reloadData];
+    [query whereKey:@"SearchName" containsString:[searchResultsController.searchBar.text uppercaseString]];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    
+        if (!error) {
+         
+            foodResultsTVC.searchResults = objects;
+            
+            [foodResultsTVC.tableView reloadData];
+        }
+    }];
 }
 
 - (void) tableView:(UITableView *)table didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //  [[NSNotificationCenter defaultCenter] postNotificationName:NS_SEARCH_STRING object:[searchResults objectAtIndex:indexPath.row]];
     
-   // [self updateSearchHistory:[searchResults objectAtIndex:indexPath.row]];
+    //[self updateSearchHistory:[searchResults objectAtIndex:indexPath.row]];
+    
+    /*PFObject *object = [foodArray objectAtIndex:indexPath.row];
+    
+    object[@"Name"] = object[@"Name"];
+    
+    [object pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        //[object saveEventually];
+        
+        [table reloadData];
+    }];*/
+    
+    /*PFObject *object = [foodArray objectAtIndex:indexPath.row];
+    
+    object[@"Name"] = object[@"Name"];*/
+    
+
     
    // [self returnToPreviousView];
 }

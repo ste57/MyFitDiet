@@ -17,7 +17,7 @@
 @implementation LoginViewController {
     
     CGSize win;
-    UserObject *user;
+    UserObject *userObject;
 }
 
 - (void) viewDidLoad {
@@ -26,7 +26,7 @@
     
     win = self.view.frame.size;
     
-    user = [[UserObject alloc] init];
+    userObject = [[UserObject alloc] init];
     
     self.view.backgroundColor = MAIN_BACKGROUND_COLOUR;
     
@@ -45,69 +45,7 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void) retrieveFacebookUserData {
-    
-    if ([FBSDKAccessToken currentAccessToken]) {
-        
-        if (!user._id) {
-            
-            [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
-             
-             startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-                 
-                 if (!error) {
-                     
-                     user._id = [result objectForKey:@"id"];
-                     user.name = [[result objectForKey:@"first_name"] capitalizedString];
-                     user.gender = [[result objectForKey:@"gender"] capitalizedString];
-                     user.email = [result objectForKey:@"email"];
-                     
-                     [user syncUserObject];
-                    
-                     [self retrieveUserData];
-                     
-                 } else {
-                    
-                     [self logUserInToMyFitDiet];
-                 }
-             }];
-            
-        } else {
-            
-            [self logUserInToMyFitDiet];
-        }
-    }
-}
-
-- (void) retrieveUserData {
-
-    PFQuery *query = [PFUser query];
-    
-    [query whereKey:@"username" equalTo:user._id];
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        
-        if (!error) {
-            
-            user.dateOfBirth = object[@"DateOfBirth"];
-            user.height = [object[@"Height"] floatValue];
-            user.currentWeight = [object[@"CurrentWeight"] floatValue];
-            user.goalWeight = [object[@"GoalWeight"] floatValue];
-            user.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
-            user.weeklyGoalRate = [object[@"WeeklyGoalRate"] floatValue];
-            
-            [user syncUserObject];
-            
-            [self logUserInToMyFitDiet];
-            
-        } else {
-            
-            [self logUserInToMyFitDiet];
-        }
-    }];
-}
-
-- (void) logUserInToMyFitDiet {
+- (void) logUserIntoMyFitDiet {
     
     if ([FBSDKAccessToken currentAccessToken]) {
         
@@ -127,7 +65,7 @@
         
         MenuStatsCollectionViewController *menuStatsCollectionViewController = [[MenuStatsCollectionViewController alloc] initWithCollectionViewLayout:layout];
         
-        if (!user.currentWeight) {
+        if (!userObject.currentWeight) {
             
             UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
             
@@ -144,6 +82,123 @@
             [self presentViewController:navigationController animated:NO completion:nil];
         }
     }
+}
+
+- (void) retrieveUserData {
+    
+    PFQuery *query = [PFUser query];
+    
+    [query whereKey:@"username" equalTo:userObject._id];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
+        if (!error) {
+            
+            userObject.dateOfBirth = object[@"DateOfBirth"];
+            userObject.height = [object[@"Height"] floatValue];
+            userObject.currentWeight = [object[@"CurrentWeight"] floatValue];
+            userObject.goalWeight = [object[@"GoalWeight"] floatValue];
+            userObject.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
+            userObject.weeklyGoalRate = [object[@"WeeklyGoalRate"] floatValue];
+            
+            [userObject syncUserObject];
+        }
+        
+        [self logUserIntoMyFitDiet];
+    }];
+}
+
+- (void) retrieveFoodData {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Food"];
+    
+    [query setLimit:1000];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            [PFObject pinAllInBackground:objects];
+        }
+    }];
+}
+
+- (void) createPFUser {
+    
+    if (![PFUser currentUser]) {
+        
+        PFUser *pfUser = [PFUser user];
+        
+        pfUser.username = userObject._id;
+        pfUser.password = userObject._id;
+        pfUser.email = userObject.email;
+        
+        [PFUser logInWithUsernameInBackground:pfUser.username password:pfUser.password block:^(PFUser *userObject, NSError *error) {
+            
+            if (!error) {
+                
+                [self retrieveUserData];
+                
+                [self retrieveFoodData];
+                
+            } else {
+                
+                [pfUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    
+                    if (!error) {
+                        
+                        [self logUserIntoMyFitDiet];
+                        
+                    } else {
+                        
+                        [self displayErrorAlert:[error userInfo][@"error"]];
+                    }
+                }];
+            }
+        }];
+    }
+}
+
+- (void) retrieveFacebookUserData {
+    
+    if ([FBSDKAccessToken currentAccessToken]) {
+        
+        if (!userObject._id) {
+            
+            [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+             
+             startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                 
+                 if (!error) {
+                     
+                     userObject._id = [result objectForKey:@"id"];
+                     userObject.name = [[result objectForKey:@"first_name"] capitalizedString];
+                     userObject.gender = [[result objectForKey:@"gender"] capitalizedString];
+                     userObject.email = [result objectForKey:@"email"];
+                     
+                     [userObject syncUserObject];
+                     
+                     [self createPFUser];
+                 }
+             }];
+            
+        } else {
+            
+            [self createPFUser];
+            
+            [self logUserIntoMyFitDiet];
+        }
+    }
+}
+
+- (void) displayErrorAlert:(NSString*)errorString {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                    message:errorString
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {

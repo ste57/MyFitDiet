@@ -10,4 +10,6 @@
 
 @interface FoodResultsTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray *searchResults;
+
 @end

@@ -105,6 +105,8 @@
     
     [PFUser logOut];
     
+    [PFObject unpinAllObjectsInBackground];
+    
     [[UserObject alloc] removeUserObject];
     
     [self.navigationController popToRootViewControllerAnimated:NO];

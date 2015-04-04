@@ -104,7 +104,7 @@
     return cell;
 }
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchResultsController {
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchResultsController {
 
     ResultsTableViewController *resultsTableViewController = (ResultsTableViewController*) searchResultsController.searchResultsController;
     
