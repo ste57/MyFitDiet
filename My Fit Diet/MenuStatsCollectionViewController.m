@@ -59,6 +59,11 @@ static int const numberOfPages = 3;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    
+    [self getDiaryData];
+}
+
 - (void) getDiaryData {
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -251,11 +256,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 #pragma mark - OptionsView Buttons
 
 - (void) accessDiary {
-    
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    
-    [dateFormat setDateFormat:DIARY_DATE_FORMAT];
-    
+
     DiaryViewController *diaryVC = [[DiaryViewController alloc] init];
     
     diaryVC.diary = diary;
@@ -292,7 +293,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 - (void) didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

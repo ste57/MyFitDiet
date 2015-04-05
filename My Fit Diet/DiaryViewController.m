@@ -21,9 +21,9 @@
     UIView *dateView;
 }
 
-static NSString * const reuseIdentifier = @"DiaryCell";
-
 @synthesize diary;
+
+static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (void) viewDidLoad {
     

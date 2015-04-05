@@ -22,7 +22,7 @@
     FoodObject *foodObject;
 }
 
-@synthesize foodPFObject, diary;
+@synthesize foodPFObject;
 
 - (void) viewDidLoad {
     
@@ -84,9 +84,9 @@
 
     [foodObject updateFoodObject:foodPFObject];
     
-    [diary addFoodToDiary:foodPFObject forOccasion:occasion];
+    [self.diary addFoodToDiary:foodPFObject forOccasion:occasion];
     
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void) editFoodObject {

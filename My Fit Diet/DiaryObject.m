@@ -10,7 +10,10 @@
 #import "UserObject.h"
 #import "Constants.h"
 
-@implementation DiaryObject
+@implementation DiaryObject {
+    
+    UserObject *user;
+}
 
 @synthesize foodDiary, occasionArray;
 
@@ -19,6 +22,8 @@
     self = [super init];
     
     if (self) {
+        
+        user = [[UserObject alloc] init];
         
         foodDiary = [[NSMutableDictionary alloc] init];
         
@@ -67,7 +72,7 @@
                         
                         [occasionArray addObject:occasion];
                         
-                        [foodDiary setValue:[[NSArray alloc] initWithArray:foodObjects] forKey:occasion];
+                        [foodDiary setValue:[[NSMutableArray alloc] initWithArray:foodObjects] forKey:occasion];
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_DIARY_TB object:nil];
                     }
@@ -79,17 +84,9 @@
 
 - (void) addFoodToDiary:(PFObject *)foodObject forOccasion:(NSString *)occasion {
     
-    UserObject *user = [[UserObject alloc] init];
-    
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    
-    [dateFormat setDateFormat:DIARY_DATE_FORMAT];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
     
     [[query fromLocalDatastore] ignoreACLs];
-    
-    [query whereKey:@"userID" equalTo:user._id];
     
     [query whereKey:@"diaryDate" equalTo:self.diaryDate];
     
@@ -109,28 +106,31 @@
             
             diaryObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
             
-            [diaryObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                
-                [self addFood:foodObject toDiary:diaryObject];
-            }];
+            
+            [self addFood:foodObject toDiary:diaryObject forOccasion:occasion];
+            
             
         } else {
             
-            [self addFood:foodObject toDiary:object];
+            [self addFood:foodObject toDiary:object forOccasion:occasion];
         }
     }];
     
 }
 
-- (void) addFood:(PFObject*)food toDiary:(PFObject*)diary {
+- (void) addFood:(PFObject*)food toDiary:(PFObject*)diary forOccasion:(NSString*)occasion {
     
     PFRelation *relation = [diary relationForKey:@"foodDiary"];
-
+    
     [relation addObject:food];
     
-    [diary pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [diary unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
-        [diary saveEventually];
+        [diary pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+            [diary saveEventually];
+        }];
+        
     }];
 }
 

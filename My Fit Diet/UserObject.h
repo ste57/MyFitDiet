@@ -27,6 +27,8 @@
 @property bool userSetGainWeight;
 @property float weeklyGoalRate;
 
+// Data Used For Statistics
+
 
 - (void) syncUserObject;
 
