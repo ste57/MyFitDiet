@@ -260,8 +260,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     diaryVC.diary = diary;
     
-    diaryVC.diaryDate = [dateFormat stringFromDate:currentSetDate];
-    
     [self.navigationController pushViewController:diaryVC animated:YES];
 }
 

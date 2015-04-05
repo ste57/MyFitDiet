@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiaryObject.h"
 
 @interface SearchFoodTableViewController : UITableViewController <UISearchResultsUpdating, UISearchBarDelegate>
 
-@property (strong, nonatomic) NSString *diaryDate;
+@property (strong, nonatomic) DiaryObject *diary;
 
 @end

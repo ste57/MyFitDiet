@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FoodObject.h"
+#import "DiaryObject.h"
 
 @interface AddFoodToDiaryViewController : FXFormViewController
 
 @property (strong, nonatomic) PFObject *foodPFObject;
-@property (strong, nonatomic) NSString *diaryDate;
+@property (strong, nonatomic) DiaryObject *diary;
 
 @end

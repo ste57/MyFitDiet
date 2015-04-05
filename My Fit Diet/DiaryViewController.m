@@ -23,8 +23,6 @@
 
 static NSString * const reuseIdentifier = @"DiaryCell";
 
-@synthesize diaryDate;
-
 @synthesize diary;
 
 - (void) viewDidLoad {
@@ -53,7 +51,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 }
 
 - (void) reloadTableView {
-    
+   
     [diaryTableView reloadData];
 }
 
@@ -67,7 +65,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     SearchFoodTableViewController *searchFoodTVC = [[SearchFoodTableViewController alloc] init];
     
-    searchFoodTVC.diaryDate = self.diaryDate;
+    searchFoodTVC.diary = diary;
     
     [self.navigationController pushViewController:searchFoodTVC animated:YES];
 }
@@ -147,7 +145,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     label.textAlignment = NSTextAlignmentCenter;
     
-    label.text = self.diaryDate;
+    label.text = diary.diaryDate;
     
     label.textColor = [UIColor lightGrayColor];
     

@@ -11,7 +11,6 @@
 
 @interface DiaryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSString *diaryDate;
 @property (strong, nonatomic) DiaryObject *diary;
 
 @end

@@ -160,7 +160,7 @@
     
     addToDiaryVC.foodPFObject = object;
     
-    addToDiaryVC.diaryDate = self.diaryDate;
+    addToDiaryVC.diary = self.diary;
     
     addToDiaryVC.formController.form = [AddToFoodForm alloc];
     

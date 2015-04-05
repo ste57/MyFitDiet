@@ -123,6 +123,23 @@
     }];
 }
 
+- (void) retrieveDiaryData {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
+    
+    [query setLimit:300];
+    
+    [query orderByDescending:@"updatedAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            [PFObject pinAllInBackground:objects];
+        }
+    }];
+}
+
 - (void) createPFUser {
     
     if (![PFUser currentUser]) {
@@ -140,6 +157,8 @@
                 [self retrieveUserData];
                 
                 [self retrieveFoodData];
+                
+                [self retrieveDiaryData];
                 
             } else {
                 

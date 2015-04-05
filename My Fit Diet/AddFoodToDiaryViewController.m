@@ -10,7 +10,6 @@
 #import "Constants.h"
 #import "CreateFoodViewController.h"
 #import "DiaryViewController.h"
-#import "DiaryObject.h"
 
 @interface AddFoodToDiaryViewController ()
 
@@ -23,7 +22,7 @@
     FoodObject *foodObject;
 }
 
-@synthesize foodPFObject;
+@synthesize foodPFObject, diary;
 
 - (void) viewDidLoad {
     
@@ -85,11 +84,7 @@
 
     [foodObject updateFoodObject:foodPFObject];
     
-    DiaryObject *diaryObject = [[DiaryObject alloc] init];
-    
-    diaryObject.diaryDate = self.diaryDate;
-    
-    [diaryObject addFoodToDiary:foodPFObject forOccasion:occasion];
+    [diary addFoodToDiary:foodPFObject forOccasion:occasion];
     
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
