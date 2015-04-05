@@ -45,6 +45,7 @@
 		DCE12FAE1AD1A08A007F39D6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FAB1AD1A08A007F39D6 /* FBSDKShareKit.framework */; };
 		DCE12FB51AD1A0C3007F39D6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FB31AD1A0C3007F39D6 /* Bolts.framework */; };
 		DCE12FB61AD1A0C3007F39D6 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FB41AD1A0C3007F39D6 /* Parse.framework */; };
+		DCE12FB81AD1D02B007F39D6 /* lekton.otf in Resources */ = {isa = PBXBuildFile; fileRef = DCE12FB71AD1D02B007F39D6 /* lekton.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		DCE12FAB1AD1A08A007F39D6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		DCE12FB31AD1A0C3007F39D6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../parse-library-1/Bolts.framework"; sourceTree = "<group>"; };
 		DCE12FB41AD1A0C3007F39D6 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../parse-library-1/Parse.framework"; sourceTree = "<group>"; };
+		DCE12FB71AD1D02B007F39D6 /* lekton.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lekton.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 		DC5FE7D21ACB61A5002270FB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				DCE12FB71AD1D02B007F39D6 /* lekton.otf */,
 				DC5FE7D31ACB61CC002270FB /* primer print.ttf */,
 			);
 			name = Fonts;
@@ -488,6 +491,7 @@
 			files = (
 				DC5FE7D41ACB61CC002270FB /* primer print.ttf in Resources */,
 				DCC3343C1ACD9C13000748A5 /* Images.xcassets in Resources */,
+				DCE12FB81AD1D02B007F39D6 /* lekton.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

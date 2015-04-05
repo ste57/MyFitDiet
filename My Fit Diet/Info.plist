@@ -41,6 +41,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>lekton.otf</string>
 		<string>primer print.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>

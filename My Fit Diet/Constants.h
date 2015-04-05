@@ -52,6 +52,7 @@
 // NSUserDefaults
 
 #define USER_OBJECT @"UserObject"
+#define PF_USER @"PFUser"
 
 // NSNotifications
 

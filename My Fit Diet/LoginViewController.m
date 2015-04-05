@@ -71,13 +71,13 @@
             
             userProfileVC.formController.form = [[UserObject alloc] init];
             
-            navigationController.viewControllers = [NSArray arrayWithObjects:menuStatsCollectionViewController, userProfileVC, nil];
+            navigationController.viewControllers = [[NSArray alloc] initWithObjects:menuStatsCollectionViewController, userProfileVC, nil];
             
             [self presentViewController:navigationController animated:YES completion:nil];
             
         } else {
             
-            navigationController.viewControllers = [NSArray arrayWithObject:menuStatsCollectionViewController];
+            navigationController.viewControllers = [[NSArray alloc] initWithObjects:menuStatsCollectionViewController, nil];
             
             [self presentViewController:navigationController animated:NO completion:nil];
         }
@@ -142,7 +142,7 @@
 
 - (void) createPFUser {
     
-    if (![PFUser currentUser]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:PF_USER]) {//[PFUser currentUser]) {
         
         PFUser *pfUser = [PFUser user];
         
@@ -176,6 +176,8 @@
             }
         }];
     }
+    
+    
 }
 
 - (void) retrieveFacebookUserData {
@@ -198,6 +200,8 @@
                      [userObject syncUserObject];
                      
                      [self createPFUser];
+                     
+                     [[NSUserDefaults standardUserDefaults] setObject:userObject._id forKey:PF_USER];
                  }
              }];
             
@@ -207,9 +211,6 @@
             
             [self logUserIntoMyFitDiet];
         }
-        
-        
-        
     }
 }
 

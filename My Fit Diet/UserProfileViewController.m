@@ -11,6 +11,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
+#import "Constants.h"
 
 @interface UserProfileViewController ()
 
@@ -108,6 +109,8 @@
     [PFObject unpinAllObjectsInBackground];
     
     [[UserObject alloc] removeUserObject];
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:PF_USER];
     
     [self.navigationController popToRootViewControllerAnimated:NO];
     

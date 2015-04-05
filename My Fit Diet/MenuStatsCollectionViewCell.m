@@ -67,19 +67,94 @@
     
     [self animateBar:kCalProgressLabel withProgress:(float)(user.currentCalories/user.userCalories)];
     
+    [self addKcalProgressLabels];
+}
+
+- (void) addKcalProgressLabels {
+
+    UILabel *label;
     
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
+    label.center = CGPointMake(kCalProgressLabel.frame.size.width/2, kCalProgressLabel.frame.size.height/2.25);
     
     label.textAlignment = NSTextAlignmentCenter;
     
-    label.textColor = [UIColor lightGrayColor];
+    label.textColor = kCalProgressLabel.progressColor;
     
-    //label.text = @"500";
+    label.text = [NSString stringWithFormat:@"%i", (int)(user.userCalories - user.currentCalories)];
     
-    label.font = [UIFont fontWithName:@"Primer" size:50.0];
+    label.font = [UIFont fontWithName:@"Lekton04" size:56.0];
     
     [kCalProgressLabel addSubview:label];
+    
+    [self animateLabel:label];
+    
+    
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
+    
+    label.center = CGPointMake(kCalProgressLabel.frame.size.width/2, kCalProgressLabel.frame.size.height/1.5);
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    label.textColor = kCalProgressLabel.progressColor;
+    
+    label.text = @"KCAL LEFT";
+    
+    label.font = [UIFont fontWithName:@"Primer" size:18.0];
+    
+    [kCalProgressLabel addSubview:label];
+    
+    [self animateLabel:label];
+}
+
+- (void) createNutrientProgressLabels:(KAProgressLabel*)parentLabel :(float)value :(NSString*)setLabel {
+    
+    UILabel *label;
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
+    
+    label.center = CGPointMake(parentLabel.frame.size.width/1.9, parentLabel.frame.size.height/1.9);
+    
+    label.textColor = parentLabel.progressColor;
+    
+    label.text = [NSString stringWithFormat:@"%i%@", (int)(value*100), @"%"];
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    label.font = [UIFont fontWithName:@"Lekton04" size:16.0];
+    
+    [parentLabel addSubview:label];
+    
+    [self animateLabel:label];
+    
+    
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
+    
+    label.center = CGPointMake(parentLabel.frame.size.width/2, (parentLabel.frame.size.height*1.35));
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    label.textColor = parentLabel.progressColor;
+    
+    label.text = setLabel;
+    
+    label.font = [UIFont fontWithName:@"Lekton04" size:14.0];
+    
+    [parentLabel addSubview:label];
+    
+    [self animateLabel:label];
+}
+
+- (void) animateLabel:(UILabel*)label {
+    
+    label.alpha = 0;
+    
+    [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{ label.alpha = 1;}
+                     completion:nil];
 }
 
 - (void) createCarbsProgressLabel {
@@ -98,7 +173,11 @@
     
     [self addSubview:carbsProgressLabel];
     
-    [self animateBar:carbsProgressLabel withProgress:(float)(user.currentTotalCarbohydrates/user.userTotalCarbohydrates)];
+    float value = (float)(user.currentTotalCarbohydrates/user.userTotalCarbohydrates);
+    
+    [self animateBar:carbsProgressLabel withProgress:value];
+    
+    [self createNutrientProgressLabels:carbsProgressLabel :value :@"CARBS"];
 }
 
 - (void) createSaturatedFatsProgressLabel {
@@ -117,7 +196,11 @@
     
     [self addSubview:sFatsProgressLabel];
     
-    [self animateBar:sFatsProgressLabel withProgress:(float)(user.currentSaturatedFats/user.userSaturatedFats)];
+    float value = (float)(user.currentSaturatedFats/user.userSaturatedFats);
+    
+    [self animateBar:sFatsProgressLabel withProgress:value];
+    
+    [self createNutrientProgressLabels:sFatsProgressLabel :value :@"S.FATS"];
 }
 
 - (void) createFatsProgressLabel {
@@ -135,8 +218,12 @@
     fatsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
     [self addSubview:fatsProgressLabel];
+ 
+    float value = (float)(user.currentTotalFats/user.userTotalFats);
     
-    [self animateBar:fatsProgressLabel withProgress:(float)(user.currentTotalFats/user.userTotalFats)];
+    [self animateBar:fatsProgressLabel withProgress:value];
+    
+    [self createNutrientProgressLabels:fatsProgressLabel :value :@"FATS"];
 }
 
 - (void) createProteinProgressLabel {
@@ -155,7 +242,11 @@
     
     [self addSubview:proteinProgressLabel];
     
-    [self animateBar:proteinProgressLabel withProgress:(float)(user.currentProtein/user.userProtein)];
+    float value = (float)(user.currentProtein/user.userProtein);
+    
+    [self animateBar:proteinProgressLabel withProgress:value];
+    
+    [self createNutrientProgressLabels:proteinProgressLabel :value :@"PROTEIN"];
 }
 
 - (void) animateBar:(KAProgressLabel*)label withProgress:(float)progress {

@@ -79,6 +79,8 @@ static int const numberOfPages = 3;
 }
 
 - (void) setNavigationBarDateTitle {
+
+    [userObject resetNutritionValues];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
@@ -106,6 +108,8 @@ static int const numberOfPages = 3;
     [dateFormat setDateFormat:DIARY_DATE_FORMAT];
     
     [diary changeDate:[dateFormat stringFromDate:currentSetDate]];
+    
+    [self.collectionView reloadData];
 }
 
 - (void) createOptionsView {

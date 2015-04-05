@@ -58,6 +58,8 @@
     
     [query whereKey:@"diaryDate" equalTo:self.diaryDate];
     
+    [query orderByDescending:@"updatedAt"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *entryObjects, NSError *error) {
         
         if (!error) {
@@ -142,7 +144,6 @@
             [self addFood:foodObject toDiary:object forOccasion:occasion];
         }
     }];
-    
 }
 
 - (void) addFood:(PFObject*)food toDiary:(PFObject*)diary forOccasion:(NSString*)occasion {

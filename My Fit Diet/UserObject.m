@@ -84,6 +84,8 @@ typedef NS_ENUM(BOOL, weightGoal) {
     currentSaturatedFats = 0;
     currentTotalCarbohydrates = 0;
     currentTotalFats = 0;
+    
+    [self syncUserObject];
 }
 
 - (void) removeUserObject {
