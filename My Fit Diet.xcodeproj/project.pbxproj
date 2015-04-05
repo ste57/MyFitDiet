@@ -34,17 +34,17 @@
 		DC9B7AC61ACCBECB00948AD0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AC51ACCBECB00948AD0 /* SystemConfiguration.framework */; };
 		DC9B7AC81ACCBED500948AD0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AC71ACCBED500948AD0 /* libz.dylib */; };
 		DC9B7ACA1ACCBEE000948AD0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AC91ACCBEE000948AD0 /* libsqlite3.dylib */; };
-		DCC3342F1ACCE274000748A5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3342D1ACCE274000748A5 /* Bolts.framework */; };
-		DCC334301ACCE274000748A5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3342E1ACCE274000748A5 /* Parse.framework */; };
 		DCC3343C1ACD9C13000748A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC3343B1ACD9C13000748A5 /* Images.xcassets */; };
-		DCC334401ACDA180000748A5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3343D1ACDA180000748A5 /* FBSDKCoreKit.framework */; };
-		DCC334411ACDA180000748A5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3343E1ACDA180000748A5 /* FBSDKLoginKit.framework */; };
-		DCC334421ACDA180000748A5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3343F1ACDA180000748A5 /* FBSDKShareKit.framework */; };
 		DCC334461ACDE4B7000748A5 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334451ACDE4B7000748A5 /* UserObject.m */; };
 		DCC3344A1ACE20AA000748A5 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334491ACE20AA000748A5 /* UserProfileViewController.m */; };
 		DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */; };
 		DCC334551AD0793A000748A5 /* AddToFoodForm.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334541AD0793A000748A5 /* AddToFoodForm.m */; };
 		DCC334591AD098F0000748A5 /* DiaryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334581AD098F0000748A5 /* DiaryObject.m */; };
+		DCE12FAC1AD1A08A007F39D6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FA91AD1A08A007F39D6 /* FBSDKCoreKit.framework */; };
+		DCE12FAD1AD1A08A007F39D6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FAA1AD1A08A007F39D6 /* FBSDKLoginKit.framework */; };
+		DCE12FAE1AD1A08A007F39D6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FAB1AD1A08A007F39D6 /* FBSDKShareKit.framework */; };
+		DCE12FB51AD1A0C3007F39D6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FB31AD1A0C3007F39D6 /* Bolts.framework */; };
+		DCE12FB61AD1A0C3007F39D6 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE12FB41AD1A0C3007F39D6 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,12 +104,7 @@
 		DC9B7AC51ACCBECB00948AD0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DC9B7AC71ACCBED500948AD0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DC9B7AC91ACCBEE000948AD0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		DCC3342D1ACCE274000748A5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../parse-library-1/Bolts.framework"; sourceTree = "<group>"; };
-		DCC3342E1ACCE274000748A5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../parse-library-1/Parse.framework"; sourceTree = "<group>"; };
 		DCC3343B1ACD9C13000748A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DCC3343D1ACDA180000748A5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		DCC3343E1ACDA180000748A5 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		DCC3343F1ACDA180000748A5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		DCC334441ACDE4B7000748A5 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		DCC334451ACDE4B7000748A5 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
 		DCC334481ACE20AA000748A5 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
@@ -120,6 +115,11 @@
 		DCC334541AD0793A000748A5 /* AddToFoodForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddToFoodForm.m; sourceTree = "<group>"; };
 		DCC334571AD098F0000748A5 /* DiaryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryObject.h; sourceTree = "<group>"; };
 		DCC334581AD098F0000748A5 /* DiaryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryObject.m; sourceTree = "<group>"; };
+		DCE12FA91AD1A08A007F39D6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		DCE12FAA1AD1A08A007F39D6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		DCE12FAB1AD1A08A007F39D6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		DCE12FB31AD1A0C3007F39D6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../parse-library-1/Bolts.framework"; sourceTree = "<group>"; };
+		DCE12FB41AD1A0C3007F39D6 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../parse-library-1/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,19 +129,19 @@
 			files = (
 				DC9B7ACA1ACCBEE000948AD0 /* libsqlite3.dylib in Frameworks */,
 				DC9B7AC81ACCBED500948AD0 /* libz.dylib in Frameworks */,
-				DCC334421ACDA180000748A5 /* FBSDKShareKit.framework in Frameworks */,
+				DCE12FAD1AD1A08A007F39D6 /* FBSDKLoginKit.framework in Frameworks */,
 				DC9B7AC61ACCBECB00948AD0 /* SystemConfiguration.framework in Frameworks */,
+				DCE12FB61AD1A0C3007F39D6 /* Parse.framework in Frameworks */,
+				DCE12FAE1AD1A08A007F39D6 /* FBSDKShareKit.framework in Frameworks */,
+				DCE12FAC1AD1A08A007F39D6 /* FBSDKCoreKit.framework in Frameworks */,
 				DC9B7AC21ACCBEBC00948AD0 /* Security.framework in Frameworks */,
-				DCC334411ACDA180000748A5 /* FBSDKLoginKit.framework in Frameworks */,
 				DC9B7AC01ACCBEB200948AD0 /* QuartzCore.framework in Frameworks */,
 				DC9B7ABE1ACCBEAB00948AD0 /* MobileCoreServices.framework in Frameworks */,
 				DC9B7ABC1ACCBEA400948AD0 /* CoreLocation.framework in Frameworks */,
 				DC9B7ABA1ACCBE9D00948AD0 /* CoreGraphics.framework in Frameworks */,
-				DCC334401ACDA180000748A5 /* FBSDKCoreKit.framework in Frameworks */,
-				DCC3342F1ACCE274000748A5 /* Bolts.framework in Frameworks */,
 				DC9B7AB81ACCBE9600948AD0 /* CFNetwork.framework in Frameworks */,
-				DCC334301ACCE274000748A5 /* Parse.framework in Frameworks */,
 				DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */,
+				DCE12FB51AD1A0C3007F39D6 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,11 +335,11 @@
 			children = (
 				DC9B7AC91ACCBEE000948AD0 /* libsqlite3.dylib */,
 				DC9B7AC71ACCBED500948AD0 /* libz.dylib */,
-				DCC3343D1ACDA180000748A5 /* FBSDKCoreKit.framework */,
-				DCC3343E1ACDA180000748A5 /* FBSDKLoginKit.framework */,
-				DCC3343F1ACDA180000748A5 /* FBSDKShareKit.framework */,
-				DCC3342D1ACCE274000748A5 /* Bolts.framework */,
-				DCC3342E1ACCE274000748A5 /* Parse.framework */,
+				DCE12FB31AD1A0C3007F39D6 /* Bolts.framework */,
+				DCE12FB41AD1A0C3007F39D6 /* Parse.framework */,
+				DCE12FA91AD1A08A007F39D6 /* FBSDKCoreKit.framework */,
+				DCE12FAA1AD1A08A007F39D6 /* FBSDKLoginKit.framework */,
+				DCE12FAB1AD1A08A007F39D6 /* FBSDKShareKit.framework */,
 				DC9B7AC51ACCBECB00948AD0 /* SystemConfiguration.framework */,
 				DC9B7AC11ACCBEBC00948AD0 /* Security.framework */,
 				DC9B7ABF1ACCBEB200948AD0 /* QuartzCore.framework */,
@@ -631,11 +631,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/Stephen/Desktop/parse-library-1",
 					/Users/Stephen/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/My",
-					Fit,
-					Diet,
+					"/Users/Stephen/Desktop/parse-library-1",
 				);
 				INFOPLIST_FILE = "My Fit Diet/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -653,11 +650,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/Stephen/Desktop/parse-library-1",
 					/Users/Stephen/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/My",
-					Fit,
-					Diet,
+					"/Users/Stephen/Desktop/parse-library-1",
 				);
 				INFOPLIST_FILE = "My Fit Diet/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

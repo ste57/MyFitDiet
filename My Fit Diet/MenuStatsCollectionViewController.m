@@ -40,12 +40,10 @@ static int const numberOfPages = 3;
     
     currentSetDate = [NSDate date];
     
-    [self getDiaryData];
-    
     previousPage = numberOfPages;
     
     [self setNavigationBarDateTitle];
-    
+
     self.collectionView.pagingEnabled = YES;
     
     [self.collectionView registerClass:[MenuStatsCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -57,6 +55,13 @@ static int const numberOfPages = 3;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessProfile) name:PROFILE_BUTTON_NOTIFICATION object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateStats) name:RELOAD_DIARY_TB object:nil];
+}
+
+- (void) recalculateStats {
+    
+    [self.collectionView reloadData];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

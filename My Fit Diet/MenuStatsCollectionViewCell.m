@@ -12,12 +12,16 @@
 
 @implementation MenuStatsCollectionViewCell {
     
+    UserObject *user;
     float xVal, separationValue;
+    KAProgressLabel *kCalProgressLabel, *carbsProgressLabel, *sFatsProgressLabel, *fatsProgressLabel, *proteinProgressLabel;
 }
 
 - (void) createLayout {
     
     [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    user = [[UserObject alloc] init];
     
     self.backgroundColor = MAIN_BACKGROUND_COLOUR;
     
@@ -47,21 +51,22 @@
 
 - (void) createKcalProgressLabel {
     
-    KAProgressLabel *progressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
+    kCalProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
     
-    progressLabel.trackColor = TRACK_COLOUR;
+    kCalProgressLabel.trackColor = TRACK_COLOUR;
     
-    progressLabel.progressColor = KCAL_BAR_COLOUR;
+    kCalProgressLabel.progressColor = KCAL_BAR_COLOUR;
     
-    progressLabel.trackWidth = KCAL_TRACK_WIDTH;
+    kCalProgressLabel.trackWidth = KCAL_TRACK_WIDTH;
     
-    progressLabel.progressWidth = KCAL_TRACK_WIDTH;
+    kCalProgressLabel.progressWidth = KCAL_TRACK_WIDTH;
     
-    progressLabel.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/3.5);
+    kCalProgressLabel.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/3.5);
     
-    [self addSubview:progressLabel];
+    [self addSubview:kCalProgressLabel];
     
-    [self animateBar:progressLabel];
+    [self animateBar:kCalProgressLabel withProgress:(float)(user.currentCalories/user.userCalories)];
+    
     
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
@@ -74,93 +79,90 @@
     
     label.font = [UIFont fontWithName:@"Primer" size:50.0];
     
-    [progressLabel addSubview:label];
+    [kCalProgressLabel addSubview:label];
 }
 
 - (void) createCarbsProgressLabel {
     
-    KAProgressLabel *progressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
+    carbsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
-    progressLabel.trackColor = TRACK_COLOUR;
+    carbsProgressLabel.trackColor = TRACK_COLOUR;
     
-    progressLabel.progressColor = CARBS_COLOUR;
+    carbsProgressLabel.progressColor = CARBS_COLOUR;
     
-    progressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    carbsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    carbsProgressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
+    carbsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:progressLabel];
+    [self addSubview:carbsProgressLabel];
     
-    [self animateBar:progressLabel];
+    [self animateBar:carbsProgressLabel withProgress:(float)(user.currentTotalCarbohydrates/user.userTotalCarbohydrates)];
 }
 
 - (void) createSaturatedFatsProgressLabel {
     
-    KAProgressLabel *progressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
+    sFatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
-    progressLabel.trackColor = TRACK_COLOUR;
+    sFatsProgressLabel.trackColor = TRACK_COLOUR;
     
-    progressLabel.progressColor = S_FATS_COLOUR;
+    sFatsProgressLabel.progressColor = S_FATS_COLOUR;
     
-    progressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    sFatsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    sFatsProgressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
+    sFatsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:progressLabel];
+    [self addSubview:sFatsProgressLabel];
     
-    [self animateBar:progressLabel];
+    [self animateBar:sFatsProgressLabel withProgress:(float)(user.currentSaturatedFats/user.userSaturatedFats)];
 }
 
 - (void) createFatsProgressLabel {
     
-    KAProgressLabel *progressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
+    fatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
-    progressLabel.trackColor = TRACK_COLOUR;
+    fatsProgressLabel.trackColor = TRACK_COLOUR;
     
-    progressLabel.progressColor = FATS_COLOUR;
+    fatsProgressLabel.progressColor = FATS_COLOUR;
     
-    progressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    fatsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    fatsProgressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
+    fatsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:progressLabel];
+    [self addSubview:fatsProgressLabel];
     
-    [self animateBar:progressLabel];
+    [self animateBar:fatsProgressLabel withProgress:(float)(user.currentTotalFats/user.userTotalFats)];
 }
 
 - (void) createProteinProgressLabel {
     
-    KAProgressLabel *progressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
+    proteinProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
-    progressLabel.trackColor = TRACK_COLOUR;
+    proteinProgressLabel.trackColor = TRACK_COLOUR;
     
-    progressLabel.progressColor = PROTEIN_COLOUR;
+    proteinProgressLabel.progressColor = PROTEIN_COLOUR;
     
-    progressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    proteinProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
+    proteinProgressLabel.progressWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
-    progressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
+    proteinProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:progressLabel];
+    [self addSubview:proteinProgressLabel];
     
-    [self animateBar:progressLabel];
+    [self animateBar:proteinProgressLabel withProgress:(float)(user.currentProtein/user.userProtein)];
 }
 
-- (void) animateBar:(KAProgressLabel*)label {
-    
-    label.progress = 0;
-    
-    float num = (arc4random() % 100) / 100.0;
+- (void) animateBar:(KAProgressLabel*)label withProgress:(float)progress {
 
-    //0.8
-    [label setProgress:num timing:TPPropertyAnimationTimingEaseOut duration:0.8 delay:0.5];
+    label.progress = 0;
+
+    [label setProgress:progress timing:TPPropertyAnimationTimingEaseOut duration:0.8 delay:0.8];
 }
 
 @end

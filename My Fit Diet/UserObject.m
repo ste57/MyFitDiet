@@ -20,11 +20,22 @@ typedef NS_ENUM(BOOL, weightGoal) {
 
 @synthesize _id, email, gender, name, currentWeight, goalWeight, dateOfBirth, height, userSetGainWeight, weeklyGoalRate;
 
+@synthesize userCalories, userProtein, userSaturatedFats, userTotalCarbohydrates, userTotalFats;
+@synthesize currentCalories, currentProtein, currentSaturatedFats, currentTotalCarbohydrates, currentTotalFats;
+
 - (id) init {
     
     self = [super init];
     
     if (self) {
+        
+        userCalories = 2000;
+        userProtein = 20;
+        userSaturatedFats = 20;
+        userTotalCarbohydrates = 20;
+        userTotalFats = 20;
+        
+        
         
         UserObject *userObject = [self loadCustomObjectWithKey:USER_OBJECT];
         
@@ -42,10 +53,37 @@ typedef NS_ENUM(BOOL, weightGoal) {
             
             userSetGainWeight = userObject.userSetGainWeight;
             weeklyGoalRate = userObject.weeklyGoalRate;
+            
+            /*userCalories = userObject.userCalories;
+            userProtein = userObject.userProtein;
+            userSaturatedFats = userObject.userSaturatedFats;
+            userTotalCarbohydrates = userObject.userTotalCarbohydrates;
+            userTotalFats = userObject.userTotalFats;*/
+            
+            userCalories = 2000;
+            userProtein = 20;
+            userSaturatedFats = 20;
+            userTotalCarbohydrates = 20;
+            userTotalFats = 20;
+            
+            currentCalories = userObject.currentCalories;
+            currentProtein = userObject.currentProtein;
+            currentSaturatedFats = userObject.currentSaturatedFats;
+            currentTotalCarbohydrates = userObject.currentTotalCarbohydrates;
+            currentTotalFats = userObject.currentTotalFats;
         }
     }
     
     return self;
+}
+
+- (void) resetNutritionValues {
+    
+    currentCalories = 0;
+    currentProtein = 0;
+    currentSaturatedFats = 0;
+    currentTotalCarbohydrates = 0;
+    currentTotalFats = 0;
 }
 
 - (void) removeUserObject {
@@ -73,6 +111,12 @@ typedef NS_ENUM(BOOL, weightGoal) {
         user[@"isUserLosingWeight"] = [NSNumber numberWithBool:!userSetGainWeight];
         user[@"weeklyGoalRate"] = [NSNumber numberWithFloat:weeklyGoalRate];
         
+        user[@"userCalories"] = [NSNumber numberWithFloat:userCalories];
+        user[@"userProtein"] = [NSNumber numberWithFloat:userProtein];
+        user[@"saturatedFats"] = [NSNumber numberWithFloat:userSaturatedFats];
+        user[@"totalCarbohydrates"] = [NSNumber numberWithFloat:userTotalCarbohydrates];
+        user[@"totalFats"] = [NSNumber numberWithFloat:userTotalFats];
+        
         user.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
         
         [user saveEventually];
@@ -93,6 +137,19 @@ typedef NS_ENUM(BOOL, weightGoal) {
     
     [encoder encodeBool:userSetGainWeight forKey:@"userSetGainWeight"];
     [encoder encodeFloat:weeklyGoalRate forKey:@"weeklyGoalRate"];
+    
+    
+    [encoder encodeFloat:userCalories forKey:@"userCalories"];
+    [encoder encodeFloat:userProtein forKey:@"userProtein"];
+    [encoder encodeFloat:userSaturatedFats forKey:@"userSaturatedFats"];
+    [encoder encodeFloat:userTotalCarbohydrates forKey:@"userTotalCarbohydrates"];
+    [encoder encodeFloat:userTotalFats forKey:@"userTotalFats"];
+
+    [encoder encodeFloat:currentCalories forKey:@"currentCalories"];
+    [encoder encodeFloat:currentProtein forKey:@"currentProtein"];
+    [encoder encodeFloat:currentSaturatedFats forKey:@"currentSaturatedFats"];
+    [encoder encodeFloat:currentTotalCarbohydrates forKey:@"currentTotalCarbohydrates"];
+    [encoder encodeFloat:currentTotalFats forKey:@"currentTotalFats"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
@@ -113,6 +170,19 @@ typedef NS_ENUM(BOOL, weightGoal) {
         
         userSetGainWeight = [decoder decodeBoolForKey:@"userSetGainWeight"];
         weeklyGoalRate = [decoder decodeFloatForKey:@"weeklyGoalRate"];
+        
+        
+        userCalories = [decoder decodeFloatForKey:@"userCalories"];
+        userProtein = [decoder decodeFloatForKey:@"userProtein"];
+        userSaturatedFats = [decoder decodeFloatForKey:@"userSaturatedFats"];
+        userTotalCarbohydrates = [decoder decodeFloatForKey:@"userTotalCarbohydrates"];
+        userTotalFats = [decoder decodeFloatForKey:@"userTotalFats"];
+        
+        currentCalories = [decoder decodeFloatForKey:@"currentCalories"];
+        currentProtein = [decoder decodeFloatForKey:@"currentProtein"];
+        currentSaturatedFats = [decoder decodeFloatForKey:@"currentSaturatedFats"];
+        currentTotalCarbohydrates = [decoder decodeFloatForKey:@"currentTotalCarbohydrates"];
+        currentTotalFats = [decoder decodeFloatForKey:@"currentTotalFats"];
     }
     
     return self;

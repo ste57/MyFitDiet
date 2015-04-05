@@ -46,6 +46,8 @@
 
 - (void) getDataForDate:(NSString*)date {
     
+    [self resetNutrientValues];
+    
     [foodDiary removeAllObjects];
     
     [occasionArray removeAllObjects];
@@ -68,18 +70,43 @@
                     
                     if (!error) {
                         
+                        [self calculateNutrientTotals:foodObjects];
+                        
                         NSString *occasion = object[@"mealOccasion"];
                         
                         [occasionArray addObject:occasion];
                         
                         [foodDiary setValue:[[NSMutableArray alloc] initWithArray:foodObjects] forKey:occasion];
-                        
+
                         [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_DIARY_TB object:nil];
                     }
                 }];
             }
         }
     }];
+}
+
+- (void) resetNutrientValues {
+    
+    user.currentCalories = 0;
+    user.currentProtein = 0;
+    user.currentSaturatedFats = 0;
+    user.currentTotalCarbohydrates = 0;
+    user.currentTotalFats = 0;
+}
+
+- (void) calculateNutrientTotals:(NSArray*)array {
+    
+    for (PFObject *object in array) {
+        
+        user.currentCalories += [object[@"calories"] floatValue];
+        user.currentProtein += [object[@"protein"] floatValue];
+        user.currentSaturatedFats += [object[@"saturatedFats"] floatValue];
+        user.currentTotalCarbohydrates += [object[@"totalCarbohydrates"] floatValue];
+        user.currentTotalFats += [object[@"totalFats"] floatValue];
+    }
+    
+    [user syncUserObject];
 }
 
 - (void) addFoodToDiary:(PFObject *)foodObject forOccasion:(NSString *)occasion {
