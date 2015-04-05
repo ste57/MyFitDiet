@@ -94,16 +94,6 @@
     self.definesPresentationContext = YES;
 }
 
-- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-  
-   self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
-}
-
-- (void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    
-   self.tableView.contentInset = UIEdgeInsetsZero;
-}
-
 - (void) createNewFood {
     
     CreateFoodViewController *createFoodVC = [[CreateFoodViewController alloc] init];
@@ -126,7 +116,7 @@
     
     PFObject *object = [foodArray objectAtIndex:(indexPath.row)];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"Name"], object[@"Calories"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"name"], object[@"calories"]];
   
     return cell;
 }
@@ -141,7 +131,7 @@
     
     [query setLimit:100];
     
-    [query whereKey:@"SearchName" containsString:[searchResultsController.searchBar.text uppercaseString]];
+    [query whereKey:@"searchName" containsString:[searchResultsController.searchBar.text uppercaseString]];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     
@@ -169,6 +159,8 @@
     AddFoodToDiaryViewController *addToDiaryVC = [AddFoodToDiaryViewController alloc];
     
     addToDiaryVC.foodPFObject = object;
+    
+    addToDiaryVC.diaryDate = self.diaryDate;
     
     addToDiaryVC.formController.form = [AddToFoodForm alloc];
     

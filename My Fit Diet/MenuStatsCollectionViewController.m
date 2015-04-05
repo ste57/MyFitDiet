@@ -13,6 +13,7 @@
 #import "DiaryViewController.h"
 #import <Parse/Parse.h>
 #import "UserProfileViewController.h"
+#import "DiaryObject.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -24,6 +25,7 @@
     NSDate *currentSetDate;
     int previousPage;
     UserObject *userObject;
+    DiaryObject *diary;
 }
 
 static NSString * const reuseIdentifier = @"MenuStatsCell";
@@ -37,6 +39,8 @@ static int const numberOfPages = 3;
     userObject = [[UserObject alloc] init];
     
     currentSetDate = [NSDate date];
+    
+    [self getDiaryData];
     
     previousPage = numberOfPages;
     
@@ -55,11 +59,20 @@ static int const numberOfPages = 3;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
 }
 
+- (void) getDiaryData {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    
+    [dateFormat setDateFormat:DIARY_DATE_FORMAT];
+    
+    diary = [[DiaryObject alloc] initWithDate:[dateFormat stringFromDate:currentSetDate]];
+}
+
 - (void) setNavigationBarDateTitle {
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
-    [dateFormat setDateFormat:@"EEE | dd MMMM yyyy"];
+    [dateFormat setDateFormat:MENU_DATE_FORMAT];
     
     int dayDiff = ceil([currentSetDate timeIntervalSinceNow] / (60*60*24));
     
@@ -79,6 +92,10 @@ static int const numberOfPages = 3;
         
         self.title = [[NSString stringWithFormat:@"%@", [dateFormat stringFromDate:currentSetDate]] uppercaseString];
     }
+    
+    [dateFormat setDateFormat:DIARY_DATE_FORMAT];
+    
+    [diary changeDate:[dateFormat stringFromDate:currentSetDate]];
 }
 
 - (void) createOptionsView {
@@ -237,13 +254,15 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
-    [dateFormat setDateFormat:@"EEEE dd MMMM yyyy"];
+    [dateFormat setDateFormat:DIARY_DATE_FORMAT];
     
-    DiaryViewController *diary = [[DiaryViewController alloc] init];
+    DiaryViewController *diaryVC = [[DiaryViewController alloc] init];
     
-    diary.diaryDate = [dateFormat stringFromDate:currentSetDate];
+    diaryVC.diary = diary;
     
-    [self.navigationController pushViewController:diary animated:YES];
+    diaryVC.diaryDate = [dateFormat stringFromDate:currentSetDate];
+    
+    [self.navigationController pushViewController:diaryVC animated:YES];
 }
 
 - (void) planMeal {

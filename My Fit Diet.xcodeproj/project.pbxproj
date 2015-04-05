@@ -44,6 +44,7 @@
 		DCC3344A1ACE20AA000748A5 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334491ACE20AA000748A5 /* UserProfileViewController.m */; };
 		DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */; };
 		DCC334551AD0793A000748A5 /* AddToFoodForm.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334541AD0793A000748A5 /* AddToFoodForm.m */; };
+		DCC334591AD098F0000748A5 /* DiaryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334581AD098F0000748A5 /* DiaryObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFoodToDiaryViewController.m; sourceTree = "<group>"; };
 		DCC334531AD0793A000748A5 /* AddToFoodForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddToFoodForm.h; sourceTree = "<group>"; };
 		DCC334541AD0793A000748A5 /* AddToFoodForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddToFoodForm.m; sourceTree = "<group>"; };
+		DCC334571AD098F0000748A5 /* DiaryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryObject.h; sourceTree = "<group>"; };
+		DCC334581AD098F0000748A5 /* DiaryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,7 @@
 				DCC334561AD0793F000748A5 /* AddToForm */,
 				DCC3344E1AD05667000748A5 /* AddFoodToDiaryViewController.h */,
 				DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */,
+				DC5FE7F11ACC9100002270FB /* Food Creation */,
 				DCC334511AD0569B000748A5 /* Search Food */,
 			);
 			name = "Add Food";
@@ -374,7 +378,6 @@
 				DC5FE7EB1ACC5CC5002270FB /* SearchFoodTableViewController.m */,
 				DC5FE7ED1ACC5CDA002270FB /* FoodResultsTableViewController.h */,
 				DC5FE7EE1ACC5CDA002270FB /* FoodResultsTableViewController.m */,
-				DC5FE7F11ACC9100002270FB /* Food Creation */,
 			);
 			name = "Search Food";
 			sourceTree = "<group>";
@@ -382,6 +385,8 @@
 		DCC334521AD078DE000748A5 /* Diary Object */ = {
 			isa = PBXGroup;
 			children = (
+				DCC334571AD098F0000748A5 /* DiaryObject.h */,
+				DCC334581AD098F0000748A5 /* DiaryObject.m */,
 			);
 			name = "Diary Object";
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */,
 				DC5FE7EF1ACC5CDA002270FB /* FoodResultsTableViewController.m in Sources */,
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
+				DCC334591AD098F0000748A5 /* DiaryObject.m in Sources */,
 				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
 				DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,

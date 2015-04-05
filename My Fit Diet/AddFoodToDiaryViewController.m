@@ -9,6 +9,8 @@
 #import "AddFoodToDiaryViewController.h"
 #import "Constants.h"
 #import "CreateFoodViewController.h"
+#import "DiaryViewController.h"
+#import "DiaryObject.h"
 
 @interface AddFoodToDiaryViewController ()
 
@@ -61,21 +63,35 @@
 
 - (void) addToBreakfast {
     
+    [self addFoodToDiary:BREAKFAST];
 }
 
 - (void) addToLunch {
     
-    
+    [self addFoodToDiary:LUNCH];
 }
 
 - (void) addToDinner {
     
-    
+    [self addFoodToDiary:DINNER];
 }
 
 - (void) addToSnacks {
     
+    [self addFoodToDiary:SNACK];
+}
+
+- (void) addFoodToDiary:(NSString*)occasion {
+
+    [foodObject updateFoodObject:foodPFObject];
     
+    DiaryObject *diaryObject = [[DiaryObject alloc] init];
+    
+    diaryObject.diaryDate = self.diaryDate;
+    
+    [diaryObject addFoodToDiary:foodPFObject forOccasion:occasion];
+    
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
 - (void) editFoodObject {

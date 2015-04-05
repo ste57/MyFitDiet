@@ -21,7 +21,7 @@
              @{FXFormFieldKey: @"servingSize", FXFormFieldTitle: @"Number Of Servings", FXFormFieldType: @"number", FXFormFieldDefaultValue: @"1.0", FXFormFieldHeader: @"NUMBER OF SERVINGS"},
              
              // Select A Meal Occassion
-             @{FXFormFieldAction: @"addToBreakfast", FXFormFieldTitle: @"Add To BreakFast", FXFormFieldHeader: @"SELECT A MEAL OCCASION"},
+             @{FXFormFieldAction: @"addToBreakfast", FXFormFieldTitle: @"Add To Breakfast", FXFormFieldHeader: @"SELECT A MEAL OCCASION"},
              
              @{FXFormFieldAction: @"addToLunch", FXFormFieldTitle: @"Add To Lunch"},
              

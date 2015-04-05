@@ -66,12 +66,12 @@ typedef NS_ENUM(BOOL, weightGoal) {
         user.password = _id;
         user.email = email;
         
-        user[@"DateOfBirth"] = dateOfBirth;
-        user[@"Height"] = [NSNumber numberWithFloat:height];
-        user[@"CurrentWeight"] = [NSNumber numberWithFloat:currentWeight];
-        user[@"GoalWeight"] = [NSNumber numberWithFloat:goalWeight];
+        user[@"dateOfBirth"] = dateOfBirth;
+        user[@"height"] = [NSNumber numberWithFloat:height];
+        user[@"currentWeight"] = [NSNumber numberWithFloat:currentWeight];
+        user[@"goalWeight"] = [NSNumber numberWithFloat:goalWeight];
         user[@"isUserLosingWeight"] = [NSNumber numberWithBool:!userSetGainWeight];
-        user[@"WeeklyGoalRate"] = [NSNumber numberWithFloat:weeklyGoalRate];
+        user[@"weeklyGoalRate"] = [NSNumber numberWithFloat:weeklyGoalRate];
         
         user.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
         

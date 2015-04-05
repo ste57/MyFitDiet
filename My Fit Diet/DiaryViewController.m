@@ -25,6 +25,8 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 @synthesize diaryDate;
 
+@synthesize diary;
+
 - (void) viewDidLoad {
     
     [super viewDidLoad];
@@ -46,6 +48,13 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     [self addDateView];
     
     [self createTableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:RELOAD_DIARY_TB object:nil];
+}
+
+- (void) reloadTableView {
+    
+    [diaryTableView reloadData];
 }
 
 - (void) removeBackButtonText {
@@ -56,7 +65,11 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (void) toggleFoodSearch {
     
-    [self.navigationController pushViewController:[SearchFoodTableViewController alloc] animated:YES];
+    SearchFoodTableViewController *searchFoodTVC = [[SearchFoodTableViewController alloc] init];
+    
+    searchFoodTVC.diaryDate = self.diaryDate;
+    
+    [self.navigationController pushViewController:searchFoodTVC animated:YES];
 }
 
 - (void) createTableView {
@@ -84,9 +97,16 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     return 100.0f;
 }
 
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return diary.foodDiary.count;
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  
-    return 2;//0;
+
+    NSArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:section]];
+    
+    return array.count;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,7 +121,15 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:indexPath.section]];
+    
+    FoodObject *foodObject = [[FoodObject alloc] init];
+                              
+    [foodObject convertPFObjectToFoodObject:[array objectAtIndex:indexPath.row]];
+    
     DiaryTableViewCell *cell = [[DiaryTableViewCell alloc] initWithFrame:CGRectZero];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@      %@", foodObject.name, [diary.occasionArray objectAtIndex:indexPath.section]];
     
     return cell;
 }

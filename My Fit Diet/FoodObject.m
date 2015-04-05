@@ -29,16 +29,16 @@
 
 - (PFObject*) setPFObjectValues:(PFObject*)object {
     
-    object[@"SearchName"] = [name uppercaseString];
-    object[@"Name"] = name;
-    object[@"Description"] = foodDescription;
-    object[@"ServingSize"] = [NSNumber numberWithFloat:servingSize];
-    object[@"Calories"] = [NSNumber numberWithInt:calories];
-    object[@"TotalFats"] = [NSNumber numberWithFloat:totalFats];
-    object[@"SaturatedFats"] = [NSNumber numberWithFloat:saturatedFats];
-    object[@"Sodium"] = [NSNumber numberWithFloat:sodium];
-    object[@"TotalCarbohydrates"] = [NSNumber numberWithFloat:totalCarbohydrates];
-    object[@"Protein"] = [NSNumber numberWithFloat:protein];
+    object[@"searchName"] = [name uppercaseString];
+    object[@"name"] = name;
+    object[@"description"] = foodDescription;
+    object[@"servingSize"] = [NSNumber numberWithFloat:servingSize];
+    object[@"calories"] = [NSNumber numberWithInt:calories];
+    object[@"totalFats"] = [NSNumber numberWithFloat:totalFats];
+    object[@"saturatedFats"] = [NSNumber numberWithFloat:saturatedFats];
+    object[@"sodium"] = [NSNumber numberWithFloat:sodium];
+    object[@"totalCarbohydrates"] = [NSNumber numberWithFloat:totalCarbohydrates];
+    object[@"protein"] = [NSNumber numberWithFloat:protein];
     
     object.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
     
@@ -57,15 +57,15 @@
 
 - (void) convertPFObjectToFoodObject:(PFObject *)foodPFObject {
     
-    name = foodPFObject[@"Name"];
-    foodDescription = foodPFObject[@"Description"];
-    servingSize = [foodPFObject[@"ServingSize"] floatValue];
-    calories = [foodPFObject[@"Calories"] intValue];
-    totalFats = [foodPFObject[@"TotalFats"] floatValue];
-    saturatedFats = [foodPFObject[@"SaturatedFats"] floatValue];
-    sodium = [foodPFObject[@"Sodium"] floatValue];
-    totalCarbohydrates = [foodPFObject[@"TotalCarbohydrates"] floatValue];
-    protein = [foodPFObject[@"Protein"] floatValue];
+    name = foodPFObject[@"name"];
+    foodDescription = foodPFObject[@"description"];
+    servingSize = [foodPFObject[@"servingSize"] floatValue];
+    calories = [foodPFObject[@"calories"] intValue];
+    totalFats = [foodPFObject[@"totalFats"] floatValue];
+    saturatedFats = [foodPFObject[@"saturatedFats"] floatValue];
+    sodium = [foodPFObject[@"sodium"] floatValue];
+    totalCarbohydrates = [foodPFObject[@"totalCarbohydrates"] floatValue];
+    protein = [foodPFObject[@"protein"] floatValue];
 }
 
 - (void) deleteFoodObject:(PFObject *)foodPFObject {

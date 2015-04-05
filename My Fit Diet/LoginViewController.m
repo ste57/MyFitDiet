@@ -94,12 +94,12 @@
         
         if (!error) {
             
-            userObject.dateOfBirth = object[@"DateOfBirth"];
-            userObject.height = [object[@"Height"] floatValue];
-            userObject.currentWeight = [object[@"CurrentWeight"] floatValue];
-            userObject.goalWeight = [object[@"GoalWeight"] floatValue];
+            userObject.dateOfBirth = object[@"dateOfBirth"];
+            userObject.height = [object[@"height"] floatValue];
+            userObject.currentWeight = [object[@"currentWeight"] floatValue];
+            userObject.goalWeight = [object[@"goalWeight"] floatValue];
             userObject.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
-            userObject.weeklyGoalRate = [object[@"WeeklyGoalRate"] floatValue];
+            userObject.weeklyGoalRate = [object[@"weeklyGoalRate"] floatValue];
             
             [userObject syncUserObject];
         }

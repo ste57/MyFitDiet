@@ -43,7 +43,7 @@
     
     PFObject *object = [searchResults objectAtIndex:(indexPath.row)];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"Name"], object[@"Calories"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"name"], object[@"calories"]];
     
     return cell;
 }

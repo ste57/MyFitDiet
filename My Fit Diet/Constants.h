@@ -11,7 +11,17 @@
 #define MAIN_FONT @"Primer"
 #define MAIN_BACKGROUND_COLOUR [UIColor colorWithRed:39.0f/255.0f green:44.0f/255.0f blue:50.0f/255.0f alpha:1.0]
 
+// Meal Occasions
+
+#define BREAKFAST @"Breakfast"
+#define LUNCH @"Lunch"
+#define DINNER @"Dinner"
+#define SNACK @"Snack"
+
 // Menu Menu Stats Progress
+
+#define MENU_DATE_FORMAT @"EEE | dd MMMM yyyy"
+#define DIARY_DATE_FORMAT @"EEEE dd MMMM yyyy"
 
 #define TRACK_COLOUR [UIColor colorWithRed:61.0f/255.0f green:66.0f/255.0f blue:72.0f/255.0f alpha:1.0]
 
@@ -49,3 +59,4 @@
 #define PROFILE_BUTTON_NOTIFICATION @"ProfileNS"
 #define PLAN_MEAL_BUTTON_NOTIFICATION @"PlanMealNS"
 #define DISPLAY_FOOD_DETAILS @"DisplayDetailsNS"
+#define RELOAD_DIARY_TB @"ReloadTBNS"
