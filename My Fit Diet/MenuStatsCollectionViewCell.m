@@ -14,7 +14,7 @@
 @implementation MenuStatsCollectionViewCell {
     
     UserObject *user;
-    float xVal, separationValue;
+    float xVal, separationValue, value;
     KAProgressLabel *kCalProgressLabel, *carbsProgressLabel, *sFatsProgressLabel, *fatsProgressLabel, *proteinProgressLabel;
 }
 
@@ -54,14 +54,14 @@
 
 - (void) createKcalProgressLabel {
     
-    float value = (float) (diary.currentCalories / user.userCalories);
+    value = (float) (diary.currentCalories / user.userCalories);
     
     kCalProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
     
     kCalProgressLabel.trackColor = TRACK_COLOUR;
     
     if (value <= 1.0) {
-    
+        
         kCalProgressLabel.progressColor = KCAL_BAR_COLOUR;
         
     } else {
@@ -75,15 +75,15 @@
     
     kCalProgressLabel.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/3.5);
     
-    [self animateBar:kCalProgressLabel withProgress:value :diary.previousCalories];
+    [self animateBar:kCalProgressLabel withProgress:value :(diary.previousCalories / user.userCalories)];
     
     [self addKcalProgressLabels];
     
-    diary.previousCalories = value;
+    diary.previousCalories = diary.currentCalories;
 }
 
 - (void) addKcalProgressLabels {
-
+    
     UILabel *label;
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
@@ -94,16 +94,22 @@
     
     label.textColor = kCalProgressLabel.progressColor;
     
-    label.alpha = 0;
-    
-    label.text = [NSString stringWithFormat:@"%i", (int)(user.userCalories - diary.currentCalories)];
-    
     label.font = [UIFont fontWithName:@"Lekton04" size:56.0];
     
     [kCalProgressLabel addSubview:label];
-
-    [self animateLabel:label];
     
+    ////*******//// LABEL ANIMATION
+    
+    NSString *labelText = [NSString stringWithFormat:@"%i", (int)(user.userCalories - diary.currentCalories)];
+    
+    label.text = [NSString stringWithFormat:@"%i", (int)(user.userCalories - diary.previousCalories)];
+    
+    if (value != diary.previousCalories) {
+        
+        [self animateLabel:label text:labelText];
+    }
+    
+    //// *******////
     
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
@@ -114,19 +120,22 @@
     
     label.textColor = kCalProgressLabel.progressColor;
     
-    label.text = @"KCAL LEFT";
-    
     label.font = [UIFont fontWithName:@"Primer" size:18.0];
     
     [kCalProgressLabel addSubview:label];
     
-    [self animateLabel:label];
     
+    label.text = @"KCAL LEFT";
+    
+    if (value != diary.previousCalories) {
+        
+        [self animateLabel:label text:@"KCAL LEFT"];
+    }
     
     [self addSubview:kCalProgressLabel];
 }
 
-- (void) createNutrientProgressLabels:(KAProgressLabel*)parentLabel :(float)value :(NSString*)setLabel {
+- (void) createNutrientProgressLabels:(KAProgressLabel*)parentLabel :(float)previousValue :(NSString*)setLabel {
     
     UILabel *label;
     
@@ -136,16 +145,21 @@
     
     label.textColor = parentLabel.progressColor;
     
-    label.text = [NSString stringWithFormat:@"%i%@", (int)(value*100), @"%"];
-    
     label.textAlignment = NSTextAlignmentCenter;
     
     label.font = [UIFont fontWithName:@"Lekton04" size:16.0];
     
     [parentLabel addSubview:label];
     
-    [self animateLabel:label];
     
+    NSString *labelText = [NSString stringWithFormat:@"%i%@", (int)(value*100), @"%"];
+    
+    label.text = [NSString stringWithFormat:@"%i%@", (int)(previousValue*100), @"%"];
+    
+    if (value != previousValue) {
+        
+        [self animateLabel:label text:labelText];
+    }
     
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
@@ -156,42 +170,62 @@
     
     label.textColor = parentLabel.progressColor;
     
-    label.text = setLabel;
-    
     label.font = [UIFont fontWithName:@"Lekton04" size:14.0];
     
     [parentLabel addSubview:label];
     
-    [self animateLabel:label];
+    
+    label.text = setLabel;
+    
+    if (value != previousValue) {
+        
+        [self animateLabel:label text:setLabel];
+        
+    }
     
     [self addSubview:parentLabel];
 }
 
-- (void) animateLabel:(UILabel*)label {
+- (void) animateLabel:(UILabel*)label text:(NSString*)labelText {
     
-    label.alpha = 0;
-    
-    [UIView animateWithDuration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{ label.alpha = 1;}
-                     completion:nil];
+    [UIView animateWithDuration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         
+                         label.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         if (finished) {
+                             
+                             label.text = labelText;
+                             
+                             [UIView animateWithDuration:STATS_ANIMATE_TIME delay:0
+                                                 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{
+                                                  label.alpha = 1;
+                                              }
+                                              completion:nil];
+                         }
+                     }];
 }
 
 - (void) createCarbsProgressLabel {
     
-    float value = (float) (diary.currentTotalCarbohydrates / user.userTotalCarbohydrates);
+    value = (float) (diary.currentTotalCarbohydrates / user.userTotalCarbohydrates);
     
     carbsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     carbsProgressLabel.trackColor = TRACK_COLOUR;
     
-     if (value <= 1.0) {
-    
-         carbsProgressLabel.progressColor = CARBS_COLOUR;
-         
-     } else {
-         
-         carbsProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
-     }
+    if (value <= 1.0) {
+        
+        carbsProgressLabel.progressColor = CARBS_COLOUR;
+        
+    } else {
+        
+        carbsProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
+    }
     
     carbsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
@@ -201,21 +235,21 @@
     
     [self animateBar:carbsProgressLabel withProgress:value :diary.previousTotalCarbohydrates];
     
-    [self createNutrientProgressLabels:carbsProgressLabel :value :@"CARBS"];
+    [self createNutrientProgressLabels:carbsProgressLabel :diary.previousTotalCarbohydrates :@"CARBS"];
     
     diary.previousTotalCarbohydrates = value;
 }
 
 - (void) createSaturatedFatsProgressLabel {
     
-    float value = (float) (diary.currentSaturatedFats / user.userSaturatedFats);
+    value = (float) (diary.currentSaturatedFats / user.userSaturatedFats);
     
     sFatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     sFatsProgressLabel.trackColor = TRACK_COLOUR;
     
     if (value <= 1.0) {
-    
+        
         sFatsProgressLabel.progressColor = S_FATS_COLOUR;
         
     } else {
@@ -231,22 +265,22 @@
     
     [self animateBar:sFatsProgressLabel withProgress:value :diary.previousSaturatedFats];
     
-    [self createNutrientProgressLabels:sFatsProgressLabel :value :@"S.FATS"];
+    [self createNutrientProgressLabels:sFatsProgressLabel :diary.previousSaturatedFats :@"S.FATS"];
     
     diary.previousSaturatedFats = value;
 }
 
 - (void) createFatsProgressLabel {
     
-    float value = (float) (diary.currentTotalFats / user.userTotalFats);
+    value = (float) (diary.currentTotalFats / user.userTotalFats);
     
     fatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     fatsProgressLabel.trackColor = TRACK_COLOUR;
     
     if (value <= 1.0) {
-    
-    fatsProgressLabel.progressColor = FATS_COLOUR;
+        
+        fatsProgressLabel.progressColor = FATS_COLOUR;
         
     } else {
         
@@ -261,21 +295,21 @@
     
     [self animateBar:fatsProgressLabel withProgress:value :diary.previousTotalFats];
     
-    [self createNutrientProgressLabels:fatsProgressLabel :value :@"FATS"];
+    [self createNutrientProgressLabels:fatsProgressLabel :diary.previousTotalFats :@"FATS"];
     
     diary.previousTotalFats = value;
 }
 
 - (void) createProteinProgressLabel {
     
-    float value = (float) (diary.currentProtein / user.userProtein);
+    value = (float) (diary.currentProtein / user.userProtein);
     
     proteinProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     proteinProgressLabel.trackColor = TRACK_COLOUR;
     
     if (value <= 1.0) {
-    
+        
         proteinProgressLabel.progressColor = PROTEIN_COLOUR;
         
     } else {
@@ -291,7 +325,7 @@
     
     [self animateBar:proteinProgressLabel withProgress:value :diary.previousProtein];
     
-    [self createNutrientProgressLabels:proteinProgressLabel :value :@"PROTEIN"];
+    [self createNutrientProgressLabels:proteinProgressLabel :diary.previousProtein :@"PROTEIN"];
     
     diary.previousProtein = value;
 }
@@ -299,7 +333,7 @@
 - (void) animateBar:(KAProgressLabel*)label withProgress:(float)progress :(float)previousProgress {
     
     label.progress = previousProgress;
-
+    
     [label setProgress:progress timing:TPPropertyAnimationTimingEaseOut duration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME];
 }
 

@@ -20,8 +20,8 @@
 
 // Menu Menu Stats Progress
 
-#define STATS_ANIMATE_TIME 0.6
-#define STATS_DELAY_ANIMATION_TIME 0.5
+#define STATS_ANIMATE_TIME 0.5
+#define STATS_DELAY_ANIMATION_TIME 0.4
 
 #define MENU_DATE_FORMAT @"EEE | dd MMMM yyyy"
 #define DIARY_DATE_FORMAT @"EEEE dd MMMM yyyy"
