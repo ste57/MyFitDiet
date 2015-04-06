@@ -46,13 +46,6 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toggleFoodSearch)];
     
     self.navigationItem.rightBarButtonItem = addButton;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:RELOAD_DIARY_TB object:nil];
-}
-
-- (void) reloadTableView {
-   
-    [diaryTableView reloadData];
 }
 
 - (void) removeBackButtonText {
@@ -122,7 +115,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     NSArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:indexPath.section]];
     
     FoodObject *foodObject = [[FoodObject alloc] init];
-                              
+ 
     [foodObject convertPFObjectToFoodObject:[array objectAtIndex:indexPath.row]];
     
     DiaryTableViewCell *cell = [[DiaryTableViewCell alloc] initWithFrame:CGRectZero];
@@ -145,6 +138,8 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     label.textAlignment = NSTextAlignmentCenter;
     
+    label.font = [UIFont fontWithName:@"Lekton04" size:18.0];
+    
     label.text = diary.diaryDate;
     
     label.textColor = [UIColor lightGrayColor];
@@ -160,7 +155,6 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 - (void) didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -56,13 +56,13 @@ static int const numberOfPages = 3;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateStats) name:RELOAD_DIARY_TB object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateStats) name:RELOAD_DIARY_TB object:nil];
 }
 
-- (void) recalculateStats {
+/*- (void) recalculateStats {
     
     [self.collectionView reloadData];
-}
+}*/
 
 - (void) viewDidAppear:(BOOL)animated {
     
@@ -79,8 +79,6 @@ static int const numberOfPages = 3;
 }
 
 - (void) setNavigationBarDateTitle {
-
-    [userObject resetNutritionValues];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
@@ -108,8 +106,6 @@ static int const numberOfPages = 3;
     [dateFormat setDateFormat:DIARY_DATE_FORMAT];
     
     [diary changeDate:[dateFormat stringFromDate:currentSetDate]];
-    
-    [self.collectionView reloadData];
 }
 
 - (void) createOptionsView {
@@ -173,7 +169,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    MenuStatsCollectionViewCell *cell = (MenuStatsCollectionViewCell*) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    MenuStatsCollectionViewCell *cell =
+    (MenuStatsCollectionViewCell*) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     if (cell) {
         

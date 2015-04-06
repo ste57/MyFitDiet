@@ -11,9 +11,9 @@
 
 @interface DiaryObject : NSObject
 
+@property (strong, nonatomic) NSMutableArray *occasionArray;
 @property (strong, nonatomic) NSString *diaryDate;
 @property (strong, nonatomic) NSMutableDictionary *foodDiary;
-@property (strong, nonatomic) NSMutableArray *occasionArray;
 
 - (void) addFoodToDiary:(PFObject*)foodObject forOccasion:(NSString*)occasion;
 
