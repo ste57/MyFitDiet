@@ -9,6 +9,7 @@
 #import "MenuStatsCollectionViewCell.h"
 #import "Constants.h"
 #import "KAProgressLabel.h"
+#import "UserObject.h"
 
 @implementation MenuStatsCollectionViewCell {
     
@@ -16,6 +17,8 @@
     float xVal, separationValue;
     KAProgressLabel *kCalProgressLabel, *carbsProgressLabel, *sFatsProgressLabel, *fatsProgressLabel, *proteinProgressLabel;
 }
+
+@synthesize diary;
 
 - (void) createLayout {
     
@@ -51,7 +54,7 @@
 
 - (void) createKcalProgressLabel {
     
-    float value = (float)(user.currentCalories/user.userCalories);
+    float value = (float) (diary.currentCalories / user.userCalories);
     
     kCalProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
     
@@ -72,11 +75,11 @@
     
     kCalProgressLabel.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/3.5);
     
-    [self addSubview:kCalProgressLabel];
-    
-    [self animateBar:kCalProgressLabel withProgress:value];
+    [self animateBar:kCalProgressLabel withProgress:value :diary.previousCalories];
     
     [self addKcalProgressLabels];
+    
+    diary.previousCalories = value;
 }
 
 - (void) addKcalProgressLabels {
@@ -91,12 +94,14 @@
     
     label.textColor = kCalProgressLabel.progressColor;
     
-    label.text = [NSString stringWithFormat:@"%i", (int)(user.userCalories - user.currentCalories)];
+    label.alpha = 0;
+    
+    label.text = [NSString stringWithFormat:@"%i", (int)(user.userCalories - diary.currentCalories)];
     
     label.font = [UIFont fontWithName:@"Lekton04" size:56.0];
     
     [kCalProgressLabel addSubview:label];
-    
+
     [self animateLabel:label];
     
     
@@ -116,6 +121,9 @@
     [kCalProgressLabel addSubview:label];
     
     [self animateLabel:label];
+    
+    
+    [self addSubview:kCalProgressLabel];
 }
 
 - (void) createNutrientProgressLabels:(KAProgressLabel*)parentLabel :(float)value :(NSString*)setLabel {
@@ -155,20 +163,22 @@
     [parentLabel addSubview:label];
     
     [self animateLabel:label];
+    
+    [self addSubview:parentLabel];
 }
 
 - (void) animateLabel:(UILabel*)label {
     
     label.alpha = 0;
     
-    [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn
+    [UIView animateWithDuration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME options:UIViewAnimationOptionCurveEaseIn
                      animations:^{ label.alpha = 1;}
                      completion:nil];
 }
 
 - (void) createCarbsProgressLabel {
     
-    float value = (float)(user.currentTotalCarbohydrates/user.userTotalCarbohydrates);
+    float value = (float) (diary.currentTotalCarbohydrates / user.userTotalCarbohydrates);
     
     carbsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
@@ -189,16 +199,16 @@
     
     carbsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:carbsProgressLabel];
-    
-    [self animateBar:carbsProgressLabel withProgress:value];
+    [self animateBar:carbsProgressLabel withProgress:value :diary.previousTotalCarbohydrates];
     
     [self createNutrientProgressLabels:carbsProgressLabel :value :@"CARBS"];
+    
+    diary.previousTotalCarbohydrates = value;
 }
 
 - (void) createSaturatedFatsProgressLabel {
     
-    float value = (float)(user.currentSaturatedFats/user.userSaturatedFats);
+    float value = (float) (diary.currentSaturatedFats / user.userSaturatedFats);
     
     sFatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
@@ -219,16 +229,16 @@
     
     sFatsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:sFatsProgressLabel];
-    
-    [self animateBar:sFatsProgressLabel withProgress:value];
+    [self animateBar:sFatsProgressLabel withProgress:value :diary.previousSaturatedFats];
     
     [self createNutrientProgressLabels:sFatsProgressLabel :value :@"S.FATS"];
+    
+    diary.previousSaturatedFats = value;
 }
 
 - (void) createFatsProgressLabel {
     
-    float value = (float)(user.currentTotalFats/user.userTotalFats);
+    float value = (float) (diary.currentTotalFats / user.userTotalFats);
     
     fatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
@@ -249,16 +259,16 @@
     
     fatsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:fatsProgressLabel];
-    
-    [self animateBar:fatsProgressLabel withProgress:value];
+    [self animateBar:fatsProgressLabel withProgress:value :diary.previousTotalFats];
     
     [self createNutrientProgressLabels:fatsProgressLabel :value :@"FATS"];
+    
+    diary.previousTotalFats = value;
 }
 
 - (void) createProteinProgressLabel {
     
-    float value = (float)(user.currentProtein/user.userProtein);
+    float value = (float) (diary.currentProtein / user.userProtein);
     
     proteinProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
@@ -279,18 +289,18 @@
     
     proteinProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
-    [self addSubview:proteinProgressLabel];
-    
-    [self animateBar:proteinProgressLabel withProgress:value];
+    [self animateBar:proteinProgressLabel withProgress:value :diary.previousProtein];
     
     [self createNutrientProgressLabels:proteinProgressLabel :value :@"PROTEIN"];
+    
+    diary.previousProtein = value;
 }
 
-- (void) animateBar:(KAProgressLabel*)label withProgress:(float)progress {
+- (void) animateBar:(KAProgressLabel*)label withProgress:(float)progress :(float)previousProgress {
+    
+    label.progress = previousProgress;
 
-    label.progress = 0;
-
-    [label setProgress:progress timing:TPPropertyAnimationTimingEaseOut duration:0.8 delay:0.8];
+    [label setProgress:progress timing:TPPropertyAnimationTimingEaseOut duration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME];
 }
 
 @end

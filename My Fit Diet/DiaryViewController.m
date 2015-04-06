@@ -105,7 +105,8 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+       toIndexPath:(NSIndexPath *)destinationIndexPath {
     
     [tableView deselectRowAtIndexPath:sourceIndexPath animated:YES];
 }

@@ -16,6 +16,8 @@
 }
 
 @synthesize foodDiary, diaryDate, occasionArray;
+@synthesize currentCalories, currentProtein, currentSaturatedFats, currentTotalCarbohydrates, currentTotalFats;
+@synthesize previousCalories, previousTotalFats, previousProtein, previousSaturatedFats, previousTotalCarbohydrates;
 
 - (void) initialiseObjects {
     
@@ -63,46 +65,7 @@
 
 - (void) getDataForDate:(NSString*)date {
     
-    /*[self resetNutrientValues];
-     
-     [foodDiary removeAllObjects];
-     
-     [occasionArray removeAllObjects];
-     
-     PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
-     
-     [[query fromLocalDatastore] ignoreACLs];
-     
-     [query whereKey:@"diaryDate" equalTo:self.diaryDate];
-     
-     [query orderByDescending:@"updatedAt"];
-     
-     [query findObjectsInBackgroundWithBlock:^(NSArray *entryObjects, NSError *error) {
-     
-     if (!error) {
-     
-     for (PFObject* object in entryObjects) {
-     
-     PFRelation *relation = [object relationForKey:@"foodDiary"];
-     
-     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *foodObjects, NSError *error) {
-     
-     if (!error) {
-     
-     [self calculateNutrientTotals:foodObjects];
-     
-     NSString *occasion = object[@"mealOccasion"];
-     
-     [occasionArray addObject:occasion];
-     
-     [foodDiary setValue:[[NSMutableArray alloc] initWithArray:foodObjects] forKey:occasion];
-     
-     [[NSNotificationCenter defaultCenter] postNotificationName:RELOAD_DIARY_TB object:nil];
-     }
-     }];
-     }
-     }
-     }];*/
+    [self resetNutrientValues];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
     
@@ -114,7 +77,7 @@
     
     [query selectKeys:@[@"foodObject",@"mealOccasion"]];
     
-    [query orderByDescending:@"mealOccasion,updatedAt"];
+    [query orderByAscending:@"mealOccasion,updatedAt"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -126,12 +89,38 @@
                 
                 [self initialiseFoodDiaryArray:occasion];
                 
+                
+                PFObject *foodObject = object[@"foodObject"];
+                
                 NSMutableArray *array = [foodDiary objectForKey:occasion];
                 
-                [array addObject:object[@"foodObject"]];
+                [array addObject:foodObject];
+                
+                
+                [self addToNutrientTotals:foodObject];
             }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:DIARY_RELOAD_STATS object:nil];
         }
     }];
+}
+
+- (void) resetPreviousValues {
+    
+    previousCalories = 0;
+    previousTotalFats = 0;
+    previousSaturatedFats = 0;
+    previousTotalCarbohydrates = 0;
+    previousProtein = 0;
+}
+
+- (void) addToNutrientTotals:(PFObject*)foodObject {
+    
+    currentCalories += [foodObject[@"calories"] floatValue];
+    currentProtein += [foodObject[@"protein"] floatValue];
+    currentSaturatedFats += [foodObject[@"saturatedFats"] floatValue];
+    currentTotalCarbohydrates += [foodObject[@"totalCarbohydrates"] floatValue];
+    currentTotalFats += [foodObject[@"totalFats"] floatValue];
 }
 
 - (void) initialiseFoodDiaryArray:(NSString*)occasion {
@@ -145,25 +134,14 @@
 
 - (void) resetNutrientValues {
     
-    user.currentCalories = 0;
-    user.currentProtein = 0;
-    user.currentSaturatedFats = 0;
-    user.currentTotalCarbohydrates = 0;
-    user.currentTotalFats = 0;
-}
-
-- (void) calculateNutrientTotals:(NSArray*)array {
+    [foodDiary removeAllObjects];
+    [occasionArray removeAllObjects];
     
-    for (PFObject *object in array) {
-        
-        user.currentCalories += [object[@"calories"] floatValue];
-        user.currentProtein += [object[@"protein"] floatValue];
-        user.currentSaturatedFats += [object[@"saturatedFats"] floatValue];
-        user.currentTotalCarbohydrates += [object[@"totalCarbohydrates"] floatValue];
-        user.currentTotalFats += [object[@"totalFats"] floatValue];
-    }
-    
-    [user syncUserObject];
+    currentCalories = 0;
+    currentProtein = 0;
+    currentSaturatedFats = 0;
+    currentTotalCarbohydrates = 0;
+    currentTotalFats = 0;
 }
 
 - (void) addFoodToDiary:(PFObject *)foodPFObject forOccasion:(NSString *)occasion {
@@ -192,21 +170,5 @@
     
     [array addObject:foodPFObject];
 }
-
-/*- (void) addFood:(PFObject*)food toDiary:(PFObject*)diary forOccasion:(NSString*)occasion {
- 
- PFRelation *relation = [diary relationForKey:@"foodDiary"];
- 
- [relation addObject:food];
- 
- [diary unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
- 
- [diary pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
- 
- [diary saveEventually];
- }];
- 
- }];
- }*/
 
 @end

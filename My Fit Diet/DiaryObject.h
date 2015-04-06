@@ -15,10 +15,26 @@
 @property (strong, nonatomic) NSString *diaryDate;
 @property (strong, nonatomic) NSMutableDictionary *foodDiary;
 
+// Used for menu stats
+@property float currentCalories;
+@property float currentTotalFats;
+@property float currentSaturatedFats;
+@property float currentTotalCarbohydrates;
+@property float currentProtein;
+
+// Used for progress bar
+@property float previousCalories;
+@property float previousTotalFats;
+@property float previousSaturatedFats;
+@property float previousTotalCarbohydrates;
+@property float previousProtein;
+
 - (void) addFoodToDiary:(PFObject*)foodObject forOccasion:(NSString*)occasion;
 
 - (id) initWithDate:(NSString*)date;
 
 - (void) changeDate:(NSString*)date;
+
+- (void) resetPreviousValues;
 
 @end

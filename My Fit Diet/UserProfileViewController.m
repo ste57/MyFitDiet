@@ -110,8 +110,6 @@
     
     [[UserObject alloc] removeUserObject];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:PF_USER];
-    
     [self.navigationController popToRootViewControllerAnimated:NO];
     
     [self presentViewController:[LoginViewController alloc] animated:NO completion:nil];

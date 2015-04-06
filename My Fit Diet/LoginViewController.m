@@ -71,15 +71,15 @@
             
             userProfileVC.formController.form = [[UserObject alloc] init];
             
-            navigationController.viewControllers = [[NSArray alloc] initWithObjects:menuStatsCollectionViewController, userProfileVC, nil];
+            navigationController.viewControllers = [NSArray arrayWithObjects:menuStatsCollectionViewController, userProfileVC, nil];
             
             [self presentViewController:navigationController animated:YES completion:nil];
             
         } else {
             
-            navigationController.viewControllers = [[NSArray alloc] initWithObjects:menuStatsCollectionViewController, nil];
+            navigationController.viewControllers = [NSArray arrayWithObjects:menuStatsCollectionViewController, nil];
             
-            [self presentViewController:navigationController animated:NO completion:nil];
+            [self presentViewController:navigationController animated:YES completion:nil];
         }
     }
 }
@@ -127,6 +127,8 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
     
+    [query includeKey:@"foodObject"];
+    
     [query setLimit:300];
     
     [query orderByDescending:@"updatedAt"];
@@ -142,7 +144,7 @@
 
 - (void) createPFUser {
     
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:PF_USER]) {//[PFUser currentUser]) {
+    if (![PFUser currentUser]) {
         
         PFUser *pfUser = [PFUser user];
         
@@ -176,8 +178,6 @@
             }
         }];
     }
-    
-    
 }
 
 - (void) retrieveFacebookUserData {
@@ -200,8 +200,6 @@
                      [userObject syncUserObject];
                      
                      [self createPFUser];
-                     
-                     [[NSUserDefaults standardUserDefaults] setObject:userObject._id forKey:PF_USER];
                  }
              }];
             

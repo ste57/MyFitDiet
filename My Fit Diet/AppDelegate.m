@@ -33,7 +33,7 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.window.rootViewController = [LoginViewController alloc];
+    self.window.rootViewController = [[LoginViewController alloc] init];
     
     self.window.backgroundColor = [UIColor whiteColor];
     

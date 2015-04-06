@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DiaryObject.h"
-#import "UserObject.h"
+
 
 @interface MenuStatsCollectionViewCell : UICollectionViewCell
+
+@property (strong, nonatomic) DiaryObject *diary;
 
 - (void) createLayout;
 

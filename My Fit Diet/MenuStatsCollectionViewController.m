@@ -14,6 +14,7 @@
 #import <Parse/Parse.h>
 #import "UserProfileViewController.h"
 #import "DiaryObject.h"
+#import "UserObject.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -24,7 +25,6 @@
     NSIndexPath *indexPathForDeviceOrientation;
     NSDate *currentSetDate;
     int previousPage;
-    UserObject *userObject;
     DiaryObject *diary;
 }
 
@@ -36,13 +36,13 @@ static int const numberOfPages = 3;
     
     [super viewDidLoad];
     
-    userObject = [[UserObject alloc] init];
-    
     currentSetDate = [NSDate date];
     
     previousPage = numberOfPages;
     
     [self setNavigationBarDateTitle];
+    
+    diary = [[DiaryObject alloc] init];
 
     self.collectionView.pagingEnabled = YES;
     
@@ -56,13 +56,13 @@ static int const numberOfPages = 3;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(planMeal) name:PLAN_MEAL_BUTTON_NOTIFICATION object:nil];
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateStats) name:RELOAD_DIARY_TB object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStats) name:DIARY_RELOAD_STATS object:nil];
 }
 
-/*- (void) recalculateStats {
+- (void) reloadStats {
     
     [self.collectionView reloadData];
-}*/
+}
 
 - (void) viewDidAppear:(BOOL)animated {
     
@@ -74,11 +74,13 @@ static int const numberOfPages = 3;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
     [dateFormat setDateFormat:DIARY_DATE_FORMAT];
-    
-    diary = [[DiaryObject alloc] initWithDate:[dateFormat stringFromDate:currentSetDate]];
+
+    [diary changeDate:[dateFormat stringFromDate:currentSetDate]];
 }
 
 - (void) setNavigationBarDateTitle {
+    
+    //[diary resetPreviousValues];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
@@ -177,6 +179,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
         cell.layer.anchorPoint = CGPointMake(0.5, 0);
         
         cell.center = CGPointMake(cell.center.x, 0);
+        
+        cell.diary = diary;
         
         [cell createLayout];
     }

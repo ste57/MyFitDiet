@@ -34,14 +34,6 @@
 @property float userTotalCarbohydrates;
 @property float userProtein;
 
-@property float currentCalories;
-@property float currentTotalFats;
-@property float currentSaturatedFats;
-@property float currentTotalCarbohydrates;
-@property float currentProtein;
-
-- (void) resetNutritionValues;
-
 - (void) syncUserObject;
 
 - (void) removeUserObject;
