@@ -103,8 +103,8 @@
     NSString *labelText = [NSString stringWithFormat:@"%i", (int)(user.userCalories - diary.currentCalories)];
     
     label.text = [NSString stringWithFormat:@"%i", (int)(user.userCalories - diary.previousCalories)];
-    
-    if (value != diary.previousCalories) {
+
+    if (value != (diary.previousCalories / user.userCalories)) {
         
         [self animateLabel:label text:labelText];
     }
@@ -127,7 +127,7 @@
     
     label.text = @"KCAL LEFT";
     
-    if (value != diary.previousCalories) {
+    if (value != (diary.previousCalories / user.userCalories)) {
         
         [self animateLabel:label text:@"KCAL LEFT"];
     }
@@ -189,25 +189,26 @@
 - (void) animateLabel:(UILabel*)label text:(NSString*)labelText {
     
     [UIView animateWithDuration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         
-                         label.alpha = 0;
-                     }
-                     completion:^(BOOL finished) {
-                         
-                         if (finished) {
-                             
-                             label.text = labelText;
-                             
-                             [UIView animateWithDuration:STATS_ANIMATE_TIME delay:0
-                                                 options:UIViewAnimationOptionCurveEaseIn
-                                              animations:^{
-                                                  label.alpha = 1;
-                                              }
-                                              completion:nil];
-                         }
-                     }];
+     
+                        options:UIViewAnimationOptionCurveEaseOut animations:^{
+                            
+                            label.alpha = 0;
+                            
+                        } completion:^(BOOL finished) {
+                            
+                            if (finished) {
+                                
+                                label.text = labelText;
+                                
+                                [UIView animateWithDuration:STATS_ANIMATE_TIME delay:0
+                                 
+                                                    options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                        
+                                                        label.alpha = 1;
+                                                        
+                                                    } completion:nil];
+                            }
+                        }];
 }
 
 - (void) createCarbsProgressLabel {
