@@ -10,30 +10,43 @@
 
 @implementation AddToFoodForm
 
-@synthesize servingSize;
+@synthesize servingSize, foodAlreadyAdded;
 
 - (NSArray *) fields {
     
-    servingSize = 1;
+    if (!foodAlreadyAdded) {
+        
+        servingSize = 1;
+    }
     
     return @[
              // Number Of Servings
              @{FXFormFieldKey: @"servingSize", FXFormFieldTitle: @"Number Of Servings", FXFormFieldType: @"number", FXFormFieldDefaultValue: @"1.0", FXFormFieldHeader: @"NUMBER OF SERVINGS"},
-             
-             // Select A Meal Occassion
-             @{FXFormFieldAction: @"addToBreakfast", FXFormFieldTitle: @"Add To Breakfast", FXFormFieldHeader: @"SELECT A MEAL OCCASION"},
-             
-             @{FXFormFieldAction: @"addToLunch", FXFormFieldTitle: @"Add To Lunch"},
-             
-             @{FXFormFieldAction: @"addToDinner", FXFormFieldTitle: @"Add To Dinner"},
-             
-             @{FXFormFieldAction: @"addToSnacks", FXFormFieldTitle: @"Add To Snacks"},
-             
-             // Settings
-             @{FXFormFieldAction: @"editFoodObject", FXFormFieldTitle: @"Edit", FXFormFieldHeader: @"FOOD SETTINGS"},
-             
-             @{FXFormFieldAction: @"deleteFoodObject", FXFormFieldTitle: @"Delete"},
              ];
+}
+
+- (NSArray*) extraFields {
+    
+    if (!foodAlreadyAdded) {
+        
+        return @[
+                 // Select A Meal Occassion
+                 @{FXFormFieldAction: @"addToBreakfast", FXFormFieldTitle: @"Add To Breakfast", FXFormFieldHeader: @"SELECT A MEAL OCCASION"},
+                 
+                 @{FXFormFieldAction: @"addToLunch", FXFormFieldTitle: @"Add To Lunch"},
+                 
+                 @{FXFormFieldAction: @"addToDinner", FXFormFieldTitle: @"Add To Dinner"},
+                 
+                 @{FXFormFieldAction: @"addToSnacks", FXFormFieldTitle: @"Add To Snacks"},
+                 
+                 // Settings
+                 @{FXFormFieldAction: @"editFoodObject", FXFormFieldTitle: @"Edit", FXFormFieldHeader: @"FOOD SETTINGS"},
+                 
+                 @{FXFormFieldAction: @"deleteFoodObject", FXFormFieldTitle: @"Delete"},
+                 ];
+    }
+    
+    return nil;
 }
 
 @end

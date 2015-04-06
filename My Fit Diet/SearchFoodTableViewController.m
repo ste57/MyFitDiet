@@ -164,7 +164,11 @@
     
     addToDiaryVC.diaryDate = diaryDate;
     
-    addToDiaryVC.formController.form = [AddToFoodForm alloc];
+    AddToFoodForm *add = [[AddToFoodForm alloc] init];
+    
+    add.foodAlreadyAdded = NO;
+    
+    addToDiaryVC.formController.form = add;
     
     [self.navigationController pushViewController:[addToDiaryVC init] animated:YES];
 }

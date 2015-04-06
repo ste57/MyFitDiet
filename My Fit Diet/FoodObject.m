@@ -70,7 +70,10 @@
 
 - (void) deleteFoodObject:(PFObject *)foodPFObject {
     
-    [foodPFObject deleteEventually];
+    [foodPFObject unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        [foodPFObject deleteEventually];
+    }];
 }
 
 - (NSArray *) fields {

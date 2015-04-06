@@ -80,8 +80,6 @@ static int const numberOfPages = 3;
 
 - (void) setNavigationBarDateTitle {
     
-    //[diary resetPreviousValues];
-    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
     [dateFormat setDateFormat:MENU_DATE_FORMAT];

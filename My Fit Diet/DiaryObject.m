@@ -85,19 +85,25 @@
             
             for (PFObject *object in objects) {
                 
-                NSString *occasion = object[@"mealOccasion"];
-                
-                [self initialiseFoodDiaryArray:occasion];
-                
-                
-                PFObject *foodObject = object[@"foodObject"];
-                
-                NSMutableArray *array = [foodDiary objectForKey:occasion];
-                
-                [array addObject:foodObject];
-                
-                
-                [self addToNutrientTotals:foodObject];
+                if (object[@"foodObject"]) {
+                    
+                    NSString *occasion = object[@"mealOccasion"];
+                    
+                    [self initialiseFoodDiaryArray:occasion];
+                    
+                    
+                    float servingSize = [object[@"servingSize"] floatValue];
+                    
+                    PFObject *foodObject = object[@"foodObject"];
+                    
+                    NSMutableArray *array = [foodDiary objectForKey:occasion];
+                    
+                    [array addObject:foodObject];
+                    
+                    foodObject[@"servingSize"] = [NSNumber numberWithFloat:servingSize];
+                    
+                    [self addToNutrientTotals:foodObject servingSize:servingSize];
+                }
             }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:DIARY_RELOAD_STATS object:nil];
@@ -114,13 +120,62 @@
     previousProtein = 0;
 }
 
-- (void) addToNutrientTotals:(PFObject*)foodObject {
+- (void) removeEntry:(PFObject *)object :(NSString*)occasion {
     
-    currentCalories += [foodObject[@"calories"] floatValue];
-    currentProtein += [foodObject[@"protein"] floatValue];
-    currentSaturatedFats += [foodObject[@"saturatedFats"] floatValue];
-    currentTotalCarbohydrates += [foodObject[@"totalCarbohydrates"] floatValue];
-    currentTotalFats += [foodObject[@"totalFats"] floatValue];
+    PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
+    
+    [[query fromLocalDatastore] ignoreACLs];
+    
+    [query includeKey:@"foodObject"];
+    
+    [query whereKey:@"foodObject" equalTo:object];
+    
+    [query whereKey:@"mealOccasion" equalTo:occasion];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
+        if (!error) {
+            
+            [object unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
+                [object deleteEventually];
+            }];
+        }
+    }];
+}
+
+- (void) removeAllEntries:(PFObject *)object {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
+    
+    [[query fromLocalDatastore] ignoreACLs];
+    
+    [query includeKey:@"foodObject"];
+    
+    [query whereKey:@"foodObject" equalTo:object];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            for (PFObject *object in objects) {
+                
+                [object unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    
+                    [object deleteEventually];
+                }];
+            }
+        }
+    }];
+}
+
+- (void) addToNutrientTotals:(PFObject*)foodObject servingSize:(float)servingSize {
+    
+    currentCalories += [foodObject[@"calories"] floatValue] * servingSize;
+    currentProtein += [foodObject[@"protein"] floatValue] * servingSize;
+    currentSaturatedFats += [foodObject[@"saturatedFats"] floatValue] * servingSize;
+    currentTotalCarbohydrates += [foodObject[@"totalCarbohydrates"] floatValue] * servingSize;
+    currentTotalFats += [foodObject[@"totalFats"] floatValue] * servingSize;
 }
 
 - (void) initialiseFoodDiaryArray:(NSString*)occasion {
@@ -144,7 +199,7 @@
     currentTotalFats = 0;
 }
 
-- (void) addFoodToDiary:(PFObject *)foodPFObject forOccasion:(NSString *)occasion {
+- (void) addFoodToDiary:(PFObject *)foodPFObject servingSize:(float)servingSize forOccasion:(NSString *)occasion {
     
     PFObject *diaryObject = [PFObject objectWithClassName:@"Diary"];
     
@@ -156,6 +211,8 @@
     diaryObject[@"mealOccasion"] = occasion;
     
     diaryObject[@"foodObject"] = foodPFObject;
+    
+    diaryObject[@"servingSize"] = [NSNumber numberWithFloat:servingSize];
     
     
     diaryObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];

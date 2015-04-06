@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "CreateFoodViewController.h"
 #import "DiaryViewController.h"
+#import "AddToFoodForm.h"
 
 @interface AddFoodToDiaryViewController ()
 
@@ -93,10 +94,12 @@
 }
 
 - (void) addFoodToDiary:(NSString*)occasion {
+    
+    AddToFoodForm *form = self.formController.form;
 
     [foodObject updateFoodObject:foodPFObject];
     
-    [diaryObject addFoodToDiary:foodPFObject forOccasion:occasion];
+    [diaryObject addFoodToDiary:foodPFObject servingSize:form.servingSize forOccasion:occasion];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -117,6 +120,8 @@
 - (void) deleteFoodObject {
     
     [foodObject deleteFoodObject:foodPFObject];
+    
+    [diaryObject removeAllEntries:foodPFObject];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

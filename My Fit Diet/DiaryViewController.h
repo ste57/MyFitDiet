@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DiaryObject.h"
 
-@interface DiaryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DiaryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) DiaryObject *diary;
 

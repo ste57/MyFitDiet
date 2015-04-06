@@ -10,6 +10,8 @@
 #import "Constants.h"
 #import "DiaryTableViewCell.h"
 #import "SearchFoodTableViewController.h"
+#import "AddFoodToDiaryViewController.h"
+#import "AddToFoodForm.h"
 
 @interface DiaryViewController ()
 
@@ -94,13 +96,77 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     NSArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:section]];
     
     return array.count;
 }
 
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+            
+        case 0:
+            
+            [self viewMoreInfo];
+            break;
+            
+        case 1:
+            
+            [self removeDiaryEntry];
+            break;
+
+        default:
+            break;
+    }
+}
+
+- (void) viewMoreInfo {
+    
+    NSIndexPath *indexPath = [diaryTableView indexPathForSelectedRow];
+    
+    NSMutableArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:indexPath.section]];
+    
+    AddFoodToDiaryViewController *addToDiaryVC = [AddFoodToDiaryViewController alloc];
+    
+    PFObject *object = [array objectAtIndex:indexPath.row];
+    
+    addToDiaryVC.foodPFObject = object;
+    
+    addToDiaryVC.diaryDate = diary.diaryDate;
+    
+    AddToFoodForm *add = [[AddToFoodForm alloc] init];
+    
+    add.foodAlreadyAdded = YES;
+    
+    add.servingSize = [object[@"servingSize"] floatValue];
+
+    addToDiaryVC.formController.form = add;
+    
+    [self.navigationController pushViewController:[addToDiaryVC init] animated:YES];
+}
+
+- (void) removeDiaryEntry {
+    
+    NSIndexPath *indexPath = [diaryTableView indexPathForSelectedRow];
+    
+    NSMutableArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:indexPath.section]];
+    
+    PFObject *diaryEntry = [array objectAtIndex:indexPath.row];
+    
+    [diary removeEntry:diaryEntry :[diary.occasionArray objectAtIndex:indexPath.section]];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"View Info",
+                            @"Remove",
+                            nil];
+    
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -116,7 +182,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     NSArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:indexPath.section]];
     
     FoodObject *foodObject = [[FoodObject alloc] init];
- 
+    
     [foodObject convertPFObjectToFoodObject:[array objectAtIndex:indexPath.row]];
     
     DiaryTableViewCell *cell = [[DiaryTableViewCell alloc] initWithFrame:CGRectZero];
@@ -149,7 +215,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 }
 
 - (void) returnToMenu {
-
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

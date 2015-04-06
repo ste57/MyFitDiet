@@ -29,12 +29,16 @@
 @property float previousTotalCarbohydrates;
 @property float previousProtein;
 
-- (void) addFoodToDiary:(PFObject*)foodObject forOccasion:(NSString*)occasion;
+- (void) addFoodToDiary:(PFObject*)foodObject servingSize:(float)servingSize forOccasion:(NSString*)occasion;
 
 - (id) initWithDate:(NSString*)date;
 
 - (void) changeDate:(NSString*)date;
 
 - (void) resetPreviousValues;
+
+- (void) removeEntry:(PFObject*)object :(NSString*)occasion;
+
+- (void) removeAllEntries:(PFObject*)object;
 
 @end

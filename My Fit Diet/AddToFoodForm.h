@@ -14,5 +14,6 @@
 
 // Serving Size
 @property float servingSize;
+@property bool foodAlreadyAdded;
 
 @end

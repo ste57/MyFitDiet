@@ -184,7 +184,7 @@
     
     if ([FBSDKAccessToken currentAccessToken]) {
         
-        if (!userObject._id) {
+        if (![PFUser currentUser]) {
             
             [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
              
