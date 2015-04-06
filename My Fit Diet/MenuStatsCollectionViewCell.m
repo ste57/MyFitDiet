@@ -51,11 +51,20 @@
 
 - (void) createKcalProgressLabel {
     
+    float value = (float)(user.currentCalories/user.userCalories);
+    
     kCalProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, KCAL_BAR_RADIUS, KCAL_BAR_RADIUS)];
     
     kCalProgressLabel.trackColor = TRACK_COLOUR;
     
-    kCalProgressLabel.progressColor = KCAL_BAR_COLOUR;
+    if (value <= 1.0) {
+    
+        kCalProgressLabel.progressColor = KCAL_BAR_COLOUR;
+        
+    } else {
+        
+        kCalProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
+    }
     
     kCalProgressLabel.trackWidth = KCAL_TRACK_WIDTH;
     
@@ -65,7 +74,7 @@
     
     [self addSubview:kCalProgressLabel];
     
-    [self animateBar:kCalProgressLabel withProgress:(float)(user.currentCalories/user.userCalories)];
+    [self animateBar:kCalProgressLabel withProgress:value];
     
     [self addKcalProgressLabels];
 }
@@ -133,7 +142,7 @@
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
-    label.center = CGPointMake(parentLabel.frame.size.width/2, (parentLabel.frame.size.height*1.35));
+    label.center = CGPointMake(parentLabel.frame.size.width/2, (parentLabel.frame.size.height*1.38));
     
     label.textAlignment = NSTextAlignmentCenter;
     
@@ -159,11 +168,20 @@
 
 - (void) createCarbsProgressLabel {
     
+    float value = (float)(user.currentTotalCarbohydrates/user.userTotalCarbohydrates);
+    
     carbsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     carbsProgressLabel.trackColor = TRACK_COLOUR;
     
-    carbsProgressLabel.progressColor = CARBS_COLOUR;
+     if (value <= 1.0) {
+    
+         carbsProgressLabel.progressColor = CARBS_COLOUR;
+         
+     } else {
+         
+         carbsProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
+     }
     
     carbsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
@@ -173,8 +191,6 @@
     
     [self addSubview:carbsProgressLabel];
     
-    float value = (float)(user.currentTotalCarbohydrates/user.userTotalCarbohydrates);
-    
     [self animateBar:carbsProgressLabel withProgress:value];
     
     [self createNutrientProgressLabels:carbsProgressLabel :value :@"CARBS"];
@@ -182,11 +198,20 @@
 
 - (void) createSaturatedFatsProgressLabel {
     
+    float value = (float)(user.currentSaturatedFats/user.userSaturatedFats);
+    
     sFatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     sFatsProgressLabel.trackColor = TRACK_COLOUR;
     
-    sFatsProgressLabel.progressColor = S_FATS_COLOUR;
+    if (value <= 1.0) {
+    
+        sFatsProgressLabel.progressColor = S_FATS_COLOUR;
+        
+    } else {
+        
+        sFatsProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
+    }
     
     sFatsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
@@ -196,8 +221,6 @@
     
     [self addSubview:sFatsProgressLabel];
     
-    float value = (float)(user.currentSaturatedFats/user.userSaturatedFats);
-    
     [self animateBar:sFatsProgressLabel withProgress:value];
     
     [self createNutrientProgressLabels:sFatsProgressLabel :value :@"S.FATS"];
@@ -205,11 +228,20 @@
 
 - (void) createFatsProgressLabel {
     
+    float value = (float)(user.currentTotalFats/user.userTotalFats);
+    
     fatsProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     fatsProgressLabel.trackColor = TRACK_COLOUR;
     
+    if (value <= 1.0) {
+    
     fatsProgressLabel.progressColor = FATS_COLOUR;
+        
+    } else {
+        
+        fatsProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
+    }
     
     fatsProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
@@ -218,8 +250,6 @@
     fatsProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
     [self addSubview:fatsProgressLabel];
- 
-    float value = (float)(user.currentTotalFats/user.userTotalFats);
     
     [self animateBar:fatsProgressLabel withProgress:value];
     
@@ -228,11 +258,20 @@
 
 - (void) createProteinProgressLabel {
     
+    float value = (float)(user.currentProtein/user.userProtein);
+    
     proteinProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS, FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS)];
     
     proteinProgressLabel.trackColor = TRACK_COLOUR;
     
-    proteinProgressLabel.progressColor = PROTEIN_COLOUR;
+    if (value <= 1.0) {
+    
+        proteinProgressLabel.progressColor = PROTEIN_COLOUR;
+        
+    } else {
+        
+        proteinProgressLabel.progressColor = EXCEEDED_LIMIT_COLOUR;
+    }
     
     proteinProgressLabel.trackWidth = FOOD_NUTRIENTS_TRACK_WIDTH;
     
@@ -241,8 +280,6 @@
     proteinProgressLabel.center = CGPointMake(xVal, self.frame.size.height/FOOD_NUTRIENTS_HEIGHT_DIVIDE);
     
     [self addSubview:proteinProgressLabel];
-    
-    float value = (float)(user.currentProtein/user.userProtein);
     
     [self animateBar:proteinProgressLabel withProgress:value];
     

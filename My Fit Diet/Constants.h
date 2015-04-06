@@ -31,12 +31,14 @@
 
 #define FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS 50.0f
 #define FOOD_NUTRIENTS_TRACK_WIDTH 3.0f
-#define FOOD_NUTRIENTS_HEIGHT_DIVIDE 1.5f
+#define FOOD_NUTRIENTS_HEIGHT_DIVIDE 1.52f
 
 #define CARBS_COLOUR [UIColor colorWithRed:0.75 green:0.53 blue:0.84 alpha:1.0]
 #define S_FATS_COLOUR [UIColor colorWithRed:0.49 green:0.73 blue:0.95 alpha:1.0]
 #define FATS_COLOUR [UIColor colorWithRed:0.94 green:0.74 blue:0.45 alpha:1.0]
 #define PROTEIN_COLOUR [UIColor colorWithRed:0.94 green:0.95 blue:0.49 alpha:1.0]
+
+#define EXCEEDED_LIMIT_COLOUR [UIColor colorWithRed:0.99 green:0.61 blue:0.61 alpha:1.0]
 
 // MenuStatsCollectionView
 

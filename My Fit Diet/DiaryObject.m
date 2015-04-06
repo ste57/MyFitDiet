@@ -17,17 +17,32 @@
 
 @synthesize foodDiary, occasionArray;
 
+- (id) init {
+    
+    self = [super init];
+    
+    if (self) {
+     
+        [self initialiseObjects];
+    }
+    
+    return self;
+}
+
+- (void) initialiseObjects {
+    
+    user = [[UserObject alloc] init];
+    
+    foodDiary = [[NSMutableDictionary alloc] init];
+    
+    occasionArray = [[NSMutableArray alloc] init];
+}
+
 - (id) initWithDate:(NSString *)date {
     
     self = [super init];
     
     if (self) {
-        
-        user = [[UserObject alloc] init];
-        
-        foodDiary = [[NSMutableDictionary alloc] init];
-        
-        occasionArray = [[NSMutableArray alloc] init];
         
         self.diaryDate = date;
         
@@ -113,40 +128,29 @@
 
 - (void) addFoodToDiary:(PFObject *)foodObject forOccasion:(NSString *)occasion {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
+    PFObject *diaryObject = [PFObject objectWithClassName:@"Diary"];
     
-    [[query fromLocalDatastore] ignoreACLs];
+    PFRelation *relation = [diaryObject relationForKey:@"foodObject"];
+
+    diaryObject[@"userID"] = user._id;
     
-    [query whereKey:@"diaryDate" equalTo:self.diaryDate];
+    diaryObject[@"diaryDate"] = self.diaryDate;
     
-    [query whereKey:@"mealOccasion" equalTo:occasion];
+    diaryObject[@"mealOccasion"] = occasion;
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    [relation addObject:foodObject];
+    
+    
+    diaryObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+    
+    
+    [diaryObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
-        if (error) {
-            
-            PFObject *diaryObject = [PFObject objectWithClassName:@"Diary"];
-            
-            diaryObject[@"userID"] = user._id;
-            
-            diaryObject[@"diaryDate"] = self.diaryDate;
-            
-            diaryObject[@"mealOccasion"] = occasion;
-            
-            diaryObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-            
-            
-            [self addFood:foodObject toDiary:diaryObject forOccasion:occasion];
-            
-            
-        } else {
-            
-            [self addFood:foodObject toDiary:object forOccasion:occasion];
-        }
+        [diaryObject saveEventually];
     }];
 }
 
-- (void) addFood:(PFObject*)food toDiary:(PFObject*)diary forOccasion:(NSString*)occasion {
+/*- (void) addFood:(PFObject*)food toDiary:(PFObject*)diary forOccasion:(NSString*)occasion {
     
     PFRelation *relation = [diary relationForKey:@"foodDiary"];
     
@@ -160,6 +164,6 @@
         }];
         
     }];
-}
+}*/
 
 @end

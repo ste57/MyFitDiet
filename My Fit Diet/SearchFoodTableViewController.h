@@ -11,6 +11,6 @@
 
 @interface SearchFoodTableViewController : UITableViewController <UISearchResultsUpdating, UISearchBarDelegate>
 
-@property (strong, nonatomic) DiaryObject *diary;
+@property (strong, nonatomic) NSString *diaryDate;
 
 @end

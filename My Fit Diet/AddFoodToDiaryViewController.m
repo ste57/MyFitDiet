@@ -20,17 +20,31 @@
     UIScrollView *scrollView;
     
     FoodObject *foodObject;
+    
+    DiaryObject *diaryObject;
 }
 
-@synthesize foodPFObject;
+@synthesize foodPFObject, diaryDate;
 
 - (void) viewDidLoad {
     
     [super viewDidLoad];
+    
+    // initialise diary
+    
+    diaryObject = [[DiaryObject alloc] init];
+    
+    diaryObject.diaryDate = diaryDate;
+    
+    // initialise foodObject
 
     foodObject = [[FoodObject alloc] init];
     
     [foodObject convertPFObjectToFoodObject:foodPFObject];
+    
+    // create view
+    
+    self.title = [foodObject.name uppercaseString];
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
@@ -39,8 +53,6 @@
     self.navigationItem.leftBarButtonItem = doneButton;
     
     [self removeBackButtonText];
-    
-    self.title = [foodObject.name uppercaseString];
     
     [self createFoodInfoView];
 }
@@ -84,7 +96,7 @@
 
     [foodObject updateFoodObject:foodPFObject];
     
-    [self.diary addFoodToDiary:foodPFObject forOccasion:occasion];
+    [diaryObject addFoodToDiary:foodPFObject forOccasion:occasion];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

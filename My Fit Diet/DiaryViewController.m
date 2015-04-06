@@ -35,6 +35,10 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     [self removeBackButtonText];
     
+    [self addDateView];
+    
+    [self createTableView];
+    
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(returnToMenu)];
     
     self.navigationItem.leftBarButtonItem = doneButton;
@@ -42,10 +46,6 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toggleFoodSearch)];
     
     self.navigationItem.rightBarButtonItem = addButton;
-    
-    [self addDateView];
-    
-    [self createTableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:RELOAD_DIARY_TB object:nil];
 }
@@ -65,7 +65,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     SearchFoodTableViewController *searchFoodTVC = [[SearchFoodTableViewController alloc] init];
     
-    searchFoodTVC.diary = diary;
+    searchFoodTVC.diaryDate = diary.diaryDate;
     
     [self.navigationController pushViewController:searchFoodTVC animated:YES];
 }

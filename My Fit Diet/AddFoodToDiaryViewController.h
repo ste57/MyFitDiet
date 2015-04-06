@@ -13,6 +13,6 @@
 @interface AddFoodToDiaryViewController : FXFormViewController
 
 @property (strong, nonatomic) PFObject *foodPFObject;
-@property (strong, nonatomic) DiaryObject *diary;
+@property (strong, nonatomic) NSString *diaryDate;
 
 @end

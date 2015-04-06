@@ -24,6 +24,8 @@
     NSArray *foodArray;
 }
 
+@synthesize diaryDate;
+
 - (void) viewDidLoad {
     
     [super viewDidLoad];
@@ -160,7 +162,7 @@
     
     addToDiaryVC.foodPFObject = object;
     
-    addToDiaryVC.diary = self.diary;
+    addToDiaryVC.diaryDate = diaryDate;
     
     addToDiaryVC.formController.form = [AddToFoodForm alloc];
     
