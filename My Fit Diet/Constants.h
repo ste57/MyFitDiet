@@ -30,9 +30,9 @@
 
 #define KCAL_BAR_COLOUR [UIColor colorWithRed:0.52 green:0.84 blue:0.57 alpha:1.0]
 #define KCAL_TRACK_WIDTH 5.0f
-#define KCAL_BAR_RADIUS 180.0f
+#define KCAL_BAR_RADIUS ([[UIScreen mainScreen] bounds].size.width / 1.8)//180.0f
 
-#define FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS 50.0f
+#define FOOD_NUTRIENTS_PROGRESS_BAR_RADIUS ([[UIScreen mainScreen] bounds].size.width / 6.4) //50.0f
 #define FOOD_NUTRIENTS_TRACK_WIDTH 3.0f
 #define FOOD_NUTRIENTS_HEIGHT_DIVIDE 1.52f
 
@@ -47,7 +47,7 @@
 
 #define OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR 2.8f
 #define OPTIONS_BUTTON_WIDTH 50.0f
-#define OPTIONS_BUTTON_HEIGHT 55.0f
+#define OPTIONS_BUTTON_HEIGHT ([[UIScreen mainScreen] bounds].size.height / 8)//55.0f
 #define OPTIONS_BUTTONS_SEPERATION_VALUE 4.2f
 
 // Diary

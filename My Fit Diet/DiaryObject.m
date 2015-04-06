@@ -132,10 +132,12 @@
     
     [query whereKey:@"mealOccasion" equalTo:occasion];
     
+    [query whereKey:@"servingSize" equalTo:object[@"servingSize"]];
+    
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         
         if (!error) {
-            
+
             [object unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 
                 [object deleteEventually];

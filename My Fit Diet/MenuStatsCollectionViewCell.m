@@ -333,6 +333,11 @@
 
 - (void) animateBar:(KAProgressLabel*)label withProgress:(float)progress :(float)previousProgress {
     
+    if (progress > 1.0) {
+        
+        progress = 1.0;
+    }
+    
     label.progress = previousProgress;
     
     [label setProgress:progress timing:TPPropertyAnimationTimingEaseOut duration:STATS_ANIMATE_TIME delay:STATS_DELAY_ANIMATION_TIME];
