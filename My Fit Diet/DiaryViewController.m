@@ -104,8 +104,6 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    NSIndexPath *indexPath = [diaryTableView indexPathForSelectedRow];
-    
     switch (buttonIndex) {
             
         case 0:
@@ -121,8 +119,6 @@ static NSString * const reuseIdentifier = @"DiaryCell";
         default:
             break;
     }
-    
-    [diaryTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void) viewMoreInfo {
@@ -152,8 +148,6 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (void) removeDiaryEntry {
     
-    // doesnt even get correct thing
-    
     NSIndexPath *indexPath = [diaryTableView indexPathForSelectedRow];
     
     NSMutableArray *array = [diary.foodDiary objectForKey:[diary.occasionArray objectAtIndex:indexPath.section]];
@@ -173,6 +167,8 @@ static NSString * const reuseIdentifier = @"DiaryCell";
                             nil];
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
