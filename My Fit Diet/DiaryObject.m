@@ -128,6 +128,8 @@
     
     [query includeKey:@"foodObject"];
     
+    [query whereKey:@"diaryDate" equalTo:self.diaryDate];
+    
     [query whereKey:@"foodObject" equalTo:object];
     
     [query whereKey:@"mealOccasion" equalTo:occasion];
@@ -137,7 +139,7 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         
         if (!error) {
-
+            
             [object unpinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 
                 [object deleteEventually];
