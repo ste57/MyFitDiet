@@ -38,4 +38,7 @@
 
 - (void) removeUserObject;
 
+// For testing purposes
+- (void) createFakeUser;
+
 @end

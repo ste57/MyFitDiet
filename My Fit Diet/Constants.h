@@ -47,7 +47,7 @@
 
 #define OPTIONS_VIEW_HEIGHT_DIVISION_FACTOR 2.8f
 #define OPTIONS_BUTTON_WIDTH 50.0f
-#define OPTIONS_BUTTON_HEIGHT ([[UIScreen mainScreen] bounds].size.height / 8)//55.0f
+#define OPTIONS_BUTTON_HEIGHT ([[UIScreen mainScreen] bounds].size.height / 7)//8)//55.0f
 #define OPTIONS_BUTTONS_SEPERATION_VALUE 4.2f
 
 // Diary

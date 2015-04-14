@@ -63,6 +63,22 @@ typedef NS_ENUM(BOOL, weightGoal) {
     return self;
 }
 
+- (void) createFakeUser {
+    
+    _id = @"102332";
+    email = @"randomEmail@email.com";
+    name = @"John";
+    gender = @"Male";
+    
+    currentWeight = 123;
+    goalWeight = 150;
+    dateOfBirth = [NSDate date];
+    height = 100;
+    
+    userSetGainWeight = true;
+    weeklyGoalRate = 1.5;
+}
+
 - (void) removeUserObject {
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_OBJECT];

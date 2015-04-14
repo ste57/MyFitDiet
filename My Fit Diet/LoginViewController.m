@@ -36,7 +36,7 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    
+
     [self retrieveFacebookUserData];
 }
 
@@ -223,7 +223,7 @@
 }
 
 - (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-    
+
     [self retrieveFacebookUserData];
 }
 
@@ -247,7 +247,7 @@
     titleLabel.center = CGPointMake(win.width/2, win.height/7);
     titleLabel.text = @"MY FIT DIET";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"Primer" size:28.0];
+    titleLabel.font = [UIFont fontWithName:@"lekton04" size:28.0];//@"Primer" size:28.0];
     [self.view addSubview:titleLabel];
 }
 
