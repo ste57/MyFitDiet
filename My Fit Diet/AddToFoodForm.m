@@ -21,7 +21,7 @@
     
     return @[
              // Number Of Servings
-             @{FXFormFieldKey: @"servingSize", FXFormFieldTitle: @"Number Of Servings", FXFormFieldType: @"number", FXFormFieldDefaultValue: @"1.0", FXFormFieldHeader: @"NUMBER OF SERVINGS"},
+             @{FXFormFieldKey: @"servingSize", FXFormFieldTitle: @"Number Of Servings", FXFormFieldType: @"number", FXFormFieldDefaultValue: @"1.0", FXFormFieldHeader: @"NUMBER OF SERVINGS", FXFormFieldAction: @"setNutritionLabels"},
              ];
 }
 

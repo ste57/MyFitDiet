@@ -53,6 +53,9 @@
 // Diary
 
 #define CELL_PADDING 15.0
+#define NUTRIENT_INFO_STAT_RADIUS ([[UIScreen mainScreen] bounds].size.width / 6.4)
+#define NUTRIENT_INFO_STAT_PADDING 15.0
+#define NUTRIENT_INFO_STAT_SPACING 25.0
 
 // NSUserDefaults
 
