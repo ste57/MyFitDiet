@@ -29,8 +29,6 @@
     
     NSArray *nutritionLabels, *nutritionInitials;
     
-    //UITextView *descriptionTextView;
-    
     UILabel *descriptionLabel;
 }
 
@@ -167,7 +165,7 @@
 
 - (void) setNutritionArray {
     
-    nutritionInitials = [NSArray arrayWithObjects:@"calo", @"carb", @"sfat", @"fats", @"prot", nil];
+    nutritionInitials = [NSArray arrayWithObjects:@"Kcal", @"crb(g)", @"s.f(g)", @"fat(g)", @"prt(g)", nil];
     
     nutritionLabels = [NSArray arrayWithObjects:
                        
@@ -220,7 +218,7 @@
         
         label.numberOfLines = 3;
         
-        label.font = [UIFont fontWithName:@"lekton04" size:15.0];
+        label.font = [UIFont fontWithName:@"lekton04" size:13.5];
         
         [circle addSubview:label];
         
