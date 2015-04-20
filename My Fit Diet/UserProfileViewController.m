@@ -117,7 +117,67 @@
 
 - (void) syncUserData {
     
+    [self retrieveUserData];
+    [self retrieveFoodData];
+    [self retrieveDiaryData];
+}
+
+- (void) retrieveUserData {
     
+    UserObject *userObject = [[UserObject alloc] init];
+    
+    PFQuery *query = [PFUser query];
+    
+    [query whereKey:@"username" equalTo:userObject._id];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
+        if (!error) {
+            
+            userObject.dateOfBirth = object[@"dateOfBirth"];
+            userObject.height = [object[@"height"] floatValue];
+            userObject.currentWeight = [object[@"currentWeight"] floatValue];
+            userObject.goalWeight = [object[@"goalWeight"] floatValue];
+            userObject.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
+            userObject.weeklyGoalRate = [object[@"weeklyGoalRate"] floatValue];
+            
+            [userObject syncUserObject];
+        }
+    }];
+}
+
+- (void) retrieveFoodData {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Food"];
+    
+    [query setLimit:1000];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            [PFObject pinAllInBackground:objects];
+        }
+    }];
+}
+
+- (void) retrieveDiaryData {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Diary"];
+    
+    [query includeKey:@"foodObject"];
+    
+    [query setLimit:300];
+    
+    [query orderByDescending:@"updatedAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            [PFObject pinAllInBackground:objects];
+        }
+    }];
 }
 
 @end
