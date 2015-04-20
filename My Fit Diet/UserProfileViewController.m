@@ -115,4 +115,9 @@
     [self presentViewController:[LoginViewController alloc] animated:NO completion:nil];
 }
 
+- (void) syncUserData {
+    
+    
+}
+
 @end

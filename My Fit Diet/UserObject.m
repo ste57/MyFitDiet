@@ -202,6 +202,7 @@ typedef NS_ENUM(BOOL, weightGoal) {
         
         return @[
                  @{FXFormFieldTitle: @"Log Out", FXFormFieldHeader: @"ACCOUNT DETAILS", FXFormFieldAction: @"logUserOut"},
+                 @{FXFormFieldTitle: @"Sync User Data", FXFormFieldAction: @"syncUserData"},
                  ];
     }
     

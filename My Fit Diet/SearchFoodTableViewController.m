@@ -170,7 +170,7 @@
         for (FSFood *food in foods) {
             
             PFObject *foodObject = [PFObject objectWithClassName:@"Food"];
-            
+
             foodObject[@"name"] = food.name;
             
             NSString *desc = food.foodDescription;
