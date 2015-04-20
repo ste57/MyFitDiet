@@ -27,8 +27,11 @@
     
     DiaryObject *diaryObject;
     
-    NSArray *nutritionLabels;
-    NSArray *nutritionInitials;
+    NSArray *nutritionLabels, *nutritionInitials;
+    
+    //UITextView *descriptionTextView;
+    
+    UILabel *descriptionLabel;
 }
 
 @synthesize foodPFObject, diaryDate;
@@ -68,7 +71,7 @@
 
 - (void) getFoodNutritionInformation {
     
-    if (foodObject.fatSecretId) {
+    if (foodObject.fatSecretId && !foodObject.foodDescription) {
         
         [[FSClient sharedClient] getFood:foodObject.fatSecretId completion:^(FSFood *food) {
             
@@ -96,6 +99,11 @@
     }
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    
+    [self setNutritionLabels];
+}
+
 - (void) removeBackButtonText {
     
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -104,15 +112,57 @@
 
 - (void) createFoodInfoView {
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100.0)];
+    [self addDescriptionTextView];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, NUTRIENT_INFO_STAT_RADIUS*1.75 + descriptionLabel.frame.size.height)];
     
     view.backgroundColor = [UIColor whiteColor];
     
     self.tableView.tableHeaderView = view;
     
+    [self.tableView.tableHeaderView addSubview:descriptionLabel];
+    
     [self setNutritionArray];
     
     [self addNutritionImages];
+}
+
+- (void) addDescriptionTextView {
+    
+    descriptionLabel = [[UILabel alloc] init];
+    
+    descriptionLabel.textAlignment = NSTextAlignmentCenter;
+    
+    descriptionLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+    
+    descriptionLabel.font = [UIFont fontWithName:@"Primer" size:20.0f];
+    
+    descriptionLabel.center = CGPointMake(self.view.frame.size.width/2, 5);
+    
+    descriptionLabel.layer.anchorPoint = CGPointMake(0.5, 0);
+    
+    descriptionLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    
+    descriptionLabel.clipsToBounds = YES;
+    
+    descriptionLabel.numberOfLines = 0;
+    
+    
+    if (![foodObject.foodDescription isEqualToString:@""]) {
+    
+        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:
+                                          [NSString stringWithFormat:@"%@", foodObject.foodDescription] attributes:
+                                          @{ NSFontAttributeName: descriptionLabel.font}];
+    
+        CGRect rect = [attributedText boundingRectWithSize:(CGSize){self.view.frame.size.width - 20, CGFLOAT_MAX}
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+        CGSize size = rect.size;
+
+        descriptionLabel.frame = CGRectMake(0, 0, 0, size.height+20);
+    }
+    
+    descriptionLabel.frame = CGRectMake(10, 0, self.view.frame.size.width - 20, descriptionLabel.frame.size.height + 10);
 }
 
 - (void) setNutritionArray {
@@ -153,7 +203,9 @@
         
         circle.layer.cornerRadius = NUTRIENT_INFO_STAT_RADIUS/2;
         
-        circle.center = CGPointMake(xVal, self.tableView.tableHeaderView.frame.size.height/2);//1.5);
+        circle.layer.anchorPoint = CGPointMake(0.5, 0);
+        
+        circle.center = CGPointMake(xVal, self.tableView.tableHeaderView.frame.size.height - NUTRIENT_INFO_STAT_RADIUS*1.75);
         
         circle.backgroundColor = [startColors objectAtIndex:i];
         
@@ -197,6 +249,8 @@
         
         label.text = [[NSString stringWithFormat:@"%@\n\n%@", [nutritionArray objectAtIndex:i], [nutritionInitials objectAtIndex:i]]uppercaseString];
     }
+    
+    descriptionLabel.text = foodObject.foodDescription;
 }
 
 - (void) addToBreakfast {

@@ -53,6 +53,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:DISPLAY_FOOD_DETAILS object:[searchResults objectAtIndex:(indexPath.row)]];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

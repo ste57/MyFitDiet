@@ -174,12 +174,6 @@
             
             foodObject[@"fatSecretID"] = [NSNumber numberWithInteger:food.identifier];
             
-            //NSString *desc = food.foodDescription;
-            
-            //desc = [[desc componentsSeparatedByString:@"Calories: "] lastObject];
-        
-            //foodObject[@"calories"] = [[desc componentsSeparatedByString:@"kcal"] firstObject];
-            
             [array addObject:foodObject];
         }
         
