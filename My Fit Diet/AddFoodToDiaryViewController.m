@@ -11,6 +11,9 @@
 #import "CreateFoodViewController.h"
 #import "DiaryViewController.h"
 #import "AddToFoodForm.h"
+#import "FSClient.h"
+#import "FSFood.h"
+#import "FSServing.h"
 
 @interface AddFoodToDiaryViewController ()
 
@@ -38,7 +41,7 @@
     diaryObject.diaryDate = diaryDate;
     
     // initialise foodObject
-
+    
     foodObject = [[FoodObject alloc] init];
     
     [foodObject convertPFObjectToFoodObject:foodPFObject];
@@ -56,6 +59,27 @@
     [self removeBackButtonText];
     
     [self createFoodInfoView];
+    
+    [self getFoodNutritionInformation];
+}
+
+- (void) getFoodNutritionInformation {
+    
+    if (foodObject.fatSecretId) {
+        
+        [[FSClient sharedClient] getFood:foodObject.fatSecretId completion:^(FSFood *food) {
+            
+            FSServing *serving = [food.servings firstObject];
+            
+            foodObject.calories = [serving.calories intValue];
+            foodObject.foodDescription = food.type;
+            foodObject.totalFats = serving.fatValue;
+            foodObject.saturatedFats = serving.saturatedFatValue;
+            foodObject.sodium = serving.sodiumValue;
+            foodObject.totalCarbohydrates = serving.carbohydrateValue;
+            foodObject.protein = serving.proteinValue;
+        }];
+    }
 }
 
 - (void) removeBackButtonText {
@@ -96,7 +120,7 @@
 - (void) addFoodToDiary:(NSString*)occasion {
     
     AddToFoodForm *form = self.formController.form;
-
+    
     [foodObject updateFoodObject:foodPFObject];
     
     [diaryObject addFoodToDiary:foodPFObject servingSize:form.servingSize forOccasion:occasion];

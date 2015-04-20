@@ -10,7 +10,7 @@
 
 @implementation FoodObject
 
-@synthesize name, foodDescription, servingSize, calories, totalFats, saturatedFats, sodium, totalCarbohydrates, protein;
+@synthesize name, foodDescription, servingSize, calories, totalFats, saturatedFats, sodium, totalCarbohydrates, protein, fatSecretId;
 
 - (void) createFoodObject {
     
@@ -39,6 +39,7 @@
     object[@"sodium"] = [NSNumber numberWithFloat:sodium];
     object[@"totalCarbohydrates"] = [NSNumber numberWithFloat:totalCarbohydrates];
     object[@"protein"] = [NSNumber numberWithFloat:protein];
+    object[@"fatSecretID"] = [NSNumber numberWithInteger:fatSecretId];
     
     object.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
     
@@ -66,6 +67,7 @@
     sodium = [foodPFObject[@"sodium"] floatValue];
     totalCarbohydrates = [foodPFObject[@"totalCarbohydrates"] floatValue];
     protein = [foodPFObject[@"protein"] floatValue];
+    fatSecretId = [foodPFObject[@"fatSecretID"] integerValue];
 }
 
 - (void) deleteFoodObject:(PFObject *)foodPFObject {

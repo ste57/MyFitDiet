@@ -16,6 +16,7 @@
 #import "FSClient.h"
 #import "FSFood.h"
 #import "FSServing.h"
+#import "DiaryTableViewCell.h"
 
 @interface SearchFoodTableViewController ()
 
@@ -121,7 +122,9 @@
     
     PFObject *object = [foodArray objectAtIndex:(indexPath.row)];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"name"], object[@"calories"]];
+    cell.textLabel.text = object[@"name"];
+    
+    cell.textLabel.font = [UIFont fontWithName:MAIN_FONT size:23.0f];
     
     return cell;
 }
@@ -149,11 +152,7 @@
         
         if (!error) {
             
-            NSMutableArray *array = [NSMutableArray arrayWithArray:objects];
-            
-            [array addObjectsFromArray:foodResultsTVC.searchResults];
-            
-            foodResultsTVC.searchResults = objects;//array;
+            foodResultsTVC.searchResults = objects;
             
             [foodResultsTVC.tableView reloadData];
         }
@@ -163,7 +162,7 @@
 
 - (void) fatSecretSearch:(FoodResultsTableViewController*)foodResultsTVC searchTerm:(NSString*)searchTerm {
     
-    [[FSClient sharedClient] searchFoods:searchTerm pageNumber:0 maxResults:50 completion:^(NSArray *foods, NSInteger maxResults, NSInteger totalResults, NSInteger pageNumber) {
+    [[FSClient sharedClient] searchFoods:searchTerm pageNumber:0 maxResults:20 completion:^(NSArray *foods, NSInteger maxResults, NSInteger totalResults, NSInteger pageNumber) {
         
         NSMutableArray *array = [[NSMutableArray alloc] initWithArray:foodResultsTVC.searchResults];
         
@@ -173,11 +172,13 @@
 
             foodObject[@"name"] = food.name;
             
-            NSString *desc = food.foodDescription;
+            foodObject[@"fatSecretID"] = [NSNumber numberWithInteger:food.identifier];
             
-            desc = [[desc componentsSeparatedByString:@"Calories: "] lastObject];
+            //NSString *desc = food.foodDescription;
+            
+            //desc = [[desc componentsSeparatedByString:@"Calories: "] lastObject];
         
-            foodObject[@"calories"] = [[desc componentsSeparatedByString:@"kcal"] firstObject];
+            //foodObject[@"calories"] = [[desc componentsSeparatedByString:@"kcal"] firstObject];
             
             [array addObject:foodObject];
         }

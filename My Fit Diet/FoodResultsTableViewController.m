@@ -43,7 +43,9 @@
     
     PFObject *object = [searchResults objectAtIndex:(indexPath.row)];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"name"], object[@"calories"]];
+    cell.textLabel.text = object[@"name"];
+    
+    cell.textLabel.font = [UIFont fontWithName:MAIN_FONT size:23.0f];
     
     return cell;
 }

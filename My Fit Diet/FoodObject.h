@@ -12,6 +12,9 @@
 
 @interface FoodObject : NSObject <FXForm>
 
+// used for FatSecret API Search
+@property NSInteger fatSecretId;
+
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *foodDescription;
 @property float servingSize;
