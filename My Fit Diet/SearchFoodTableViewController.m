@@ -13,6 +13,9 @@
 #import "AddFoodToDiaryViewController.h"
 #import "Constants.h"
 #import "AddToFoodForm.h"
+#import "FSClient.h"
+#import "FSFood.h"
+#import "FSServing.h"
 
 @interface SearchFoodTableViewController ()
 
@@ -108,7 +111,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     return foodArray.count;
 }
 
@@ -119,35 +122,73 @@
     PFObject *object = [foodArray objectAtIndex:(indexPath.row)];
     
     cell.textLabel.text = [NSString stringWithFormat:@"Food: %@     Calories: %@", object[@"name"], object[@"calories"]];
-  
+    
     return cell;
 }
 
 - (void) updateSearchResultsForSearchController:(UISearchController *)searchResultsController {
-
+    
     FoodResultsTableViewController *foodResultsTVC = (FoodResultsTableViewController*) searchResultsController.searchResultsController;
+    
+    [self parseFoodSearch:foodResultsTVC searchTerm:searchResultsController.searchBar.text];
+    
+    [self fatSecretSearch:foodResultsTVC searchTerm:searchResultsController.searchBar.text];
+}
 
+- (void) parseFoodSearch:(FoodResultsTableViewController*)foodResultsTVC searchTerm:(NSString*)searchTerm {
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Food"];
     
     [[query fromLocalDatastore] ignoreACLs];
     
     [query setLimit:100];
     
-    [query whereKey:@"searchName" containsString:[searchResultsController.searchBar.text uppercaseString]];
-
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query whereKey:@"searchName" containsString:[searchTerm uppercaseString]];
     
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
         if (!error) {
-         
-            foodResultsTVC.searchResults = objects;
+            
+            NSMutableArray *array = [NSMutableArray arrayWithArray:objects];
+            
+            [array addObjectsFromArray:foodResultsTVC.searchResults];
+            
+            foodResultsTVC.searchResults = objects;//array;
             
             [foodResultsTVC.tableView reloadData];
         }
     }];
+    
+}
+
+- (void) fatSecretSearch:(FoodResultsTableViewController*)foodResultsTVC searchTerm:(NSString*)searchTerm {
+    
+    [[FSClient sharedClient] searchFoods:searchTerm pageNumber:0 maxResults:50 completion:^(NSArray *foods, NSInteger maxResults, NSInteger totalResults, NSInteger pageNumber) {
+        
+        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:foodResultsTVC.searchResults];
+        
+        for (FSFood *food in foods) {
+            
+            PFObject *foodObject = [PFObject objectWithClassName:@"Food"];
+            
+            foodObject[@"name"] = food.name;
+            
+            NSString *desc = food.foodDescription;
+            
+            desc = [[desc componentsSeparatedByString:@"Calories: "] lastObject];
+        
+            foodObject[@"calories"] = [[desc componentsSeparatedByString:@"kcal"] firstObject];
+            
+            [array addObject:foodObject];
+        }
+        
+        foodResultsTVC.searchResults = array;
+        [foodResultsTVC.tableView reloadData];
+    }];
 }
 
 - (void) tableView:(UITableView *)table didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     [self displayFoodDetails:[foodArray objectAtIndex:(indexPath.row)]];
 }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0738411AE0712C00025118 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC07383C1AE0712C00025118 /* Bolts.framework */; };
+		DC0738421AE0712C00025118 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC07383D1AE0712C00025118 /* FBSDKCoreKit.framework */; };
+		DC0738431AE0712C00025118 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC07383E1AE0712C00025118 /* FBSDKLoginKit.framework */; };
+		DC0738441AE0712C00025118 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC07383F1AE0712C00025118 /* FBSDKShareKit.framework */; };
+		DC0738451AE0712C00025118 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0738401AE0712C00025118 /* Parse.framework */; };
 		DC5FE7C61ACAE68D002270FB /* MenuStatsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */; };
 		DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7C81ACAE6AE002270FB /* MenuStatsCollectionViewCell.m */; };
 		DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7CD1ACB3157002270FB /* KAProgressLabel.m */; };
@@ -23,11 +28,6 @@
 		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
 		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
 		DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */; };
-		DC67F42D1ADC267C00B56C48 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC67F42A1ADC267C00B56C48 /* FBSDKCoreKit.framework */; };
-		DC67F42E1ADC267C00B56C48 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC67F42B1ADC267C00B56C48 /* FBSDKLoginKit.framework */; };
-		DC67F42F1ADC267C00B56C48 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC67F42C1ADC267C00B56C48 /* FBSDKShareKit.framework */; };
-		DC67F4321ADC268600B56C48 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC67F4301ADC268600B56C48 /* Bolts.framework */; };
-		DC67F4331ADC268600B56C48 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC67F4311ADC268600B56C48 /* Parse.framework */; };
 		DC67F4351ADC838100B56C48 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC67F4341ADC838100B56C48 /* Images.xcassets */; };
 		DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC07D1AC8E97F00735106 /* LoginViewController.m */; };
 		DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AB51ACCBE9000948AD0 /* AudioToolbox.framework */; };
@@ -40,6 +40,15 @@
 		DC9B7AC61ACCBECB00948AD0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AC51ACCBECB00948AD0 /* SystemConfiguration.framework */; };
 		DC9B7AC81ACCBED500948AD0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AC71ACCBED500948AD0 /* libz.dylib */; };
 		DC9B7ACA1ACCBEE000948AD0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AC91ACCBEE000948AD0 /* libsqlite3.dylib */; };
+		DCADE31B1AE437E5006BE205 /* FSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE30E1AE437E5006BE205 /* FSClient.m */; };
+		DCADE31C1AE437E5006BE205 /* FSFood.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3101AE437E5006BE205 /* FSFood.m */; };
+		DCADE31D1AE437E5006BE205 /* FSServing.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3121AE437E5006BE205 /* FSServing.m */; };
+		DCADE31E1AE437E5006BE205 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3141AE437E5006BE205 /* NSData+Base64.m */; };
+		DCADE31F1AE437E5006BE205 /* NSString+Camelize.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3161AE437E5006BE205 /* NSString+Camelize.m */; };
+		DCADE3201AE437E5006BE205 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3181AE437E5006BE205 /* OAuth+Additions.m */; };
+		DCADE3211AE437E5006BE205 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE31A1AE437E5006BE205 /* OAuthCore.m */; };
+		DCADE3271AE43ABC006BE205 /* SVHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3241AE43ABC006BE205 /* SVHTTPClient.m */; };
+		DCADE3281AE43ABC006BE205 /* SVHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DCADE3261AE43ABC006BE205 /* SVHTTPRequest.m */; };
 		DCC334461ACDE4B7000748A5 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334451ACDE4B7000748A5 /* UserObject.m */; };
 		DCC3344A1ACE20AA000748A5 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC334491ACE20AA000748A5 /* UserProfileViewController.m */; };
 		DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC3344F1AD05667000748A5 /* AddFoodToDiaryViewController.m */; };
@@ -59,6 +68,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC07383C1AE0712C00025118 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = SOURCE_ROOT; };
+		DC07383D1AE0712C00025118 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = SOURCE_ROOT; };
+		DC07383E1AE0712C00025118 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = SOURCE_ROOT; };
+		DC07383F1AE0712C00025118 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = SOURCE_ROOT; };
+		DC0738401AE0712C00025118 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = SOURCE_ROOT; };
 		DC5FE7C41ACAE68D002270FB /* MenuStatsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuStatsCollectionViewController.h; sourceTree = "<group>"; };
 		DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuStatsCollectionViewController.m; sourceTree = "<group>"; };
 		DC5FE7C71ACAE6AE002270FB /* MenuStatsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuStatsCollectionViewCell.h; sourceTree = "<group>"; };
@@ -92,11 +106,6 @@
 		DC624EF41AA95302001AF36C /* My Fit DietTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My Fit DietTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC624EF91AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My_Fit_DietTests.m; sourceTree = "<group>"; };
-		DC67F42A1ADC267C00B56C48 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		DC67F42B1ADC267C00B56C48 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		DC67F42C1ADC267C00B56C48 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		DC67F4301ADC268600B56C48 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		DC67F4311ADC268600B56C48 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DC67F4341ADC838100B56C48 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC6AC07B1AC8E7E100735106 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC6AC07C1AC8E97F00735106 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -111,6 +120,24 @@
 		DC9B7AC51ACCBECB00948AD0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DC9B7AC71ACCBED500948AD0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DC9B7AC91ACCBEE000948AD0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DCADE30D1AE437E5006BE205 /* FSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSClient.h; sourceTree = "<group>"; };
+		DCADE30E1AE437E5006BE205 /* FSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSClient.m; sourceTree = "<group>"; };
+		DCADE30F1AE437E5006BE205 /* FSFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFood.h; sourceTree = "<group>"; };
+		DCADE3101AE437E5006BE205 /* FSFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFood.m; sourceTree = "<group>"; };
+		DCADE3111AE437E5006BE205 /* FSServing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSServing.h; sourceTree = "<group>"; };
+		DCADE3121AE437E5006BE205 /* FSServing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSServing.m; sourceTree = "<group>"; };
+		DCADE3131AE437E5006BE205 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		DCADE3141AE437E5006BE205 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		DCADE3151AE437E5006BE205 /* NSString+Camelize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Camelize.h"; sourceTree = "<group>"; };
+		DCADE3161AE437E5006BE205 /* NSString+Camelize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Camelize.m"; sourceTree = "<group>"; };
+		DCADE3171AE437E5006BE205 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		DCADE3181AE437E5006BE205 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		DCADE3191AE437E5006BE205 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		DCADE31A1AE437E5006BE205 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		DCADE3231AE43ABC006BE205 /* SVHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVHTTPClient.h; sourceTree = "<group>"; };
+		DCADE3241AE43ABC006BE205 /* SVHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVHTTPClient.m; sourceTree = "<group>"; };
+		DCADE3251AE43ABC006BE205 /* SVHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVHTTPRequest.h; sourceTree = "<group>"; };
+		DCADE3261AE43ABC006BE205 /* SVHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVHTTPRequest.m; sourceTree = "<group>"; };
 		DCC334441ACDE4B7000748A5 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		DCC334451ACDE4B7000748A5 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
 		DCC334481ACE20AA000748A5 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
@@ -130,20 +157,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC9B7ACA1ACCBEE000948AD0 /* libsqlite3.dylib in Frameworks */,
+				DC0738421AE0712C00025118 /* FBSDKCoreKit.framework in Frameworks */,
 				DC9B7AC81ACCBED500948AD0 /* libz.dylib in Frameworks */,
-				DC67F42E1ADC267C00B56C48 /* FBSDKLoginKit.framework in Frameworks */,
 				DC9B7AC61ACCBECB00948AD0 /* SystemConfiguration.framework in Frameworks */,
-				DC67F4331ADC268600B56C48 /* Parse.framework in Frameworks */,
-				DC67F42F1ADC267C00B56C48 /* FBSDKShareKit.framework in Frameworks */,
-				DC67F42D1ADC267C00B56C48 /* FBSDKCoreKit.framework in Frameworks */,
+				DC0738451AE0712C00025118 /* Parse.framework in Frameworks */,
 				DC9B7AC21ACCBEBC00948AD0 /* Security.framework in Frameworks */,
 				DC9B7AC01ACCBEB200948AD0 /* QuartzCore.framework in Frameworks */,
 				DC9B7ABE1ACCBEAB00948AD0 /* MobileCoreServices.framework in Frameworks */,
+				DC0738431AE0712C00025118 /* FBSDKLoginKit.framework in Frameworks */,
 				DC9B7ABC1ACCBEA400948AD0 /* CoreLocation.framework in Frameworks */,
 				DC9B7ABA1ACCBE9D00948AD0 /* CoreGraphics.framework in Frameworks */,
+				DC0738441AE0712C00025118 /* FBSDKShareKit.framework in Frameworks */,
+				DC0738411AE0712C00025118 /* Bolts.framework in Frameworks */,
 				DC9B7AB81ACCBE9600948AD0 /* CFNetwork.framework in Frameworks */,
 				DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */,
-				DC67F4321ADC268600B56C48 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +354,8 @@
 		DC6AC07A1AC8E7D000735106 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DCADE3221AE43ABC006BE205 /* SVHTTPRequest */,
+				DCADE30C1AE437C4006BE205 /* FatSecret */,
 				DC5FE7F61ACC9169002270FB /* FXForms */,
 				DC5FE7CB1ACB3157002270FB /* KAProgressLabel */,
 			);
@@ -338,11 +367,11 @@
 			children = (
 				DC9B7AC91ACCBEE000948AD0 /* libsqlite3.dylib */,
 				DC9B7AC71ACCBED500948AD0 /* libz.dylib */,
-				DC67F4301ADC268600B56C48 /* Bolts.framework */,
-				DC67F4311ADC268600B56C48 /* Parse.framework */,
-				DC67F42A1ADC267C00B56C48 /* FBSDKCoreKit.framework */,
-				DC67F42B1ADC267C00B56C48 /* FBSDKLoginKit.framework */,
-				DC67F42C1ADC267C00B56C48 /* FBSDKShareKit.framework */,
+				DC07383C1AE0712C00025118 /* Bolts.framework */,
+				DC07383D1AE0712C00025118 /* FBSDKCoreKit.framework */,
+				DC07383E1AE0712C00025118 /* FBSDKLoginKit.framework */,
+				DC07383F1AE0712C00025118 /* FBSDKShareKit.framework */,
+				DC0738401AE0712C00025118 /* Parse.framework */,
 				DC9B7AC51ACCBECB00948AD0 /* SystemConfiguration.framework */,
 				DC9B7AC11ACCBEBC00948AD0 /* Security.framework */,
 				DC9B7ABF1ACCBEB200948AD0 /* QuartzCore.framework */,
@@ -354,6 +383,38 @@
 			);
 			name = Frameworks;
 			path = "My Fit Diet";
+			sourceTree = "<group>";
+		};
+		DCADE30C1AE437C4006BE205 /* FatSecret */ = {
+			isa = PBXGroup;
+			children = (
+				DCADE30D1AE437E5006BE205 /* FSClient.h */,
+				DCADE30E1AE437E5006BE205 /* FSClient.m */,
+				DCADE30F1AE437E5006BE205 /* FSFood.h */,
+				DCADE3101AE437E5006BE205 /* FSFood.m */,
+				DCADE3111AE437E5006BE205 /* FSServing.h */,
+				DCADE3121AE437E5006BE205 /* FSServing.m */,
+				DCADE3131AE437E5006BE205 /* NSData+Base64.h */,
+				DCADE3141AE437E5006BE205 /* NSData+Base64.m */,
+				DCADE3151AE437E5006BE205 /* NSString+Camelize.h */,
+				DCADE3161AE437E5006BE205 /* NSString+Camelize.m */,
+				DCADE3171AE437E5006BE205 /* OAuth+Additions.h */,
+				DCADE3181AE437E5006BE205 /* OAuth+Additions.m */,
+				DCADE3191AE437E5006BE205 /* OAuthCore.h */,
+				DCADE31A1AE437E5006BE205 /* OAuthCore.m */,
+			);
+			name = FatSecret;
+			sourceTree = "<group>";
+		};
+		DCADE3221AE43ABC006BE205 /* SVHTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				DCADE3231AE43ABC006BE205 /* SVHTTPClient.h */,
+				DCADE3241AE43ABC006BE205 /* SVHTTPClient.m */,
+				DCADE3251AE43ABC006BE205 /* SVHTTPRequest.h */,
+				DCADE3261AE43ABC006BE205 /* SVHTTPRequest.m */,
+			);
+			path = SVHTTPRequest;
 			sourceTree = "<group>";
 		};
 		DCC334431ACDE45A000748A5 /* User Object */ = {
@@ -512,22 +573,31 @@
 				DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */,
 				DCC334461ACDE4B7000748A5 /* UserObject.m in Sources */,
 				DC5FE7C61ACAE68D002270FB /* MenuStatsCollectionViewController.m in Sources */,
+				DCADE3201AE437E5006BE205 /* OAuth+Additions.m in Sources */,
 				DCC3344A1ACE20AA000748A5 /* UserProfileViewController.m in Sources */,
 				DC624EE11AA95302001AF36C /* main.m in Sources */,
+				DCADE3211AE437E5006BE205 /* OAuthCore.m in Sources */,
+				DCADE31E1AE437E5006BE205 /* NSData+Base64.m in Sources */,
 				DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */,
 				DC5FE7EF1ACC5CDA002270FB /* FoodResultsTableViewController.m in Sources */,
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
+				DCADE31B1AE437E5006BE205 /* FSClient.m in Sources */,
 				DCC334591AD098F0000748A5 /* DiaryObject.m in Sources */,
+				DCADE3271AE43ABC006BE205 /* SVHTTPClient.m in Sources */,
+				DCADE31C1AE437E5006BE205 /* FSFood.m in Sources */,
 				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
 				DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
 				DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */,
 				DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */,
 				DC5FE7F91ACC9169002270FB /* FXForms.m in Sources */,
+				DCADE3281AE43ABC006BE205 /* SVHTTPRequest.m in Sources */,
 				DC5FE7EC1ACC5CC5002270FB /* SearchFoodTableViewController.m in Sources */,
 				DC5FE7F41ACC9126002270FB /* FoodObject.m in Sources */,
+				DCADE31D1AE437E5006BE205 /* FSServing.m in Sources */,
 				DC5FE7D71ACBA7F4002270FB /* OptionsView.m in Sources */,
 				DC5FE7E21ACC53DA002270FB /* DiaryTableViewCell.m in Sources */,
+				DCADE31F1AE437E5006BE205 /* NSString+Camelize.m in Sources */,
 				DCC334551AD0793A000748A5 /* AddToFoodForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,7 +655,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -620,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -634,9 +704,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/My Fit Diet";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/My",
+					Fit,
+					Diet,
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "My Fit Diet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -650,9 +725,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/My Fit Diet";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/My",
+					Fit,
+					Diet,
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "My Fit Diet/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

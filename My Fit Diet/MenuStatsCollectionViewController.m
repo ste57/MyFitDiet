@@ -274,7 +274,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (void) planMeal {
     
-    
 }
 
 - (void) accessProfile {

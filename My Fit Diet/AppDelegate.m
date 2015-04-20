@@ -13,6 +13,7 @@
 #import "MenuStatsCollectionViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
+#import "FSClient.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,9 @@
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [FSClient sharedClient].oauthConsumerKey = @"8824657a9f4d42f19b26508602d46612";
+    [FSClient sharedClient].oauthConsumerSecret = @"e4d5ce1649ce4c7fb2cfd9304f359032";
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
