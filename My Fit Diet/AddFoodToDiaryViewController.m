@@ -93,6 +93,11 @@
         
     } else {
         
+        if (!foodObject.foodDescription) {
+            
+            foodObject.foodDescription = @"recommended";
+        }
+        
         [self setNutritionLabels];
     }
 }
@@ -240,7 +245,7 @@
     
     NSString *text;
     
-    if (![foodObject.foodDescription isEqualToString:@""]) {
+    if (![foodObject.foodDescription isEqual:@""]) {
         
         text = [NSString stringWithFormat:@"%@\n\n%@", foodObject.name, foodObject.foodDescription];
         

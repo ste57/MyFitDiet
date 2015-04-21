@@ -33,6 +33,7 @@
     [self createTitleLabel];
     
     [self addFacebookLoginButton];
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -100,6 +101,12 @@
             userObject.goalWeight = [object[@"goalWeight"] floatValue];
             userObject.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
             userObject.weeklyGoalRate = [object[@"weeklyGoalRate"] floatValue];
+            
+            userObject.userCalories = [object[@"userCalories"] intValue];
+            userObject.userProtein = [object[@"userProtein"] floatValue];
+            userObject.userSaturatedFats = [object[@"userSaturatedFats"] floatValue];
+            userObject.userTotalCarbohydrates = [object[@"userTotalCarbohydrates"] floatValue];
+            userObject.userTotalFats = [object[@"userTotalFats"] floatValue];
             
             [userObject syncUserObject];
         }

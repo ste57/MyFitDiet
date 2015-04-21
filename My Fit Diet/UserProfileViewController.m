@@ -128,7 +128,7 @@
     
     [[UserObject alloc] removeUserObject];
     
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController removeFromParentViewController];
     
     [self presentViewController:[LoginViewController alloc] animated:NO completion:nil];
 }

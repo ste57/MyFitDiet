@@ -15,6 +15,7 @@
 #import "UserProfileViewController.h"
 #import "DiaryObject.h"
 #import "UserObject.h"
+#import "PlanMealViewController.h"
 
 @interface MenuStatsCollectionViewController ()
 
@@ -274,6 +275,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (void) planMeal {
     
+    [self.navigationController pushViewController:[[PlanMealViewController alloc] init] animated:YES];
 }
 
 - (void) accessProfile {

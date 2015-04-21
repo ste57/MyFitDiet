@@ -30,6 +30,7 @@
 		DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */; };
 		DC62CA9F1AE5C47C00B7F284 /* NutritionGoalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CA9E1AE5C47C00B7F284 /* NutritionGoalsViewController.m */; };
 		DC62CAA21AE5C4CB00B7F284 /* NutritionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */; };
+		DC62CAA71AE5DE3300B7F284 /* PlanMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */; };
 		DC67F4351ADC838100B56C48 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC67F4341ADC838100B56C48 /* Images.xcassets */; };
 		DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC07D1AC8E97F00735106 /* LoginViewController.m */; };
 		DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AB51ACCBE9000948AD0 /* AudioToolbox.framework */; };
@@ -112,6 +113,8 @@
 		DC62CA9E1AE5C47C00B7F284 /* NutritionGoalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NutritionGoalsViewController.m; sourceTree = "<group>"; };
 		DC62CAA01AE5C4CB00B7F284 /* NutritionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NutritionObject.h; sourceTree = "<group>"; };
 		DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NutritionObject.m; sourceTree = "<group>"; };
+		DC62CAA51AE5DE3300B7F284 /* PlanMealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMealViewController.h; sourceTree = "<group>"; };
+		DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMealViewController.m; sourceTree = "<group>"; };
 		DC67F4341ADC838100B56C48 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC6AC07B1AC8E7E100735106 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC6AC07C1AC8E97F00735106 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -205,9 +208,10 @@
 				DC5FE7C41ACAE68D002270FB /* MenuStatsCollectionViewController.h */,
 				DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */,
 				DCC334471ACE1B84000748A5 /* User Profile */,
+				DC62CAA41AE5D27D00B7F284 /* Plan Meal */,
+				DC5FE7D81ACBB38B002270FB /* Diary */,
 				DC62CA9C1AE5C06A00B7F284 /* Recommended Nutrition Goals */,
 				DC5FE7CA1ACAE6B9002270FB /* Menu Stats */,
-				DC5FE7D81ACBB38B002270FB /* Diary */,
 			);
 			name = "Main Menu";
 			sourceTree = "<group>";
@@ -367,6 +371,15 @@
 				DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */,
 			);
 			name = "Nutrition Object";
+			sourceTree = "<group>";
+		};
+		DC62CAA41AE5D27D00B7F284 /* Plan Meal */ = {
+			isa = PBXGroup;
+			children = (
+				DC62CAA51AE5DE3300B7F284 /* PlanMealViewController.h */,
+				DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */,
+			);
+			name = "Plan Meal";
 			sourceTree = "<group>";
 		};
 		DC6AC0791AC8E7CA00735106 /* Constants */ = {
@@ -605,6 +618,7 @@
 				DCADE3211AE437E5006BE205 /* OAuthCore.m in Sources */,
 				DCADE31E1AE437E5006BE205 /* NSData+Base64.m in Sources */,
 				DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */,
+				DC62CAA71AE5DE3300B7F284 /* PlanMealViewController.m in Sources */,
 				DC5FE7EF1ACC5CDA002270FB /* FoodResultsTableViewController.m in Sources */,
 				DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */,
 				DCADE31B1AE437E5006BE205 /* FSClient.m in Sources */,
