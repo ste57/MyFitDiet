@@ -8,7 +8,7 @@
 
 #import "PlanMealViewController.h"
 #import "Constants.h"
-#import "DiaryTableViewCell.h"
+#import "PlanMealTableViewCell.h"
 #import "DiaryObject.h"
 #import "AddFoodToDiaryViewController.h"
 #import "AddToFoodForm.h"
@@ -73,7 +73,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     [query orderByDescending:@"calories"];
     
-    [query setLimit:10];
+    [query setLimit:20];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -89,6 +89,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
                 foodObject[@"saturatedFats"] = object[@"saturatedFats"];
                 foodObject[@"totalCarbohydrates"] = object[@"totalCarbohydrates"];
                 foodObject[@"protein"] = object[@"protein"];
+                foodObject[@"servingSize"] = [NSNumber numberWithInt:1];
                 
                 [mealArray addObject:foodObject];
             }
@@ -170,9 +171,11 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     [foodObject convertPFObjectToFoodObject:[mealArray objectAtIndex:indexPath.row]];
     
-    DiaryTableViewCell *cell = [[DiaryTableViewCell alloc] initWithFrame:CGRectZero];
+    PlanMealTableViewCell *cell = [[PlanMealTableViewCell alloc] initWithFrame:CGRectZero];
     
     cell.foodObject = foodObject;
+    
+    cell.row = (int)indexPath.row;
     
     [cell layoutViews];
     

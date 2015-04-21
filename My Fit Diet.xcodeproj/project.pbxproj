@@ -31,6 +31,7 @@
 		DC62CA9F1AE5C47C00B7F284 /* NutritionGoalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CA9E1AE5C47C00B7F284 /* NutritionGoalsViewController.m */; };
 		DC62CAA21AE5C4CB00B7F284 /* NutritionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */; };
 		DC62CAA71AE5DE3300B7F284 /* PlanMealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */; };
+		DC62CAAA1AE5F6F700B7F284 /* PlanMealTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CAA91AE5F6F700B7F284 /* PlanMealTableViewCell.m */; };
 		DC67F4351ADC838100B56C48 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC67F4341ADC838100B56C48 /* Images.xcassets */; };
 		DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC07D1AC8E97F00735106 /* LoginViewController.m */; };
 		DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AB51ACCBE9000948AD0 /* AudioToolbox.framework */; };
@@ -115,6 +116,8 @@
 		DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NutritionObject.m; sourceTree = "<group>"; };
 		DC62CAA51AE5DE3300B7F284 /* PlanMealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMealViewController.h; sourceTree = "<group>"; };
 		DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMealViewController.m; sourceTree = "<group>"; };
+		DC62CAA81AE5F6F700B7F284 /* PlanMealTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMealTableViewCell.h; sourceTree = "<group>"; };
+		DC62CAA91AE5F6F700B7F284 /* PlanMealTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMealTableViewCell.m; sourceTree = "<group>"; };
 		DC67F4341ADC838100B56C48 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC6AC07B1AC8E7E100735106 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC6AC07C1AC8E97F00735106 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 			children = (
 				DC62CAA51AE5DE3300B7F284 /* PlanMealViewController.h */,
 				DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */,
+				DC62CAA81AE5F6F700B7F284 /* PlanMealTableViewCell.h */,
+				DC62CAA91AE5F6F700B7F284 /* PlanMealTableViewCell.m */,
 			);
 			name = "Plan Meal";
 			sourceTree = "<group>";
@@ -627,6 +632,7 @@
 				DCADE31C1AE437E5006BE205 /* FSFood.m in Sources */,
 				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
 				DC62CA9F1AE5C47C00B7F284 /* NutritionGoalsViewController.m in Sources */,
+				DC62CAAA1AE5F6F700B7F284 /* PlanMealTableViewCell.m in Sources */,
 				DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
 				DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */,
