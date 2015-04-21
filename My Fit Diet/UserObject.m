@@ -45,19 +45,13 @@ typedef NS_ENUM(BOOL, weightGoal) {
             userSetGainWeight = userObject.userSetGainWeight;
             weeklyGoalRate = userObject.weeklyGoalRate;
             
-            /*userCalories = userObject.userCalories;
+            userCalories = userObject.userCalories;
             userProtein = userObject.userProtein;
             userSaturatedFats = userObject.userSaturatedFats;
             userTotalCarbohydrates = userObject.userTotalCarbohydrates;
-            userTotalFats = userObject.userTotalFats;*/
+            userTotalFats = userObject.userTotalFats;
         
         }
-        
-        userCalories = 2000;
-        userProtein = 20;
-        userSaturatedFats = 20;
-        userTotalCarbohydrates = 20;
-        userTotalFats = 20;
     }
     
     return self;
@@ -202,6 +196,7 @@ typedef NS_ENUM(BOOL, weightGoal) {
         
         return @[
                  @{FXFormFieldTitle: @"Log Out", FXFormFieldHeader: @"ACCOUNT DETAILS", FXFormFieldAction: @"logUserOut"},
+                 @{FXFormFieldTitle: @"Nutrition Goals", FXFormFieldAction: @"calculateNutritionGoals"},
                  ];
     }
     

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FoodObject.h"
 
 @interface DiaryTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) FoodObject *foodObject;
+@property (nonatomic, strong) NSString *ocassion;
+
+- (void) layoutViews;
 
 @end

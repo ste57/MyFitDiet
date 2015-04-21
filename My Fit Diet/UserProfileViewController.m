@@ -12,6 +12,8 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "Constants.h"
+#import "NutritionGoalsViewController.h"
+#import "NutritionObject.h"
 
 @interface UserProfileViewController ()
 
@@ -47,8 +49,24 @@
         
         [userObject syncUserObject];
         
-        [self.navigationController popViewControllerAnimated:YES];
+        if (userObject.userCalories) {
+        
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } else {
+            
+            [self calculateNutritionGoals];
+        }
     }
+}
+
+- (void) calculateNutritionGoals {
+    
+    NutritionGoalsViewController *nutritionGoalsVC = [[NutritionGoalsViewController alloc] init];
+    
+    nutritionGoalsVC.formController.form = [[NutritionObject alloc] init];
+    
+    [self.navigationController pushViewController:nutritionGoalsVC animated:YES];
 }
 
 - (BOOL) validatedFields {

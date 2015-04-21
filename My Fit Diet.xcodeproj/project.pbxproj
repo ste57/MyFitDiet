@@ -28,6 +28,8 @@
 		DC624EE11AA95302001AF36C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE01AA95302001AF36C /* main.m */; };
 		DC624EE41AA95302001AF36C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EE31AA95302001AF36C /* AppDelegate.m */; };
 		DC624EFB1AA95302001AF36C /* My_Fit_DietTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */; };
+		DC62CA9F1AE5C47C00B7F284 /* NutritionGoalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CA9E1AE5C47C00B7F284 /* NutritionGoalsViewController.m */; };
+		DC62CAA21AE5C4CB00B7F284 /* NutritionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */; };
 		DC67F4351ADC838100B56C48 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC67F4341ADC838100B56C48 /* Images.xcassets */; };
 		DC6AC07E1AC8E97F00735106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6AC07D1AC8E97F00735106 /* LoginViewController.m */; };
 		DC9B7AB61ACCBE9000948AD0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9B7AB51ACCBE9000948AD0 /* AudioToolbox.framework */; };
@@ -106,6 +108,10 @@
 		DC624EF41AA95302001AF36C /* My Fit DietTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My Fit DietTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC624EF91AA95302001AF36C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC624EFA1AA95302001AF36C /* My_Fit_DietTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My_Fit_DietTests.m; sourceTree = "<group>"; };
+		DC62CA9D1AE5C47C00B7F284 /* NutritionGoalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NutritionGoalsViewController.h; sourceTree = "<group>"; };
+		DC62CA9E1AE5C47C00B7F284 /* NutritionGoalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NutritionGoalsViewController.m; sourceTree = "<group>"; };
+		DC62CAA01AE5C4CB00B7F284 /* NutritionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NutritionObject.h; sourceTree = "<group>"; };
+		DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NutritionObject.m; sourceTree = "<group>"; };
 		DC67F4341ADC838100B56C48 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC6AC07B1AC8E7E100735106 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC6AC07C1AC8E97F00735106 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				DC5FE7C41ACAE68D002270FB /* MenuStatsCollectionViewController.h */,
 				DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */,
 				DCC334471ACE1B84000748A5 /* User Profile */,
+				DC62CA9C1AE5C06A00B7F284 /* Recommended Nutrition Goals */,
 				DC5FE7CA1ACAE6B9002270FB /* Menu Stats */,
 				DC5FE7D81ACBB38B002270FB /* Diary */,
 			);
@@ -341,6 +348,25 @@
 				DC624EF91AA95302001AF36C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC62CA9C1AE5C06A00B7F284 /* Recommended Nutrition Goals */ = {
+			isa = PBXGroup;
+			children = (
+				DC62CAA31AE5C4D000B7F284 /* Nutrition Object */,
+				DC62CA9D1AE5C47C00B7F284 /* NutritionGoalsViewController.h */,
+				DC62CA9E1AE5C47C00B7F284 /* NutritionGoalsViewController.m */,
+			);
+			name = "Recommended Nutrition Goals";
+			sourceTree = "<group>";
+		};
+		DC62CAA31AE5C4D000B7F284 /* Nutrition Object */ = {
+			isa = PBXGroup;
+			children = (
+				DC62CAA01AE5C4CB00B7F284 /* NutritionObject.h */,
+				DC62CAA11AE5C4CB00B7F284 /* NutritionObject.m */,
+			);
+			name = "Nutrition Object";
 			sourceTree = "<group>";
 		};
 		DC6AC0791AC8E7CA00735106 /* Constants */ = {
@@ -586,9 +612,11 @@
 				DCADE3271AE43ABC006BE205 /* SVHTTPClient.m in Sources */,
 				DCADE31C1AE437E5006BE205 /* FSFood.m in Sources */,
 				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
+				DC62CA9F1AE5C47C00B7F284 /* NutritionGoalsViewController.m in Sources */,
 				DC5FE7DC1ACBB3C0002270FB /* DiaryViewController.m in Sources */,
 				DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */,
 				DCC334501AD05667000748A5 /* AddFoodToDiaryViewController.m in Sources */,
+				DC62CAA21AE5C4CB00B7F284 /* NutritionObject.m in Sources */,
 				DC5FE7D11ACB3157002270FB /* TPPropertyAnimation.m in Sources */,
 				DC5FE7F91ACC9169002270FB /* FXForms.m in Sources */,
 				DCADE3281AE43ABC006BE205 /* SVHTTPRequest.m in Sources */,

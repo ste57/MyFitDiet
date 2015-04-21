@@ -52,7 +52,7 @@
     
     // create view
     
-    self.title = [foodObject.name uppercaseString];
+    self.title = @"FOOD DETAILS";
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
@@ -133,7 +133,7 @@
     
     descriptionLabel.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
     
-    descriptionLabel.font = [UIFont fontWithName:@"Primer" size:20.0f];
+    descriptionLabel.font = [UIFont fontWithName:@"Primer" size:18.0f];
     
     descriptionLabel.center = CGPointMake(self.view.frame.size.width/2, 5);
     
@@ -145,22 +145,7 @@
     
     descriptionLabel.numberOfLines = 0;
     
-    
-    if (![foodObject.foodDescription isEqualToString:@""]) {
-    
-        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:
-                                          [NSString stringWithFormat:@"%@", foodObject.foodDescription] attributes:
-                                          @{ NSFontAttributeName: descriptionLabel.font}];
-    
-        CGRect rect = [attributedText boundingRectWithSize:(CGSize){self.view.frame.size.width - 20, CGFLOAT_MAX}
-                                               options:NSStringDrawingUsesLineFragmentOrigin
-                                               context:nil];
-        CGSize size = rect.size;
-
-        descriptionLabel.frame = CGRectMake(0, 0, 0, size.height+20);
-    }
-    
-    descriptionLabel.frame = CGRectMake(10, 0, self.view.frame.size.width - 20, descriptionLabel.frame.size.height + 10);
+    [self setDescriptionText];
 }
 
 - (void) setNutritionArray {
@@ -248,7 +233,35 @@
         label.text = [[NSString stringWithFormat:@"%@\n\n%@", [nutritionArray objectAtIndex:i], [nutritionInitials objectAtIndex:i]]uppercaseString];
     }
     
-    descriptionLabel.text = foodObject.foodDescription;
+    [self setDescriptionText];
+}
+
+- (void) setDescriptionText {
+    
+    NSString *text;
+    
+    if (![foodObject.foodDescription isEqualToString:@""]) {
+        
+        text = [NSString stringWithFormat:@"%@\n\n%@", foodObject.name, foodObject.foodDescription];
+        
+    } else {
+        
+        text = [NSString stringWithFormat:@"%@", foodObject.name];
+    }
+    
+    
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:
+                                          text attributes:
+                                          @{ NSFontAttributeName: descriptionLabel.font}];
+    
+    CGRect rect = [attributedText boundingRectWithSize:(CGSize){self.view.frame.size.width - 30, CGFLOAT_MAX}
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+    CGSize size = rect.size;
+    
+    descriptionLabel.frame = CGRectMake(15, 0, self.view.frame.size.width - 30, size.height + 40);
+    
+    descriptionLabel.text = text;
 }
 
 - (void) addToBreakfast {

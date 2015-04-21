@@ -45,7 +45,7 @@
     
     cell.textLabel.text = object[@"name"];
     
-    cell.textLabel.font = [UIFont fontWithName:MAIN_FONT size:23.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"lekton04" size:15.0f];
     
     return cell;
 }

@@ -87,7 +87,7 @@ static NSString * const reuseIdentifier = @"DiaryCell";
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 100.0f;
+    return 110.0f;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
@@ -189,9 +189,14 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     [foodObject convertPFObjectToFoodObject:[array objectAtIndex:indexPath.row]];
     
+    
     DiaryTableViewCell *cell = [[DiaryTableViewCell alloc] initWithFrame:CGRectZero];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@      %@", foodObject.name, [diary.occasionArray objectAtIndex:indexPath.section]];
+    cell.foodObject = foodObject;
+    
+    cell.ocassion = [diary.occasionArray objectAtIndex:indexPath.section];
+    
+    [cell layoutViews];
     
     return cell;
 }
