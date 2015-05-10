@@ -27,18 +27,17 @@ typedef NS_ENUM(int, weightGoal) {
              // Nutrition Goals
              @{FXFormFieldKey: @"calories", FXFormFieldTitle: @"Calories (kcal)", FXFormFieldType: @"integer", FXFormFieldHeader: @"NUTRITION GOALS"},
              
-             @{FXFormFieldKey: @"totalFats", FXFormFieldType: @"float", FXFormFieldTitle: @"Total Fats (g)"},
-             
              @{FXFormFieldKey: @"totalCarbohydrates", FXFormFieldTitle: @"Carbohydrates (g)", FXFormFieldType: @"float"},
-             
-             @{FXFormFieldKey: @"protein", FXFormFieldTitle: @"Protein (g)", FXFormFieldType: @"float"},
              
              @{FXFormFieldKey: @"saturatedFats", FXFormFieldTitle: @"Saturated Fats (g)", FXFormFieldType: @"float"},
              
+             @{FXFormFieldKey: @"totalFats", FXFormFieldType: @"float", FXFormFieldTitle: @"Total Fats (g)"},
+             
+             @{FXFormFieldKey: @"protein", FXFormFieldTitle: @"Protein (g)", FXFormFieldType: @"float"},
              
              // Activity Level
              
-             @{FXFormFieldKey: @"activityLevel", FXFormFieldHeader: @"ACTIVITY LEVEL", FXFormFieldTitle: @"Activity Level", FXFormFieldType: @"integer", FXFormFieldOptions: @[@(none), @(light), @(active)],
+             @{FXFormFieldKey: @"activityLevel", FXFormFieldHeader: @"ACTIVITY LEVEL", FXFormFieldTitle: @"Activity Level", FXFormFieldType: @"integer", FXFormFieldAction:@"calculateUserNutrition", FXFormFieldOptions: @[@(none), @(light), @(active)],
                
                FXFormFieldValueTransformer: ^(id input) {
                    

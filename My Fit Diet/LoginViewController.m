@@ -13,11 +13,17 @@
 #import "UserObject.h"
 #import "UserProfileViewController.h"
 #import <Parse/Parse.h>
+#import "KAProgressLabel.h"
 
 @implementation LoginViewController {
     
     CGSize win;
     UserObject *userObject;
+    
+    // Progress Bars
+    KAProgressLabel *firstProgressLabel, *secondProgressLabel, *thirdProgressLabel;
+    
+    double firstProgress, secondProgress, thirdProgress;
 }
 
 - (void) viewDidLoad {
@@ -30,10 +36,13 @@
     
     self.view.backgroundColor = MAIN_BACKGROUND_COLOUR;
     
-    [self createTitleLabel];
+    firstProgress = (double)((arc4random() % 100) / 100.0);
+    secondProgress = (double)((arc4random() % 100) / 100.0);
+    thirdProgress = (double)((arc4random() % 100) / 100.0);
+    
+    [self createDisplay];
     
     [self addFacebookLoginButton];
-    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -99,7 +108,6 @@
             userObject.height = [object[@"height"] floatValue];
             userObject.currentWeight = [object[@"currentWeight"] floatValue];
             userObject.goalWeight = [object[@"goalWeight"] floatValue];
-            userObject.userSetGainWeight = ![object[@"isUserLosingWeight"] boolValue];
             userObject.weeklyGoalRate = [object[@"weeklyGoalRate"] floatValue];
             
             userObject.userCalories = [object[@"userCalories"] intValue];
@@ -247,6 +255,144 @@
     [self.view addSubview:loginButton];
 }
 
+- (void) createDisplay {
+    
+    [self createTitleLabel];
+    
+    [self createProgressBars];
+}
+
+- (void) animateFirstProgressBar {
+    
+    firstProgressLabel.progress = 0;
+    
+    UIColor *color = firstProgressLabel.trackColor;
+    
+    firstProgressLabel.trackColor = firstProgressLabel.progressColor;
+    
+    firstProgressLabel.progressColor = color;
+    
+    [firstProgressLabel setProgress:1 timing:TPPropertyAnimationTimingLinear duration:14.0f delay:0.0];
+    
+    [NSTimer scheduledTimerWithTimeInterval: 14.0f target: self
+                                   selector: @selector(animateFirstProgressBar) userInfo: nil repeats: NO];
+}
+
+- (void) animateSecondProgressBar {
+    
+    secondProgressLabel.progress = 0;
+    
+    UIColor *color = secondProgressLabel.trackColor;
+    
+    secondProgressLabel.trackColor = secondProgressLabel.progressColor;
+    
+    secondProgressLabel.progressColor = color;
+    
+    [secondProgressLabel setProgress:1 timing:TPPropertyAnimationTimingLinear duration:12.0f delay:0.0];
+    
+    [NSTimer scheduledTimerWithTimeInterval: 12.0f target: self
+                                   selector: @selector(animateSecondProgressBar) userInfo: nil repeats: NO];
+}
+
+- (void) animateThirdProgressBar {
+    
+    thirdProgressLabel.progress = 0;
+    
+    UIColor *color = thirdProgressLabel.trackColor;
+    
+    thirdProgressLabel.trackColor = thirdProgressLabel.progressColor;
+    
+    thirdProgressLabel.progressColor = color;
+    
+    [thirdProgressLabel setProgress:1 timing:TPPropertyAnimationTimingLinear duration:10.0f delay:0.0];
+    
+    [NSTimer scheduledTimerWithTimeInterval: 10.0f target: self
+                                   selector: @selector(animateThirdProgressBar) userInfo: nil repeats: NO];
+}
+
+- (void) createProgressBars {
+    
+    double value;
+    
+    firstProgressLabel = [[KAProgressLabel alloc] initWithFrame:CGRectMake(0, 0, win.width/1.4, win.width/1.4)];
+    
+    firstProgressLabel.trackWidth = 30.0f;
+    
+    firstProgressLabel.progressWidth = 30.0f;
+    
+    firstProgressLabel.trackColor = KCAL_BAR_COLOUR;
+    
+    firstProgressLabel.progressColor = [UIColor colorWithRed:0.72 green:0.93 blue:0.72 alpha:1.0];//TRACK_COLOUR;
+    
+    firstProgressLabel.fillColor = TRACK_COLOUR;
+    
+    firstProgressLabel.center = CGPointMake(self.view.center.x, self.view.frame.size.height/2.05);
+    
+    firstProgressLabel.progress = firstProgress;
+    
+    value = 14.0 - (14.0 * firstProgress);
+    
+    [firstProgressLabel setProgress:1 timing:TPPropertyAnimationTimingLinear duration:value delay:0.0];
+
+    [NSTimer scheduledTimerWithTimeInterval:value target: self
+                                   selector: @selector(animateFirstProgressBar) userInfo: nil repeats: NO];
+    
+    [self.view addSubview:firstProgressLabel];
+    
+    // SECOND LABEL
+    
+    secondProgressLabel = [[KAProgressLabel alloc] initWithFrame:
+                           CGRectMake(0, 0, firstProgressLabel.frame.size.width * 0.6, firstProgressLabel.frame.size.width * 0.6)];
+    
+    secondProgressLabel.trackWidth = firstProgressLabel.frame.size.width * 0.3;
+    
+    secondProgressLabel.progressWidth = 30.0f;
+    
+    secondProgressLabel.trackColor = S_FATS_COLOUR;
+    
+    secondProgressLabel.progressColor = [UIColor colorWithRed:0.72 green:0.85 blue:0.93 alpha:1.0];
+    
+    secondProgressLabel.center = CGPointMake(self.view.center.x, self.view.frame.size.height/2.05);
+    
+    secondProgressLabel.progress = secondProgress;
+    
+    value = 12.0 - (12.0 * firstProgress);
+    
+    [secondProgressLabel setProgress:1 timing:TPPropertyAnimationTimingLinear duration:value delay:0.0];
+    
+    [NSTimer scheduledTimerWithTimeInterval:value target: self
+                                   selector: @selector(animateSecondProgressBar) userInfo: nil repeats: NO];
+
+    
+    [self.view addSubview:secondProgressLabel];
+    
+    // THIRD LABEL
+    
+    thirdProgressLabel = [[KAProgressLabel alloc] initWithFrame:
+                           CGRectMake(0, 0, firstProgressLabel.frame.size.width * 0.2, firstProgressLabel.frame.size.width * 0.2)];
+    
+    thirdProgressLabel.trackWidth = firstProgressLabel.frame.size.width * 0.1;
+    
+    thirdProgressLabel.progressWidth = firstProgressLabel.frame.size.width * 0.1;
+    
+    thirdProgressLabel.trackColor = EXCEEDED_LIMIT_COLOUR;
+    
+    thirdProgressLabel.progressColor = [UIColor colorWithRed:0.93 green:0.81 blue:0.81 alpha:1.0];//TRACK_COLOUR;
+    
+    thirdProgressLabel.center = CGPointMake(self.view.center.x, self.view.frame.size.height/2.05);
+    
+    thirdProgressLabel.progress = thirdProgress;
+    
+    value = 10.0 - (10.0 * firstProgress);
+    
+    [thirdProgressLabel setProgress:1 timing:TPPropertyAnimationTimingLinear duration:value delay:0.0];
+    
+    [NSTimer scheduledTimerWithTimeInterval:value target: self
+                                   selector: @selector(animateThirdProgressBar) userInfo: nil repeats: NO];
+    
+    [self.view addSubview:thirdProgressLabel];
+}
+
 - (void) createTitleLabel {
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, win.width, 100.0)];
@@ -254,7 +400,7 @@
     titleLabel.center = CGPointMake(win.width/2, win.height/7);
     titleLabel.text = @"MY FIT DIET";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont fontWithName:@"lekton04" size:28.0];//@"Primer" size:28.0];
+    titleLabel.font = [UIFont fontWithName:@"lekton04" size:28.0];
     [self.view addSubview:titleLabel];
 }
 

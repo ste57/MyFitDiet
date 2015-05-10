@@ -6,6 +6,10 @@
 //  Copyright (c) 2015 Stephen Sowole. All rights reserved.
 //
 
+// User
+
+#define MINIMUM_USER_CALORIES 1500
+
 // Main
 
 #define MAIN_FONT @"Primer"

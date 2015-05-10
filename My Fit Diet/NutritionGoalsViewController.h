@@ -7,6 +7,7 @@
 //
 
 #import "FXForms.h"
+#import "Constants.h"
 
 @interface NutritionGoalsViewController : FXFormViewController
 

@@ -23,8 +23,6 @@
 @property float height;
 @property float currentWeight;
 @property float goalWeight;
-
-@property bool userSetGainWeight;
 @property float weeklyGoalRate;
 
 // Data Used For Statistics

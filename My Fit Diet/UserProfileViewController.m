@@ -43,14 +43,14 @@
 
 - (void) createProfile {
     
-    if ([self validatedFields]) {
+    if ([self validateFields]) {
         
         UserObject *userObject = self.formController.form;
         
         [userObject syncUserObject];
         
         if (userObject.userCalories) {
-        
+            
             [self.navigationController popViewControllerAnimated:YES];
             
         } else {
@@ -58,6 +58,15 @@
             [self calculateNutritionGoals];
         }
     }
+}
+
+- (void) editNutritionGoals {
+    
+    UserObject *userObject = self.formController.form;
+    
+    [userObject syncUserObject];
+    
+    [self calculateNutritionGoals];
 }
 
 - (void) calculateNutritionGoals {
@@ -69,7 +78,7 @@
     [self.navigationController pushViewController:nutritionGoalsVC animated:YES];
 }
 
-- (BOOL) validatedFields {
+- (BOOL) validateFields {
     
     UserObject *userObject = self.formController.form;
     
@@ -90,8 +99,11 @@
     } else if (!userObject.weeklyGoalRate) {
         
         field = @"weekly goal rate";
+        
+    } else if (!userObject.dateOfBirth) {
+        
+        field = @"date of birth";
     }
-    
     
     if ([field isEqualToString:@""]) {
         

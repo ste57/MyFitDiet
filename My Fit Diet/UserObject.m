@@ -10,15 +10,9 @@
 #import "Constants.h"
 #import <Parse/Parse.h>
 
-typedef NS_ENUM(BOOL, weightGoal) {
-    
-    gainWeight = true,
-    loseWeight = false,
-};
-
 @implementation UserObject
 
-@synthesize _id, email, gender, name, currentWeight, goalWeight, dateOfBirth, height, userSetGainWeight, weeklyGoalRate;
+@synthesize _id, email, gender, name, currentWeight, goalWeight, dateOfBirth, height, weeklyGoalRate;
 
 @synthesize userCalories, userProtein, userSaturatedFats, userTotalCarbohydrates, userTotalFats;
 
@@ -41,8 +35,6 @@ typedef NS_ENUM(BOOL, weightGoal) {
             goalWeight = userObject.goalWeight;
             dateOfBirth = userObject.dateOfBirth;
             height = userObject.height;
-            
-            userSetGainWeight = userObject.userSetGainWeight;
             weeklyGoalRate = userObject.weeklyGoalRate;
             
             userCalories = userObject.userCalories;
@@ -50,7 +42,6 @@ typedef NS_ENUM(BOOL, weightGoal) {
             userSaturatedFats = userObject.userSaturatedFats;
             userTotalCarbohydrates = userObject.userTotalCarbohydrates;
             userTotalFats = userObject.userTotalFats;
-        
         }
     }
     
@@ -79,7 +70,6 @@ typedef NS_ENUM(BOOL, weightGoal) {
         user[@"height"] = [NSNumber numberWithFloat:height];
         user[@"currentWeight"] = [NSNumber numberWithFloat:currentWeight];
         user[@"goalWeight"] = [NSNumber numberWithFloat:goalWeight];
-        user[@"isUserLosingWeight"] = [NSNumber numberWithBool:!userSetGainWeight];
         user[@"weeklyGoalRate"] = [NSNumber numberWithFloat:weeklyGoalRate];
         
         user[@"userCalories"] = [NSNumber numberWithFloat:userCalories];
@@ -105,8 +95,6 @@ typedef NS_ENUM(BOOL, weightGoal) {
     [encoder encodeFloat:goalWeight forKey:@"goalWeight"];
     [encoder encodeObject:dateOfBirth forKey:@"dateOfBirth"];
     [encoder encodeFloat:height forKey:@"height"];
-    
-    [encoder encodeBool:userSetGainWeight forKey:@"userSetGainWeight"];
     [encoder encodeFloat:weeklyGoalRate forKey:@"weeklyGoalRate"];
     
     [encoder encodeFloat:userCalories forKey:@"userCalories"];
@@ -131,8 +119,6 @@ typedef NS_ENUM(BOOL, weightGoal) {
         goalWeight = [decoder decodeFloatForKey:@"goalWeight"];
         dateOfBirth = [decoder decodeObjectForKey:@"dateOfBirth"];
         height = [decoder decodeFloatForKey:@"height"];
-        
-        userSetGainWeight = [decoder decodeBoolForKey:@"userSetGainWeight"];
         weeklyGoalRate = [decoder decodeFloatForKey:@"weeklyGoalRate"];
         
         userCalories = [decoder decodeFloatForKey:@"userCalories"];
@@ -165,7 +151,7 @@ typedef NS_ENUM(BOOL, weightGoal) {
              
              @{FXFormFieldKey: @"email", FXFormFieldTitle: @"Email", FXFormFieldType: @"text"},
              
-             @{FXFormFieldKey: @"dateOfBirth", FXFormFieldDefaultValue: [NSDate date],FXFormFieldTitle: @"Date Of Birth", FXFormFieldType: @"date"},
+             @{FXFormFieldKey: @"dateOfBirth", FXFormFieldTitle: @"Date Of Birth", FXFormFieldType: @"date"},
              
              
              // Weight Details
@@ -176,13 +162,6 @@ typedef NS_ENUM(BOOL, weightGoal) {
              @{FXFormFieldKey: @"currentWeight", FXFormFieldTitle: @"Current Weight (lbs)", FXFormFieldOptions: weightArray, FXFormFieldType: @"float"},
              
              @{FXFormFieldKey: @"goalWeight", FXFormFieldTitle: @"Goal Weight (lbs)", FXFormFieldOptions: weightArray, FXFormFieldType: @"float"},
-             
-             @{FXFormFieldKey: @"userSetGainWeight", FXFormFieldTitle: @"Weight Goal", FXFormFieldType: @"boolean", FXFormFieldOptions: @[@(loseWeight), @(gainWeight)],
-               
-               FXFormFieldValueTransformer: ^(id input) {
-                   
-                   return @{@(loseWeight): @"Lose Weight",
-                            @(gainWeight): @"Gain Weight"}[input];}},
              
              @{FXFormFieldKey: @"weeklyGoalRate", FXFormFieldTitle: @"Weekly Goal Rate (lbs)", FXFormFieldOptions: @[@0.5, @1.0, @1.5, @2.0], FXFormFieldType: @"float"},
              ];
@@ -196,7 +175,7 @@ typedef NS_ENUM(BOOL, weightGoal) {
         
         return @[
                  @{FXFormFieldTitle: @"Log Out", FXFormFieldHeader: @"ACCOUNT DETAILS", FXFormFieldAction: @"logUserOut"},
-                 @{FXFormFieldTitle: @"Nutrition Goals", FXFormFieldAction: @"calculateNutritionGoals"},
+                 @{FXFormFieldTitle: @"Nutrition Goals", FXFormFieldAction: @"editNutritionGoals"},
                  ];
     }
     

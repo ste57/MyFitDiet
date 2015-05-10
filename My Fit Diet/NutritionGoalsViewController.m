@@ -33,18 +33,93 @@
     
     user = [[UserObject alloc] init];
     
-    [self calculateUserNutrition];
+    if (!user.userCalories) {
+        
+        [self calculateUserNutrition];
+        
+    } else {
+        
+        [self loadUserNutritionValues];
+    }
+}
+
+- (void) loadUserNutritionValues {
+    
+    NutritionObject *nutritionObj = self.formController.form;
+    
+    nutritionObj.calories = user.userCalories;
+    nutritionObj.protein = user.userProtein;
+    nutritionObj.saturatedFats = user.userSaturatedFats;
+    nutritionObj.totalCarbohydrates = user.userTotalCarbohydrates;
+    nutritionObj.totalFats = user.userTotalFats;
 }
 
 - (void) calculateUserNutrition {
     
+    double BMR, caloriesRequired;
+    
+    NSDateComponents *ageComponents = [[NSCalendar currentCalendar]
+                                       components:NSCalendarUnitYear
+                                       fromDate:user.dateOfBirth
+                                       toDate:[NSDate date]
+                                       options:0];
+    
     NutritionObject *nutritionObj = self.formController.form;
     
-    nutritionObj.calories = 2000;
-    nutritionObj.protein = 50;
-    nutritionObj.saturatedFats = 50;
-    nutritionObj.totalCarbohydrates = 50;
-    nutritionObj.totalFats = 50;
+    /*
+     
+     Men: (10 x weight in kg) + (6.25 x height in cm) - (4.92 x age) + 5
+     
+     Women: (10 x weight in kg) + (6.25 x height in cm) - (4.92 x age) - 161
+     
+     **/
+    
+    if ([user.gender isEqualToString:@"Male"]) {
+        
+        // convert lb to kg
+        BMR += (10.0 * (user.currentWeight * 0.453592));
+        BMR += (6.25 * user.height);
+        BMR -= (4.92 * [ageComponents year]);
+        BMR += 5;
+        
+    } else if ([user.gender isEqualToString:@"Female"]) {
+        
+        // convert lb to kg
+        BMR += (10.0 * (user.currentWeight * 0.453592));
+        BMR += (6.25 * user.height);
+        BMR -= (4.92 * [ageComponents year]);
+        BMR -= 161;
+    }
+    
+    BMR *= (1 + (0.2 * nutritionObj.activityLevel));
+    BMR *= 1.1;
+    
+    caloriesRequired = (3500 * user.weeklyGoalRate);
+    caloriesRequired /= 7;
+    
+    if (user.currentWeight > user.goalWeight) {
+        
+        caloriesRequired = BMR - caloriesRequired;
+        
+    } else if (user.currentWeight < user.goalWeight) {
+        
+        caloriesRequired = BMR + caloriesRequired;
+        
+    } else {
+        
+        caloriesRequired = BMR;
+    }
+    
+    if (caloriesRequired < MINIMUM_USER_CALORIES) {
+        
+        caloriesRequired = MINIMUM_USER_CALORIES;
+    }
+
+    nutritionObj.calories = round(caloriesRequired);
+    nutritionObj.protein = round((caloriesRequired * 0.10) / 4.0);
+    nutritionObj.totalCarbohydrates = round((caloriesRequired * 0.45) / 4.0);
+    nutritionObj.totalFats = round((caloriesRequired * 0.20) / 9.0);
+    nutritionObj.saturatedFats = round((caloriesRequired * 0.10) / 9.0);
 }
 
 - (void) addNutritionGoals {
@@ -58,7 +133,7 @@
     user.userTotalFats = nutritionObj.totalFats;
     
     [user syncUserObject];
- 
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
