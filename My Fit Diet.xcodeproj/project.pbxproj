@@ -12,6 +12,7 @@
 		DC0738431AE0712C00025118 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC07383E1AE0712C00025118 /* FBSDKLoginKit.framework */; };
 		DC0738441AE0712C00025118 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC07383F1AE0712C00025118 /* FBSDKShareKit.framework */; };
 		DC0738451AE0712C00025118 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0738401AE0712C00025118 /* Parse.framework */; };
+		DC0E34A31B00082C0003A7E1 /* PlanMeal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0E34A21B00082C0003A7E1 /* PlanMeal.m */; };
 		DC5FE7C61ACAE68D002270FB /* MenuStatsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */; };
 		DC5FE7C91ACAE6AE002270FB /* MenuStatsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7C81ACAE6AE002270FB /* MenuStatsCollectionViewCell.m */; };
 		DC5FE7D01ACB3157002270FB /* KAProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5FE7CD1ACB3157002270FB /* KAProgressLabel.m */; };
@@ -77,6 +78,8 @@
 		DC07383E1AE0712C00025118 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = SOURCE_ROOT; };
 		DC07383F1AE0712C00025118 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = SOURCE_ROOT; };
 		DC0738401AE0712C00025118 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = SOURCE_ROOT; };
+		DC0E34A11B00082C0003A7E1 /* PlanMeal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMeal.h; sourceTree = "<group>"; };
+		DC0E34A21B00082C0003A7E1 /* PlanMeal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMeal.m; sourceTree = "<group>"; };
 		DC5FE7C41ACAE68D002270FB /* MenuStatsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuStatsCollectionViewController.h; sourceTree = "<group>"; };
 		DC5FE7C51ACAE68D002270FB /* MenuStatsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuStatsCollectionViewController.m; sourceTree = "<group>"; };
 		DC5FE7C71ACAE6AE002270FB /* MenuStatsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuStatsCollectionViewCell.h; sourceTree = "<group>"; };
@@ -196,6 +199,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC0E34A41B0008300003A7E1 /* PlanMealObject */ = {
+			isa = PBXGroup;
+			children = (
+				DC0E34A11B00082C0003A7E1 /* PlanMeal.h */,
+				DC0E34A21B00082C0003A7E1 /* PlanMeal.m */,
+			);
+			name = PlanMealObject;
+			sourceTree = "<group>";
+		};
 		DC5FE7C21ACAD977002270FB /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +395,7 @@
 				DC62CAA61AE5DE3300B7F284 /* PlanMealViewController.m */,
 				DC62CAA81AE5F6F700B7F284 /* PlanMealTableViewCell.h */,
 				DC62CAA91AE5F6F700B7F284 /* PlanMealTableViewCell.m */,
+				DC0E34A41B0008300003A7E1 /* PlanMealObject */,
 			);
 			name = "Plan Meal";
 			sourceTree = "<group>";
@@ -629,6 +642,7 @@
 				DCADE31B1AE437E5006BE205 /* FSClient.m in Sources */,
 				DCC334591AD098F0000748A5 /* DiaryObject.m in Sources */,
 				DCADE3271AE43ABC006BE205 /* SVHTTPClient.m in Sources */,
+				DC0E34A31B00082C0003A7E1 /* PlanMeal.m in Sources */,
 				DCADE31C1AE437E5006BE205 /* FSFood.m in Sources */,
 				DC5FE7FC1ACC9532002270FB /* CreateFoodViewController.m in Sources */,
 				DC62CA9F1AE5C47C00B7F284 /* NutritionGoalsViewController.m in Sources */,

@@ -6,6 +6,11 @@
 //  Copyright (c) 2015 Stephen Sowole. All rights reserved.
 //
 
+// Plan Meal
+
+#define PLAN_MEAL_DATABASE_FOODS 5
+#define PLAN_MEAL_ONLINE_FOODS 5
+
 // User
 
 #define MINIMUM_USER_CALORIES 1500
@@ -72,3 +77,4 @@
 #define PLAN_MEAL_BUTTON_NOTIFICATION @"PlanMealNS"
 #define DISPLAY_FOOD_DETAILS @"DisplayDetailsNS"
 #define DIARY_RELOAD_STATS @"DiaryReloadNS"
+#define PLAN_MEAL_FOODS_RECIEVED @"FoodRecievedPlanMealNS"

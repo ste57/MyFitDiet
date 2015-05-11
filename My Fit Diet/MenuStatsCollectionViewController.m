@@ -275,7 +275,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (void) planMeal {
     
-    [self.navigationController pushViewController:[[PlanMealViewController alloc] init] animated:YES];
+    PlanMealViewController *planMealVC = [[PlanMealViewController alloc] init];
+    
+    planMealVC.diary = diary;
+    
+    [self.navigationController pushViewController:planMealVC animated:YES];
 }
 
 - (void) accessProfile {

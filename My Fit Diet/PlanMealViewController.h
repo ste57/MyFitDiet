@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiaryObject.h"
 
 @interface PlanMealViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) DiaryObject *diary;
 
 @end

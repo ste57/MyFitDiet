@@ -13,6 +13,7 @@
 #import "AddFoodToDiaryViewController.h"
 #import "AddToFoodForm.h"
 #import "UserObject.h"
+#import "PlanMeal.h"
 
 @interface PlanMealViewController ()
 
@@ -22,9 +23,11 @@
     
     UITableView *planMealTableView;
     NSMutableArray *mealArray;
-    DiaryObject *diary;
     UserObject *user;
+    PlanMeal *planMeal;
 }
+
+@synthesize diary;
 
 static NSString * const reuseIdentifier = @"DiaryCell";
 
@@ -40,63 +43,36 @@ static NSString * const reuseIdentifier = @"DiaryCell";
     
     user = [[UserObject alloc] init];
     
-    
-    diary = [[DiaryObject alloc] init];
+    planMeal = [[PlanMeal alloc] init];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
     [dateFormat setDateFormat:DIARY_DATE_FORMAT];
     
-    [diary changeDate:[dateFormat stringFromDate:[NSDate date]]];
-    
-    
     [self removeBackButtonText];
     
     [self createTableView];
+    
+    [self getMealData];
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(returnToMenu)];
     
     self.navigationItem.leftBarButtonItem = doneButton;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMealData) name:DIARY_RELOAD_STATS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableWithPlanMealData:)
+                                                 name:PLAN_MEAL_FOODS_RECIEVED object:nil];
+}
+
+- (void) reloadTableWithPlanMealData:(NSNotification*)array {
+    
+    [mealArray addObjectsFromArray:[array object]];
+    [planMealTableView reloadData];
 }
 
 - (void) getMealData {
-
-    PFQuery *query = [PFQuery queryWithClassName:@"PlanMeal"];
     
-    [query whereKey:@"calories" lessThan:[NSNumber numberWithInt:(user.userCalories - diary.currentCalories)]];
-    [query whereKey:@"totalFats" lessThan:[NSNumber numberWithFloat:(user.userTotalFats - diary.currentTotalFats)]];
-    [query whereKey:@"saturatedFats" lessThan:[NSNumber numberWithFloat:(user.userSaturatedFats - diary.currentSaturatedFats)]];
-    [query whereKey:@"totalCarbohydrates" lessThan:[NSNumber numberWithFloat:(user.userTotalCarbohydrates - diary.currentTotalCarbohydrates)]];
-    [query whereKey:@"protein" lessThan:[NSNumber numberWithFloat:(user.userProtein - diary.currentProtein)]];
-    
-    [query orderByDescending:@"calories"];
-    
-    [query setLimit:20];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        if (!error) {
-            
-            for (PFObject *object in objects) {
-                
-                PFObject *foodObject = [PFObject objectWithClassName:@"Food"];
-                
-                foodObject[@"name"] = object[@"name"];
-                foodObject[@"calories"] = object[@"calories"];
-                foodObject[@"totalFats"] = object[@"totalFats"];
-                foodObject[@"saturatedFats"] = object[@"saturatedFats"];
-                foodObject[@"totalCarbohydrates"] = object[@"totalCarbohydrates"];
-                foodObject[@"protein"] = object[@"protein"];
-                foodObject[@"servingSize"] = [NSNumber numberWithInt:1];
-                
-                [mealArray addObject:foodObject];
-            }
-            
-            [planMealTableView reloadData];
-        }
-    }];
+    [planMeal getRecommendedFoods:user withDiary:diary];
 }
 
 - (void) createTableView {

@@ -105,6 +105,17 @@
         field = @"date of birth";
     }
     
+    NSDateComponents *ageComponents = [[NSCalendar currentCalendar]
+                                       components:NSCalendarUnitYear
+                                       fromDate:userObject.dateOfBirth
+                                       toDate:[NSDate date]
+                                       options:0];
+    if ([ageComponents year] < 18) {
+        
+        [self callAlertView:@"Invalid User" :[NSString stringWithFormat:@"\nYou must be at least 18 years old to use this app"]];
+        return NO;
+    }
+    
     if ([field isEqualToString:@""]) {
         
         return YES;
