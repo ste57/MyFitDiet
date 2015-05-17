@@ -195,6 +195,21 @@
     }
 }
 
+- (void) displayErrorAlert:(NSString*)errorString {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                    message:errorString
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+
+    [self retrieveFacebookUserData];
+}
+
 - (void) retrieveFacebookUserData {
     
     if ([FBSDKAccessToken currentAccessToken]) {
@@ -225,21 +240,6 @@
             [self logUserIntoMyFitDiet];
         }
     }
-}
-
-- (void) displayErrorAlert:(NSString*)errorString {
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                    message:errorString
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
-
-- (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-
-    [self retrieveFacebookUserData];
 }
 
 - (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {

@@ -21,7 +21,7 @@
     self = [super init];
     
     if (self) {
-        
+        // once user object is initiated, load all of the user object information save on file - using NSUserDefaults
         UserObject *userObject = [self loadCustomObjectWithKey:USER_OBJECT];
         
         if (userObject) {
@@ -49,6 +49,8 @@
 }
 
 - (void) removeUserObject {
+    
+    // remove object from nsuserdefaults
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_OBJECT];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -132,6 +134,8 @@
 }
 
 - (NSArray *) fields {
+    
+    // fields used to display user form
     
     NSMutableArray *heightArray = [[NSMutableArray alloc] init];
     

@@ -109,7 +109,6 @@
             }];
         }
     }];
-    
 }
 
 - (PFQuery*) setQueryIdealValues:(PFQuery*)query {

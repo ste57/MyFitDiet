@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Stephen Sowole. All rights reserved.
 //
 
+// These constants are used throughout the application to reduce duplicate variables
+
 // Plan Meal
 
 #define PLAN_MEAL_DATABASE_FOODS 5
